@@ -51,8 +51,6 @@ public:
 	EDamageType DamageType = EDamageType::None;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Damage")
-	EDamageResponse DamageResponse = EDamageResponse::None;
-	
-	
+	EDamageResponse DamageResponse = EDamageResponse::None; 
 };
 

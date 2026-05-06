@@ -23,6 +23,7 @@ class PROJECTIDK_API IDamageableInterface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	// Getter Functions //
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = DamageableInterface)
 	float GetCurrentHealth();
 	
@@ -32,9 +33,10 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = DamageableInterface)
 	bool GetIsDead();
 	
+	// Func //
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = DamageableInterface)
 	void Heal(float HealAmount, AActor* Healer);
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = DamageableInterface)
-	bool TakeDamage(FDamageInfo DamageInfo);
+	bool TakeDamage( const FDamageInfo& DamageInfo);
 };
