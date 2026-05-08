@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h" 
+
 #include "SCharacter.generated.h"
 
 class UCameraComponent;
@@ -37,4 +38,26 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+
+protected: // Movement	
+	
+	//  Var
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputMappingContext* InputMapping;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputAction* IA_Move;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputAction* IA_Jump;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputAction* IA_Look;
+	
+	
+	// FUNCs
+	void func_Move(const FInputActionValue& InputValue);
+	void func_Jump();
+	void func_Look(const FInputActionValue& InputValue);
 };
