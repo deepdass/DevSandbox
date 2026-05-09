@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h" 
+#include "projectile.h"
 
 #include "SCharacter.generated.h"
 
@@ -18,6 +19,10 @@ class PROJECTIDK_API ASCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+protected:
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+    TSubclassOf<Aprojectile> primaryprojectile;
+	
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
@@ -31,7 +36,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Debug")
 	float ArrowHeadSize = 25.f;
-	
+
 protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
@@ -52,9 +57,12 @@ public:
 
 protected: // Movement	
 	
-	//  Var
+	//  Var - Input
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	class UInputMappingContext* InputMapping;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputMappingContext* InputMapping_Combo;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	class UInputAction* IA_Move;
@@ -65,9 +73,13 @@ protected: // Movement
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	class UInputAction* IA_Look;
 	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	class UInputAction* IA_PrimaryFire;
 	
-	// FUNCs
+	
+	// FUNCs - Input
 	void func_Move(const FInputActionValue& InputValue);
-	void func_Jump();
 	void func_Look(const FInputActionValue& InputValue);
+	void func_Jump();
+	void func_PrimaryFire();
 };

@@ -56,17 +56,7 @@ void ASCharacter::Tick(float DeltaTime)
 	FVector MoveDir = GetVelocity().GetSafeNormal();
 	if (!MoveDir.IsNearlyZero())
 	{
-		DrawDebugDirectionalArrow(
-			GetWorld(),
-			Origin,
-			Origin + MoveDir * ArrowLength,
-			ArrowHeadSize,
-			FColor::Green,
-			false,
-			-1.f,
-			0,
-			3.f
-		);
+		DrawDebugDirectionalArrow(GetWorld(),Origin,Origin + MoveDir * ArrowLength,ArrowHeadSize,FColor::Green,false,-1.f,0,3.f);
 	}
 
 	// --- Arrow 2: Controller/look direction ---
@@ -74,14 +64,7 @@ void ASCharacter::Tick(float DeltaTime)
 	{
 		FVector LookDir = PC->PlayerCameraManager->GetCameraRotation().Vector();
 
-		DrawDebugDirectionalArrow(
-			GetWorld(),
-			Origin + FVector(0.f, 0.f, 40.f),  // offset up so it doesn't overlap green
-			Origin + FVector(0.f, 0.f, 40.f) + LookDir * ArrowLength,
-			ArrowHeadSize,
-			FColor::Blue,
-			false, -1.f, 0, 3.f
-		);
+		DrawDebugDirectionalArrow(GetWorld(),Origin + FVector(0.f, 0.f, 40.f), Origin + FVector(0.f, 0.f, 40.f) + LookDir * ArrowLength,ArrowHeadSize,FColor::Blue,false, -1.f, 0, 3.f);
 	}
 #endif
 }
@@ -99,6 +82,7 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		{
 			// add input context
 			LocalPlayerSubsystem->AddMappingContext(InputMapping, 0);
+			LocalPlayerSubsystem->AddMappingContext(InputMapping_Combo, 0);
 		}
 	}
 	
@@ -107,6 +91,8 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		Input->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ASCharacter::func_Move);
 		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &ASCharacter::func_Jump);
 		Input->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ASCharacter::func_Look);
+		
+		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::func_PrimaryFire);
 	}
 }
 
@@ -125,12 +111,6 @@ void ASCharacter::func_Move(const FInputActionValue& InputValue)
 		AddMovementInput(RightVector, InputVector.X);
 	}
 }
-
-void ASCharacter::func_Jump()
-{
-	ACharacter::Jump();
-}
-
 void ASCharacter::func_Look(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
@@ -142,4 +122,19 @@ void ASCharacter::func_Look(const FInputActionValue& InputValue)
 	
 }
 
+void ASCharacter::func_Jump()
+{
+	ACharacter::Jump();
+}
+
+void ASCharacter::func_PrimaryFire()
+{
+	FVector HandLoc = GetMesh()->GetSocketLocation("Muzzle_01");
+	
+	FTransform SpawnTM = FTransform(GetControlRotation(), HandLoc);	
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	
+	GetWorld()->SpawnActor<AActor>(primaryprojectile, SpawnTM, SpawnParams);
+}
 
