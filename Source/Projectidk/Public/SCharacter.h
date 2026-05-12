@@ -11,8 +11,11 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class USInteractionComponent;
+
 class UInputAction;
 class UInputMappingContext;
+class UAnimMontage;
 
 UCLASS()
 class PROJECTIDK_API ASCharacter : public ACharacter
@@ -20,8 +23,14 @@ class PROJECTIDK_API ASCharacter : public ACharacter
 	GENERATED_BODY()
 
 protected:
-	UPROPERTY(EditAnywhere, Category = "Projectile")
+	UPROPERTY(EditAnywhere, Category = "Attack")
     TSubclassOf<Aprojectile> primaryprojectile;
+	
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	UAnimMontage* AttackAnim;
+	
+	FTimerHandle TimerHandle_PrimaryAttack;
+	
 	
 public:
 	// Sets default values for this character's properties
@@ -39,9 +48,14 @@ private:
 
 protected:
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* SpringArmComp;
+	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* CameraComp;
+	
+	UPROPERTY(VisibleAnywhere)
+	USInteractionComponent* InteractionComp;
+	
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -52,34 +66,44 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
 
 protected: // Movement	
 	
 	//  Var - Input
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	class UInputMappingContext* InputMapping;
+	UInputMappingContext* InputMapping;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	class UInputMappingContext* InputMapping_Combo;
+	UInputMappingContext* InputMapping_Combo;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	class UInputAction* IA_Move;
+	UInputMappingContext* InputMapping_Interaction;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	class UInputAction* IA_Jump;
+	UInputAction* IA_Move;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	class UInputAction* IA_Look;
+	UInputAction* IA_Jump;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	class UInputAction* IA_PrimaryFire;
+	UInputAction* IA_Look;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	UInputAction* IA_PrimaryFire;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	UInputAction* IA_OpenChest;
 	
 	
 	// FUNCs - Input
 	void func_Move(const FInputActionValue& InputValue);
 	void func_Look(const FInputActionValue& InputValue);
 	void func_Jump();
+	
 	void func_PrimaryFire();
+	void PrimaryAttack_TimeElapsed();
+	
+	void func_OpenChest();
 };

@@ -47,6 +47,7 @@ void AExplosiveBarrel::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 	if (OtherActor && OtherActor != this)
 	{
 		RadComp->FireImpulse();
+		OtherActor->Destroy();
 		
 	}
 }

@@ -3,19 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SGameplayInterface.h"
 #include "GameFramework/Actor.h"
-#include "ExplosiveBarrel.generated.h"
+#include "SItemChest.generated.h"
 
-class URadialForceComponent;
+class UStaticMeshComponent;
 
 UCLASS()
-class PROJECTIDK_API AExplosiveBarrel : public AActor
+class PROJECTIDK_API ASItemChest : public AActor, public ISGameplayInterface
 {
 	GENERATED_BODY()
+	
+	void Interact_Implementation(APawn* InstigatorPawn) override;
 
 public:
 	// Sets default values for this actor's properties
-	AExplosiveBarrel();
+	ASItemChest();
 
 protected:
 	// Called when the game starts or when spawned
@@ -24,19 +27,15 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
 protected:
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* SphereComp;
+	UStaticMeshComponent* BaseMesh;
 	
 	UPROPERTY(VisibleAnywhere)
-	URadialForceComponent* RadComp;
-	
-	// Funcs
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
-				UPrimitiveComponent* OtherComp, FVector NormalImpulse, 
-				const FHitResult& Hit);
+	UStaticMeshComponent* LidMesh;
 
-
+public:
+	UPROPERTY(EditAnywhere)
+	float LidOpenPitch;
 };

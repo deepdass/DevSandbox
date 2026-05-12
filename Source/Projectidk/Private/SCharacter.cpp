@@ -12,6 +12,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 #include "DrawDebugHelpers.h"
+#include "SInteractionComponent.h"
+
 
 
 // Sets default values
@@ -26,6 +28,8 @@ ASCharacter::ASCharacter()
 	
 	CameraComp = CreateDefaultSubobject<UCameraComponent>("CameraComp");
 	CameraComp->SetupAttachment(SpringArmComp);
+	
+	InteractionComp = CreateDefaultSubobject<USInteractionComponent>("Interaction");
 	
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 350.0f, 0.0f);
@@ -83,6 +87,7 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 			// add input context
 			LocalPlayerSubsystem->AddMappingContext(InputMapping, 0);
 			LocalPlayerSubsystem->AddMappingContext(InputMapping_Combo, 0);
+			LocalPlayerSubsystem->AddMappingContext(InputMapping_Interaction,0 );
 		}
 	}
 	
@@ -93,6 +98,8 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		Input->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ASCharacter::func_Look);
 		
 		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::func_PrimaryFire);
+		
+		Input->BindAction(IA_OpenChest, ETriggerEvent::Triggered, this, &ASCharacter::func_OpenChest);
 	}
 }
 
@@ -129,6 +136,13 @@ void ASCharacter::func_Jump()
 
 void ASCharacter::func_PrimaryFire()
 {
+	PlayAnimMontage(AttackAnim);
+	
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle_PrimaryAttack, this, &ASCharacter::PrimaryAttack_TimeElapsed, 0.2f);
+}
+
+void ASCharacter::PrimaryAttack_TimeElapsed()
+{
 	FVector HandLoc = GetMesh()->GetSocketLocation("Muzzle_01");
 	
 	FTransform SpawnTM = FTransform(GetControlRotation(), HandLoc);	
@@ -136,5 +150,14 @@ void ASCharacter::func_PrimaryFire()
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	
 	GetWorld()->SpawnActor<AActor>(primaryprojectile, SpawnTM, SpawnParams);
+}
+
+void ASCharacter::func_OpenChest()
+{
+	if (InteractionComp)
+	{
+		InteractionComp->PrimaryInteract();
+	}
+	
 }
 
