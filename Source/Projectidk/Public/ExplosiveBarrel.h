@@ -7,6 +7,7 @@
 #include "ExplosiveBarrel.generated.h"
 
 class URadialForceComponent;
+class UStaticMeshComponent;
 
 UCLASS()
 class PROJECTIDK_API AExplosiveBarrel : public AActor
@@ -33,11 +34,14 @@ protected:
 	URadialForceComponent* RadComp;
 	
 	// Funcs
+	
+	virtual void PostInitializeComponents() override; 
+	
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 				UPrimitiveComponent* OtherComp, FVector NormalImpulse, 
 				const FHitResult& Hit);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent) 
 	void Explode();
-};
+}; 

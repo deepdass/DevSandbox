@@ -13,21 +13,28 @@ AExplosiveBarrel::AExplosiveBarrel()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	SphereComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SphereComp"));
+	SphereComp->SetSimulatePhysics(true);
 	SphereComp->SetupAttachment(RootComponent);
 	
 	RadComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadForceComp"));
 	RadComp->SetupAttachment(SphereComp);
 	
+	RadComp->SetAutoActivate(false); 
+
+}
+
+
+void AExplosiveBarrel::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
 	
-
-
+	SphereComp->OnComponentHit.AddDynamic(this, &AExplosiveBarrel::OnHit);
 }
 
 // Called when the game starts or when spawned
 void AExplosiveBarrel::BeginPlay()
 {
 	Super::BeginPlay();
-	SphereComp->OnComponentHit.AddDynamic(this, &AExplosiveBarrel::OnHit);
 	
 }
 
@@ -47,12 +54,20 @@ void AExplosiveBarrel::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 	if (OtherActor && OtherActor != this)
     {
 		Explode();
-		OtherActor->Destroy(); 
+		OtherActor->Destroy();
+		
+		UE_LOG(LogTemp, Warning, TEXT("otherActor: %s, at game time: %f"), *GetNameSafe(OtherActor), GetWorld()->TimeSeconds); 
+		
+		FString CombinedString = FString::Printf(TEXT("Hit at location: %s"), *Hit.ImpactPoint.ToString());
+		DrawDebugString(GetWorld(), Hit.ImpactPoint, CombinedString, nullptr, FColor::Green, 2.0f, true);  
 	}
 }
 
 void AExplosiveBarrel::Explode_Implementation()
-{	
+{
 	//Basic Explode Func 
 	RadComp->FireImpulse();
+	
+	UE_LOG(LogTemp, Log, TEXT("BOOM!! Haha"));
+	
 }
