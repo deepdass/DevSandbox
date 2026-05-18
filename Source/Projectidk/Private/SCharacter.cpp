@@ -143,13 +143,34 @@ void ASCharacter::func_PrimaryFire()
 
 void ASCharacter::PrimaryAttack_TimeElapsed()
 {
-	FVector HandLoc = GetMesh()->GetSocketLocation("Muzzle_01");
+	FHitResult HitResult;
 	
-	FTransform SpawnTM = FTransform(GetControlRotation(), HandLoc);	
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	FVector Start;
+	FRotator CamRot; 
+	PC->GetPlayerViewPoint(Start, CamRot);
+
+	FVector End = Start + (CamRot.Vector() * 5000.0f);
+
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params); 
+
+	FVector HandLoc = GetMesh()->GetSocketLocation("Muzzle_01"); 
+	FRotator ProjectileRot = CamRot;
+	if (bHit)
+	{
+		FVector ImpactPt = HitResult.ImpactPoint;
+		ProjectileRot = (ImpactPt - HandLoc).GetSafeNormal().Rotation();
+	}
+
+	FTransform SpawnTM = FTransform(ProjectileRot, HandLoc);
+
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	SpawnParams.Instigator = this;
-	
+
 	GetWorld()->SpawnActor<AActor>(primaryprojectile, SpawnTM, SpawnParams);
 }
 

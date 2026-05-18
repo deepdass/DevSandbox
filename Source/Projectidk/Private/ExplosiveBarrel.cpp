@@ -68,6 +68,6 @@ void AExplosiveBarrel::Explode_Implementation()
 	//Basic Explode Func 
 	RadComp->FireImpulse();
 	
-	UE_LOG(LogTemp, Log, TEXT("BOOM!! Haha"));
+	UE_LOG(LogTemp, Log, TEXT("BOOM!! Haha")); 
 	
 }
