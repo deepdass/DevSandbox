@@ -163,7 +163,7 @@ void ASCharacter::PrimaryAttack_TimeElapsed()
 	if (bHit)
 	{
 		FVector ImpactPt = HitResult.ImpactPoint;
-		ProjectileRot = (ImpactPt - HandLoc).GetSafeNormal().Rotation();  
+		ProjectileRot = (ImpactPt - HandLoc).GetSafeNormal().Rotation();
 	}
 
 	FTransform SpawnTM = FTransform(ProjectileRot, HandLoc);
