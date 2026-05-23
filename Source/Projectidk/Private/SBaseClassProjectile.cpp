@@ -43,7 +43,7 @@ void ASBaseClassProjectile::OnActorHit(UPrimitiveComponent* HitComponent, AActor
 	{
 		HitActor = OtherActor;
 		Explode();
-	}
+	} 
 }
 
 void ASBaseClassProjectile::Explode_Implementation()

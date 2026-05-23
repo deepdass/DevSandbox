@@ -25,7 +25,7 @@ class PROJECTIDK_API ASCharacter : public ACharacter
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Attack")
-    TSubclassOf<Aprojectile> primaryprojectile;
+    TSubclassOf<ASBaseClassProjectile> primaryprojectile;
 	
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	UAnimMontage* AttackAnim;
