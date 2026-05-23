@@ -4,12 +4,9 @@
 #include "SBaseClassProjectile.h"
 
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "NiagaraComponent.h" 
-#include "SAttributeComponent.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Components/SphereComponent.h"
-#include "Kismet/GameplayStatics.h"
-#include "UObject/FastReferenceCollector.h"
-
 
 // Sets default values
 ASBaseClassProjectile::ASBaseClassProjectile()
@@ -19,7 +16,7 @@ ASBaseClassProjectile::ASBaseClassProjectile()
     	
     	SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
     	SphereComp->SetCollisionProfileName("Projectile");
-    	SphereComp->OnComponentHit.AddDynamic(this, &ASBaseClassProjectile::OnActorHit);
+		SphereComp->OnComponentHit.AddDynamic(this, &ASBaseClassProjectile::OnActorHit);
     	RootComponent = SphereComp;
     	
     	EffectComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("ParticleComp"));
@@ -33,17 +30,27 @@ ASBaseClassProjectile::ASBaseClassProjectile()
 }
 
 
-void ASBaseClassProjectile::OnActorHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
-	UPrimitiveComponent* otherComponent, FVector NormalImpulse, const FHitResult& Hit)
+void ASBaseClassProjectile::BeginPlay()
 {
-	Explode();
+	Super::BeginPlay();
+	SphereComp->IgnoreActorWhenMoving(GetInstigator() ,true);
+}
+
+void ASBaseClassProjectile::OnActorHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+                                       UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor && OtherActor != GetInstigator())
+	{
+		HitActor = OtherActor;
+		Explode();
+	}
 }
 
 void ASBaseClassProjectile::Explode_Implementation()
 {
 	if (ensure(IsValid(this)))
 	{
-		UGameplayStatics::SpawnEmitterAtLocation(this, ImpactVFX, GetActorLocation(), GetActorRotation());
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactVFX, GetActorLocation(), GetActorRotation());
 		
 		Destroy();
 	}

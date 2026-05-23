@@ -7,29 +7,37 @@
 #include "SBaseClassProjectile.generated.h"
 
 class UProjectileMovementComponent;
+class USphereComponent;
+class UNiagaraSystem; 
 class UNiagaraComponent;
 
 UCLASS(ABSTRACT)
 class PROJECTIDK_API ASBaseClassProjectile : public AActor
 {
 	GENERATED_BODY()
-
+	
+protected:
+	virtual void BeginPlay() override;
+	
+	AActor* HitActor;
+	
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UParticleSystem* ImpactVFX;
+	UNiagaraSystem* ImpactVFX;
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UPROPERTY(BlueprintReadOnly ,EditDefaultsOnly, Category = "Components")
 	USphereComponent* SphereComp;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UProjectileMovementComponent* ProjectileMovement;
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UPROPERTY(EditDefaultsOnly, Category = "Components") 
 	UNiagaraComponent* EffectComp;
 	
 	
 	UFUNCTION()
-	virtual void OnActorHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* otherComponent, FVector NormalImpulse, const FHitResult& Hit);
+    void OnActorHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, 
+        UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void Explode();
