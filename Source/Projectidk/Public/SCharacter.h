@@ -110,4 +110,14 @@ protected: // Movement
 	void PrimaryAttack_TimeElapsed();
 	
 	void func_OpenChest();
+	
+	
+	UFUNCTION()
+	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
+	
+	UPROPERTY()
+	UMaterialInstanceDynamic* FlashMID;
+	
+	virtual void PostInitializeComponents() override;
+	
 };

@@ -11,7 +11,7 @@
 // Sets default values
 ASTeleportProjectile::ASTeleportProjectile()
 {
-	TeleportDelay = 0.2f;
+	TeleportDelay = 0.3f;
 	DetonateDelay = 0.2f;
 	
 	ProjectileMovement->InitialSpeed = 6000.0f;

@@ -28,4 +28,6 @@ protected:
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
 	
+	virtual void PostInitializeComponents() override;
+	
 };

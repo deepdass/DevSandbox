@@ -39,10 +39,21 @@ ASCharacter::ASCharacter()
 	bUseControllerRotationYaw = false;
 }
 
+
+void ASCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	
+	AttributeComp->OnHealthChanged.AddDynamic(this, &ASCharacter::OnHealthChanged);
+}
+
 // Called when the game starts or when spawned
 void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay(); 
+	
+	FlashMID = UMaterialInstanceDynamic::Create(GetMesh()->GetOverlayMaterial(), this);
+	GetMesh()->SetOverlayMaterial(FlashMID);
 	
 }
 
@@ -119,6 +130,7 @@ void ASCharacter::func_Move(const FInputActionValue& InputValue)
 		AddMovementInput(RightVector, InputVector.X);
 	}
 }
+
 void ASCharacter::func_Look(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
@@ -183,4 +195,23 @@ void ASCharacter::func_OpenChest()
 	}
 	
 }
+
+void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth,
+	float Delta)
+{
+	if (Delta < 0.0)
+	{
+		if (FlashMID)
+		{
+			FlashMID->SetScalarParameterValue(FName("TimeToHit"), GetWorld()->GetTimeSeconds());
+		}
+	}
+
+	if (NewHealth <= 0.0f && Delta < 0.0f)
+	{
+		APlayerController* PC = Cast<APlayerController>(GetController());
+		DisableInput(PC);
+	}
+}
+
 

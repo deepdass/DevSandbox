@@ -14,6 +14,12 @@ ASTestCharacter::ASTestCharacter()
 	
 	AttributeComponent = CreateDefaultSubobject<USAttributeComponent>("AttributeComponent");
 	
+}
+
+void ASTestCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	
 	AttributeComponent->OnHealthChanged.AddDynamic(this, &ASTestCharacter::OnHealthChanged);
 }
 
