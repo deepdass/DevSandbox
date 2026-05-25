@@ -2,6 +2,8 @@
 
 
 #include "projectile.h"
+
+#include "NiagaraFunctionLibrary.h"
 #include "SAttributeComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
@@ -9,6 +11,14 @@
 Aprojectile::Aprojectile()
 {
 	ProjectileMovement->InitialSpeed = 1000.0f;
+}
+
+void Aprojectile::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, SpawnVFX, GetActorLocation(), GetActorRotation());
+
 }
 
 void ASBaseClassProjectile::PostInitializeComponents()

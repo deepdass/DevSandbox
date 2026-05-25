@@ -1,0 +1,40 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "SGameplayInterface.h"
+#include "SBaseClass_PickUps.generated.h"
+
+class UStaticMesh;
+class UNiagaraComponent;
+
+UCLASS()
+class PROJECTIDK_API ASBaseClass_PickUps : public AActor, public ISGameplayInterface
+{
+	GENERATED_BODY()
+
+public:
+	// Sets default values for this actor's properties
+	ASBaseClass_PickUps();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	
+	void Interact_Implementation(APawn* InstigatorPawn);
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UStaticMeshComponent* BaseMesh;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Components") 
+	UNiagaraComponent* EffectComp;
+	
+	UPROPERTY()
+	float DeactiveforTime;
+	
+	UFUNCTION()
+	void Activate();
+	
+};

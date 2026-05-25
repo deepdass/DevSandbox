@@ -6,6 +6,7 @@
 #include "SBaseClassProjectile.h"
 #include "projectile.generated.h"
 
+
 UCLASS()
 class PROJECTIDK_API Aprojectile : public ASBaseClassProjectile
 {
@@ -15,5 +16,15 @@ public:
 	Aprojectile();
 
 protected:
+	
+	virtual void BeginPlay() override;
+	
+	
 	virtual void Explode_Implementation() override;
+
+private:
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UNiagaraSystem* SpawnVFX;
+	
 };

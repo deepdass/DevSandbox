@@ -213,5 +213,3 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		DisableInput(PC);
 	}
 }
-
-

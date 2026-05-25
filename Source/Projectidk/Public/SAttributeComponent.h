@@ -21,6 +21,9 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute")
 	float Health;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute")
+	float MaxHealth = 100;
 
 public:
 	
@@ -32,6 +35,12 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	bool GetIsAlive() const;
+	
+	UFUNCTION(BlueprintCallable)
+	float GetHealth() const { return Health; }
+	
+	UFUNCTION(BlueprintCallable)
+	float GetMaxHealth() const { return MaxHealth; }
 	
 
 };
