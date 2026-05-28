@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "SCharacter.h"
+#include "PlayerComps/SCharacter.h"
 
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -12,8 +12,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 #include "DrawDebugHelpers.h"
-#include "SAttributeComponent.h"
-#include "SInteractionComponent.h"
+#include "PlayerComps/SAttributeComponent.h"
+#include "PlayerComps/SInteractionComponent.h"
 
 
 

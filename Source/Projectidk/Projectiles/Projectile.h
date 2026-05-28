@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SBaseClassProjectile.h"
+#include "Projectiles/SBaseClassProjectile.h"
 #include "projectile.generated.h"
 
 
