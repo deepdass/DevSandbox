@@ -1,12 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "projectile.h"
+#include "Projectile.h"
 
 #include "NiagaraFunctionLibrary.h"
-#include "SAttributeComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Components/SphereComponent.h"
+#include "PlayerComps/SAttributeComponent.h"
 
 Aprojectile::Aprojectile()
 {

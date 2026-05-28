@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "SGameplayInterface.h"
+#include "PlayerComps/SGameplayInterface.h"
 #include "SBaseClass_PickUps.generated.h"
 
 class UStaticMesh;

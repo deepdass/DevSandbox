@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h" 
-#include "projectile.h"
+#include "Projectiles/SBaseClassProjectile.h"
+
 
 #include "SCharacter.generated.h"
 

@@ -3,7 +3,7 @@
 
 #include "STestCharacter.h"
 
-#include "SAttributeComponent.h"
+#include "PlayerComps/SAttributeComponent.h"
 
 
 // Sets default values
