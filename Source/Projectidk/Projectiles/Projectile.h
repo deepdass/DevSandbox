@@ -17,8 +17,11 @@ public:
 
 protected:
 	
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	float DamageAmount;
 	
+	
+	virtual void BeginPlay() override;
 	
 	virtual void Explode_Implementation() override;
 

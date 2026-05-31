@@ -10,6 +10,7 @@
 Aprojectile::Aprojectile()
 {
 	ProjectileMovement->InitialSpeed = 1000.0f;
+	DamageAmount = -20.0f;
 }
 
 void Aprojectile::BeginPlay()
@@ -32,7 +33,7 @@ void Aprojectile::Explode_Implementation()
 		USAttributeComponent* AttributeComp = HitActor->FindComponentByClass<USAttributeComponent>();
 		if (AttributeComp)
 		{
-			AttributeComp->ApplyHealthChange(-20.0f);
+			AttributeComp->ApplyHealthChange(DamageAmount);
 		}
 	}
 

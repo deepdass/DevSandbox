@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "AI/SBTS_CheckAttackRange.h"
+
 #include "BehaviorTree/BlackboardComponent.h"
 #include "AIController.h"
 #include "GameFramework/Actor.h"
-
-#include "AI/SBTS_CheckAttackRange.h"
 
 
 void USBTS_CheckAttackRange::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -29,9 +29,10 @@ void USBTS_CheckAttackRange::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* 
 				{
 					float DistanceTo = FVector::Distance(TargetActor->GetActorLocation(), AIPawn->GetActorLocation());
 					
-					bool bWithinRange = DistanceTo < 1000.0f;
+					float AttackRangeAsFloat = BlackboardComp->GetValueAsFloat(AttackRange.SelectedKeyName);
+					bool bWithinRange = DistanceTo < AttackRangeAsFloat;
 					
-					bool bHasLOS = false;
+					bool bHasLOS = false; 
 					if (bWithinRange)
 					{
 						bHasLOS = MyAIController->LineOfSightTo(TargetActor);
