@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BehaviorTree/BehaviorTreeTypes.h"
 #include "GameFramework/Character.h"
 #include "SAICharacter.generated.h"
 
@@ -17,14 +16,15 @@ class PROJECTIDK_API ASAICharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ASAICharacter();
-
-protected:
 	
+public:
 	virtual void PostInitializeComponents() override;
 	
+protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UPawnSensingComponent* PawnSensingComp;
 	
+	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
 
 };
