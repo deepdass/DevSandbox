@@ -170,7 +170,7 @@ void ASCharacter::PrimaryAttack_TimeElapsed()
 
 	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params); 
 
-	FVector HandLoc = GetMesh()->GetSocketLocation("Muzzle_01"); 
+	FVector HandLoc = GetMesh()->GetSocketLocation(HandSocketName); 
 	FRotator ProjectileRot = CamRot;
 	if (bHit)
 	{

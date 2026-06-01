@@ -10,7 +10,7 @@
 ASHealthPotion::ASHealthPotion()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	
 	DeactiveforTime = 10.0f;
 }
@@ -18,10 +18,16 @@ ASHealthPotion::ASHealthPotion()
 
 void ASHealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 {
-	USAttributeComponent* AttributeComp = InstigatorPawn->FindComponentByClass<USAttributeComponent>();
-	if (AttributeComp)
+	
+	if (ensure(IsValid(InstigatorPawn)))
 	{
-		if (AttributeComp->GetHealth() == AttributeComp->GetMaxHealth())
+		return;
+	}
+	
+	USAttributeComponent* AttributeComp = InstigatorPawn->FindComponentByClass<USAttributeComponent>();
+	if (ensure(IsValid(AttributeComp)))
+	{
+		if (AttributeComp->GetHealth() >= AttributeComp->GetMaxHealth())
 		{
 			return;
 		}
@@ -29,18 +35,5 @@ void ASHealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 		
 		Super::Interact_Implementation(InstigatorPawn);
 	}
-}
-
-// Called when the game starts or when spawned
-void ASHealthPotion::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ASHealthPotion::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 

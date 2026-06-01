@@ -12,16 +12,19 @@ USAttributeComponent::USAttributeComponent()
 
 bool USAttributeComponent::ApplyHealthChange(float Delta)
 {
+	float OldHealth = Health;
+	
 	Health = FMath::Clamp(Health+Delta, 0.0f, MaxHealth);
-		
-	OnHealthChanged.Broadcast(nullptr, this, Health, Delta);
-	return true;
+	
+	float ActualDelta = Health - OldHealth;
+	OnHealthChanged.Broadcast(nullptr, this, Health, ActualDelta);
+	return !FMath::IsNearlyZero(ActualDelta);
 	
 }
 
 bool USAttributeComponent::GetIsAlive() const
 {
-	return Health > 0.0f;
+	return !FMath::IsNearlyZero(Health);
 }
 
 

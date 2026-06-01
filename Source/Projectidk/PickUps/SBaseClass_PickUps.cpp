@@ -17,6 +17,7 @@ ASBaseClass_PickUps::ASBaseClass_PickUps()
 	EffectComp->SetupAttachment(BaseMesh);
 	EffectComp->bAutoActivate = false;
 	
+	DeactiveforTime = 10.0f;
 }
 
 
@@ -26,7 +27,6 @@ void ASBaseClass_PickUps::Interact_Implementation(APawn* InstigatorPawn)
 	
 	BaseMesh->SetHiddenInGame(true);
 	SetActorEnableCollision(false);
-	SetActorTickEnabled(false);
 	
 	FTimerHandle DeactivateForTimerHandle;
 	GetWorldTimerManager().SetTimer(DeactivateForTimerHandle, this, &ASBaseClass_PickUps::Activate, DeactiveforTime, false);
@@ -46,5 +46,5 @@ void ASBaseClass_PickUps::Activate()
 	
 	BaseMesh->SetHiddenInGame(false); 
 	SetActorEnableCollision(true);
-	SetActorTickEnabled(true);
+
 }

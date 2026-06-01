@@ -33,6 +33,9 @@ protected:
 	
 	FTimerHandle TimerHandle_PrimaryAttack;
 	
+	UPROPERTY(VisibleAnywhere, Category="Attack")
+	FName HandSocketName = "Muzzle_01";
+	
 	
 public:
 	// Sets default values for this character's properties
@@ -60,7 +63,6 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	USAttributeComponent* AttributeComp;
-	
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -119,6 +121,7 @@ protected: // Movement
 	UPROPERTY()
 	UMaterialInstanceDynamic* FlashMID;
 	
+public:
 	virtual void PostInitializeComponents() override;
 	
 };
