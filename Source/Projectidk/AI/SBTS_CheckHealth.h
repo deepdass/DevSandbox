@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTService.h"
-#include "SBTSCheckHealth.generated.h"
+#include "SBTS_CheckHealth.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECTIDK_API USBTSCheckHealth : public UBTService
+class PROJECTIDK_API USBTS_CheckHealth : public UBTService
 {
 	GENERATED_BODY()
 	
