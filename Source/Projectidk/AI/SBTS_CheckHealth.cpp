@@ -9,15 +9,8 @@
 void USBTS_CheckHealth::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
-    
-	UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
-	if (!ensure(IsValid(BlackboardComp))){return;}
 	
-	AAIController* MyAIController = OwnerComp.GetAIOwner();
-	if (!ensure(IsValid(MyAIController))){return;}
-			
-
-	APawn* AIPawn = MyAIController->GetPawn();
+	APawn* AIPawn = OwnerComp.GetAIOwner()->GetPawn();
 
 	if (ensure(IsValid(AIPawn)))
 	{
@@ -27,8 +20,10 @@ void USBTS_CheckHealth::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		float CurrentHealth = HealthComp->GetHealth();
 		float MaxHealth = HealthComp->GetMaxHealth();
 		
-		float HealthPercentage = CurrentHealth / MaxHealth;
-		BlackboardComp->SetValueAsBool(IsLowHealth.SelectedKeyName, (HealthPercentage <= 0.3f || FMath::IsNearlyEqual(HealthPercentage, 0.3f)));
+		float HealthFraction = CurrentHealth / MaxHealth;
+		
+		UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
+		BlackboardComp->SetValueAsBool(IsLowHealth.SelectedKeyName, (HealthFraction <= 0.3f || FMath::IsNearlyEqual(HealthFraction, 0.3f)));
 
 	}
 }
