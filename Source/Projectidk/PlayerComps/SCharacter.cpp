@@ -199,17 +199,18 @@ void ASCharacter::func_OpenChest()
 void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth,
 	float Delta)
 {
-	if (Delta < 0.0)
+	if (Delta < 0.0f)
 	{
 		if (FlashMID)
 		{
 			FlashMID->SetScalarParameterValue(FName("TimeToHit"), GetWorld()->GetTimeSeconds());
 		}
+		
+		if (NewHealth <= 0.0f)
+		{
+			APlayerController* PC = Cast<APlayerController>(GetController());
+			DisableInput(PC);
+		}
 	}
-
-	if (NewHealth <= 0.0f && Delta < 0.0f)
-	{
-		APlayerController* PC = Cast<APlayerController>(GetController());
-		DisableInput(PC);
-	}
+	
 }

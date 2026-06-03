@@ -29,7 +29,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UPawnSensingComponent* PawnSensingComp;
 	
+	void SetTarget(AActor* Target);
+	
 	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
-
+	
+	
+	UFUNCTION()
+	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
+	
+	UPROPERTY()
+	UMaterialInstanceDynamic* FlashMID;
 };

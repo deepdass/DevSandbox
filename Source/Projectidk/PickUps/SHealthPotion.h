@@ -16,5 +16,9 @@ class PROJECTIDK_API ASHealthPotion : public ASBaseClass_PickUps
 public:
 	// Sets default values for this actor's properties
 	ASHealthPotion();
+	
+protected:
+	UPROPERTY(EditDefaultsOnly, Category="Potion")
+	float HealAmount;
 
 };

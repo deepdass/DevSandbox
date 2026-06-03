@@ -16,7 +16,7 @@ EBTNodeResult::Type USBTT_HealSelf::ExecuteTask(UBehaviorTreeComponent& OwnerCom
 	USAttributeComponent* MyAttributeComp = MyPawn->FindComponentByClass<USAttributeComponent>();
 	if (!ensure(IsValid(MyAttributeComp))) return EBTNodeResult::Failed;
 
-	MyAttributeComp->ApplyHealthChange(60.0f);
+	MyAttributeComp->ApplyHealthChange(MyPawn, 60.0f);
 
 	return EBTNodeResult::Succeeded;
 }

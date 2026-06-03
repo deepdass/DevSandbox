@@ -14,6 +14,13 @@ class PROJECTIDK_API USAttributeComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	
+	UFUNCTION(BlueprintCallable, Category="Attribute", meta = (DisplayName = "GetAttributeComp"))
+	static  USAttributeComponent* GetAttributes(AActor* FromActor);
+	
+	UFUNCTION(BlueprintCallable, Category = "Attribute", meta = (DisplayName = "IsAlive"))
+	static bool GetIsActorAlive(AActor* FromActor);
+	
 	// Sets default values for this component's properties
 	USAttributeComponent();
 
@@ -23,7 +30,7 @@ protected:
 	float Health;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute")
-	float MaxHealth = 100;
+	float MaxHealth;
 
 public:
 	
@@ -31,7 +38,7 @@ public:
 	FOnHealthChanged OnHealthChanged;
 	
 	UFUNCTION(BlueprintCallable, Category = "Attribute")
-	bool ApplyHealthChange(float Delta);
+	bool ApplyHealthChange(AActor* InstigatorActor, float Delta);
 	
 	UFUNCTION(BlueprintCallable)
 	bool GetIsAlive() const;

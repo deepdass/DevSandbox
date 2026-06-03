@@ -16,7 +16,16 @@ class PROJECTIDK_API USBTT_RangedAttack : public UBTTaskNode
 	
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override; 
 	
+public:
+	USBTT_RangedAttack();
+	
 protected:
+	
+	UPROPERTY(EditAnywhere, Category="AI")
+	FVector2D PitchMaxBulletSpread;
+	
+	UPROPERTY(EditAnywhere, Category="AI")
+	FVector2D YawMaxBulletSpread;
 	
 	UPROPERTY(EditAnywhere, Category = "AI")
 	TSubclassOf<AActor> ProjectileClass;

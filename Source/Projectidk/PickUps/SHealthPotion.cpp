@@ -13,6 +13,7 @@ ASHealthPotion::ASHealthPotion()
 	PrimaryActorTick.bCanEverTick = false;
 	
 	DeactiveforTime = 10.0f;
+	HealAmount = +50;
 }
 
 
@@ -30,7 +31,7 @@ void ASHealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 		{
 			return;
 		}
-		AttributeComp->ApplyHealthChange(+30);
+		AttributeComp->ApplyHealthChange(this ,HealAmount);
 		
 		Super::Interact_Implementation(InstigatorPawn);
 	}

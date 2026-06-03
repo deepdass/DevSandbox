@@ -33,7 +33,7 @@ void Aprojectile::Explode_Implementation()
 		USAttributeComponent* AttributeComp = HitActor->FindComponentByClass<USAttributeComponent>();
 		if (AttributeComp)
 		{
-			AttributeComp->ApplyHealthChange(DamageAmount);
+			AttributeComp->ApplyHealthChange(GetInstigator() ,DamageAmount);
 		}
 	}
 

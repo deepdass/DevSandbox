@@ -6,6 +6,16 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/Character.h"
+#include "PlayerComps/SAttributeComponent.h"
+
+
+USBTT_RangedAttack::USBTT_RangedAttack()
+{
+	PitchMaxBulletSpread = FVector2D(0,3.0f);
+	YawMaxBulletSpread = FVector2D(-3.0f,3.0f);
+	
+}
+
 
 EBTNodeResult::Type USBTT_RangedAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
@@ -25,13 +35,16 @@ EBTNodeResult::Type USBTT_RangedAttack::ExecuteTask(UBehaviorTreeComponent& Owne
 		
 		AActor* TargetActor = Cast<AActor>(OwnerComp.GetBlackboardComponent()->GetValueAsObject("TargetActor"));
 		
-		if (TargetActor == nullptr)
+		if (TargetActor == nullptr or !USAttributeComponent::GetIsActorAlive(TargetActor))
 		{
 			return EBTNodeResult::Failed;
 		}
 		
 		FVector Direction = TargetActor->GetActorLocation() - MuzzleLocation;
 		FRotator MuzzleRotation = Direction.Rotation();
+		
+		MuzzleRotation.Pitch += FMath::RandRange(PitchMaxBulletSpread.X, PitchMaxBulletSpread.Y);
+		MuzzleRotation.Yaw += FMath::RandRange(YawMaxBulletSpread.X, YawMaxBulletSpread.Y);
 		
 		FActorSpawnParameters Params;
 		Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -44,5 +57,6 @@ EBTNodeResult::Type USBTT_RangedAttack::ExecuteTask(UBehaviorTreeComponent& Owne
 	}
 	
 	return EBTNodeResult::Failed;
-	
 }
+
+
