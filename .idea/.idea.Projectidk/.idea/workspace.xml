@@ -47,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/EnvQueryTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/Tests/EnvQueryTest_GameplayTags.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/AIModule/Classes/Perception/PawnSensingComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Core/Public/Logging/LogMacros.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/AI/SBTT_HealSelf.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/AI/SBTT_HealSelf.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/AI/SBTT_RangedAttack.h" root0="FORCE_HIGHLIGHTING" />
@@ -183,7 +184,7 @@
       <workItem from="1780091094327" duration="5290000" />
       <workItem from="1780180873900" duration="13126000" />
       <workItem from="1780273934138" duration="79000" />
-      <workItem from="1780274149115" duration="33330000" />
+      <workItem from="1780274149115" duration="38941000" />
     </task>
     <servers />
   </component>

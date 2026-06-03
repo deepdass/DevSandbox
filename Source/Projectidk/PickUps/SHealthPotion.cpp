@@ -18,8 +18,7 @@ ASHealthPotion::ASHealthPotion()
 
 void ASHealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 {
-	
-	if (ensure(IsValid(InstigatorPawn)))
+	if (!ensure(IsValid(InstigatorPawn)))
 	{
 		return;
 	}
