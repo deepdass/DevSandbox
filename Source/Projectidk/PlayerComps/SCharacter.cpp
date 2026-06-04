@@ -6,14 +6,17 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
+#include "PlayerComps/SAttributeComponent.h"
+#include "PlayerComps/SInteractionComponent.h"
+
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
+#include "Components/AudioComponent.h"
+
 #include "DrawDebugHelpers.h"
-#include "PlayerComps/SAttributeComponent.h"
-#include "PlayerComps/SInteractionComponent.h"
 
 
 
@@ -29,6 +32,10 @@ ASCharacter::ASCharacter()
 	
 	CameraComp = CreateDefaultSubobject<UCameraComponent>("CameraComp");
 	CameraComp->SetupAttachment(SpringArmComp);
+	
+	HealPotionSound = CreateDefaultSubobject<UAudioComponent>("HealPotionSound");
+	HealPotionSound->SetupAttachment(RootComponent);
+	HealPotionSound->bAutoActivate = false;
 	
 	InteractionComp = CreateDefaultSubobject<USInteractionComponent>("Interaction");
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
@@ -211,6 +218,11 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 			APlayerController* PC = Cast<APlayerController>(GetController());
 			DisableInput(PC);
 		}
+	}
+	
+	if (Delta > 0.0f) // add check later if more than healing actor 
+	{
+		HealPotionSound->Play();
 	}
 	
 }

@@ -6,6 +6,8 @@
 #include "Projectiles/SBaseClassProjectile.h"
 #include "projectile.generated.h"
 
+class USoundCue;
+class UCameraShakeBase;
 
 UCLASS()
 class PROJECTIDK_API Aprojectile : public ASBaseClassProjectile
@@ -20,6 +22,11 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Projectile")
 	float DamageAmount;
 	
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	USoundCue* ImpactSound;
+	
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	TSubclassOf<UCameraShakeBase> ImpactCameraShake;
 	
 	virtual void BeginPlay() override;
 	

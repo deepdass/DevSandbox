@@ -8,6 +8,7 @@
 
 class UPawnSensingComponent;
 class USAttributeComponent;
+class SoundCue;
 
 UCLASS()
 class PROJECTIDK_API ASAICharacter : public ACharacter

@@ -18,6 +18,8 @@ class USAttributeComponent;
 class UInputAction;
 class UInputMappingContext;
 class UAnimMontage;
+class UAudioComponent;
+
 
 UCLASS()
 class PROJECTIDK_API ASCharacter : public ACharacter
@@ -117,6 +119,9 @@ protected: // Movement
 	
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
+	
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	UAudioComponent* HealPotionSound;
 	
 	UPROPERTY()
 	UMaterialInstanceDynamic* FlashMID;

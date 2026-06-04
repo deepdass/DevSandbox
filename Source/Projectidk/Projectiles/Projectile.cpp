@@ -7,6 +7,10 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "PlayerComps/SAttributeComponent.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
+#include "Camera/CameraShakeBase.h"
+
 Aprojectile::Aprojectile()
 {
 	ProjectileMovement->InitialSpeed = 1000.0f;
@@ -28,14 +32,16 @@ void ASBaseClassProjectile::PostInitializeComponents()
 
 void Aprojectile::Explode_Implementation()
 {
-	if (HitActor)
+	if (IsValid(HitActor))
 	{
 		USAttributeComponent* AttributeComp = HitActor->FindComponentByClass<USAttributeComponent>();
 		if (AttributeComp)
 		{
-			AttributeComp->ApplyHealthChange(GetInstigator() ,DamageAmount);
+			AttributeComp->ApplyHealthChange(GetInstigator() ,DamageAmount); 
 		}
 	}
-
+	
+	UGameplayStatics::PlayWorldCameraShake(GetWorld(), ImpactCameraShake, GetActorLocation(), 0.0f, 1000.0f, 1.0f);
+	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
 	Super::Explode_Implementation();
 }
