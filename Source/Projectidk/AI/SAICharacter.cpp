@@ -6,8 +6,11 @@
 #include "AIController.h"
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Blueprint/UserWidget.h"
 #include "Perception/PawnSensingComponent.h"
 #include "PlayerComps/SAttributeComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "UI/SWorldUserWidget.h"
 
 
 // Sets default values
@@ -61,6 +64,16 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			SetTarget(InstigatorActor);
 		}
 		
+		if (ActiveHealthBar == nullptr)
+		{
+			ActiveHealthBar = CreateWidget<USWorldUserWidget>(GetWorld(), HealthBarWidgetClass);
+			if (ActiveHealthBar)
+			{
+				ActiveHealthBar->AttachToActor = this;
+				ActiveHealthBar->AddToViewport();
+			}
+		}
+		
 		if (FlashMID)
 		{
 			FlashMID->SetScalarParameterValue(FName("TimeToHit"), GetWorld()->GetTimeSeconds());
@@ -76,6 +89,7 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			
 			GetMesh()->SetCollisionProfileName("Ragdoll");
 			GetMesh()->SetAllBodiesSimulatePhysics(true);
+			GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			
 			SetLifeSpan(10.0f);
 		}

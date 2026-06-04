@@ -3,6 +3,7 @@
 
 #include "ExplosiveBarrel.h"
 
+#include "GameFramework/Character.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 
 
@@ -50,22 +51,21 @@ void AExplosiveBarrel::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 							 UPrimitiveComponent* OtherComp, FVector NormalImpulse, 
 							 const FHitResult& Hit)
 {
-	// don't overlap with yourself
-	if (OtherActor && OtherActor != this)
-    {
-		Explode();
-		OtherActor->Destroy();
+	if (!OtherActor) return;
+	if (OtherActor->IsA(ACharacter::StaticClass())) return; 
+
+	Explode();
+	OtherActor->Destroy();
 		
-		UE_LOG(LogTemp, Warning, TEXT("otherActor: %s, at game time: %f"), *GetNameSafe(OtherActor), GetWorld()->TimeSeconds); 
+	UE_LOG(LogTemp, Warning, TEXT("otherActor: %s, at game time: %f"), *GetNameSafe(OtherActor), GetWorld()->TimeSeconds); 
 		
-		FString CombinedString = FString::Printf(TEXT("Hit at location: %s"), *Hit.ImpactPoint.ToString());
-		DrawDebugString(GetWorld(), Hit.ImpactPoint, CombinedString, nullptr, FColor::Green, 2.0f, true);  
-	}
+	FString CombinedString = FString::Printf(TEXT("Hit at location: %s"), *Hit.ImpactPoint.ToString());
+	DrawDebugString(GetWorld(), Hit.ImpactPoint, CombinedString, nullptr, FColor::Green, 2.0f, true);
+	
 }
 
 void AExplosiveBarrel::Explode_Implementation()
 {
-	//Basic Explode Func 
 	RadComp->FireImpulse();
 	
 	UE_LOG(LogTemp, Log, TEXT("BOOM!! Haha")); 

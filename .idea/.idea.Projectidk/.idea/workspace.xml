@@ -18,224 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5d938f0-1181-4ce2-9a86-c0a6d38e1e97" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/UI/SWorldUserWidget.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/UI/SWorldUserWidget.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Gideon_AnimBlueprint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Gideon_AnimBlueprint.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile_Enemy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_FireBallCast01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_FireBallCast02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_FireWaveCast01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_FireWavePowerup_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_FireWavePowerup_02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_MeteorCast01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_MeteorImpact01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_MeteorImpact02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_MeteorWhoosh_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Abilities/A_Ability_TimeSlow01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Audio/Sound_Basics/Basic_ActorLocation01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Audio/Sound_Basics/Basic_AttenuationShape01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Abilities.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Enemy.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Hero.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Items.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Music.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Player.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_RPG_Master.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_SFX.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Slomo.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_UI.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SC_Weapons.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SM_Abilities.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SM_Enemies.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SM_Items.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SM_Mixer.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/AudioClasses/SM_Slomo.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Heal01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Heal01_Mana.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Potion01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Potion02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Powerup01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Step01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Step02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Step03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Step04.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Character/A_Character_Step05.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Concurrency/Spider_Walk_Loop.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Death01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Death02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Impact01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Impact02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Impact03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Impact04.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Roar02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Roar03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Spawn01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/A_Guardian_Spawn02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/Guardian_Death_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Guardian/Guardian_Roar_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Death01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Death_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Land01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Land_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_LegLrg01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_LegLrg02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_LegLrg03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_LegLrg04.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_LegLrg_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_React01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_React02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_React03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_React_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Spawn01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Spawn_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Stun01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_Stun_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_WalkLoop02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Creatures/Spider/A_Spider_WalkLoop_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/Character_Sprint_Loop.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ENV_Switch.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Deploy.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Despawn.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Loop_Cooling.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Loop_Cooling02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Loop_Healing.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Loop_Revealing.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Spawn.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Cloud_Spawn_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_CoolDown01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_CoolDown_Expired.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_CoolDown_Loop.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Fail01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/ITEM/ITEM_Power_Fail01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Sword/A_Sword_Swing01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Sword/A_Sword_Swing02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Sword/A_Sword_Swing03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Textures/T_Metal_Painted01_N.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Axe/A_Axe_Swing01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Axe/A_Axe_Swing02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Axe/A_Axe_Swing03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Hammer/A_Hammer_Swing01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Hammer/A_Hammer_Swing02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Hammer/A_Hammer_Swing03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Audio/Weapons/Hammer/A_Hammer_Swing_Cue.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/CameraShake/Shake_Damage_Heavy.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/CameraShake/Shake_Damage_Short.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ABP_SpiderBoss.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/AM_Spider_Charge.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/AM_Spider_Firewall.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/AM_Spider_Hit.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/AM_Spider_Melee.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/AM_Spider_Spawn.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/BS_SpiderBoss.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Attack_Melee.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Attack_Melee_B.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Attack_Melee_C.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Cast_Roar.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Charge_Root.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Death.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Idle.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_React_Heavy_Front.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_React_Stunned.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_React_Stunned_Enter.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_React_Stunned_Exit.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_React_Stunned_Idle.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Teleport.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Walk_Fwd.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Walk_Left.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/Animation/ExoGame_Greater_Spider_Walk_Right.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/CharM_Greater_Spider.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/SK_Greater_Spider.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/SK_Greater_Spider_Skeleton.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/T_Enemy_GreaterSpider_Fire_D_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/T_Enemy_GreaterSpider_Fire_M.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Enemy_Great_Spider/T_Enemy_GreaterSpider_Fire_N.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/MaterialFunctions/MF_HitFlash.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/BasicAsset01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/BasicShapeMaterial.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Energy_Burst.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Gold_Pile.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Light_Bulb_Base.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Light_Bulb_Glass.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Metal_Lighter.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Orange_Shiny.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Pickup_Coin.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Pickup_Health.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_PotionGlass.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Radial_Gradient.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Radius_Glow.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Toy_Cow.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/M_Treasure_Chest.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/T_Pixel_Noise.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/T_Treasure_Chest_M.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/T_Treasure_Chest_N.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/T_Treasure_N.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Materials/T_UnrealEngineDecal.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/Cube.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/MI_Cave_Rock.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/MI_Cave_Rock_Large02_002.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/MI_Cave_Rock_Large02_003.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Cave_Rock_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Cave_Rock_02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Cave_Rock_03.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Chest_Bottom.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Chest_Lid.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Coin_Small.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Interactive_Switch.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Interactive_Switch_Handle.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_LED.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Lightbulb.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Open_Square.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Pickup_Coin.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Pickup_Health.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_PotionBottle.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Radius_Ring.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_RedBarrel.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Template_Map_Floor.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Toy_Cow.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/SM_Treasure_Pile.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Meshes/Sphere.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_Lightbulb_M.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_Space.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_TankMoteNoise.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_TileNoise.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_Toy_Cow_M.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_Toy_Cow_N.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/Textures/T_White.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Fonts/Cinzel/Cinzel-Black.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Fonts/Cinzel/Cinzel-Bold.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Fonts/Cinzel/Cinzel-Regular.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Fonts/Cinzel/Cinzel.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Material/M_UI_Shinyness.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_Dissolve_Mob_M.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Add_Button_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Border_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Border_02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_ButtonGlow01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_ButtonImage_01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_ButtonImage_02.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Change_Icon.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Checkbox_Checked.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Checkbox_Unchecked.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Clear_Icon.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Icon_Settings01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Icon_Time01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Potion_Health.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Potion_Mana.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Potion_ManaAndHealth.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Skill_Combust01.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_UI_Soul_Icon.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ExampleContent/UI/Texture/T_Water_N.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdPerson/Lvl_ThirdPerson.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdPerson/Lvl_ThirdPerson.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/1/FX/P6QL6081GAAATHAU70NZKE.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/1/FX/P6QL6081GAAATHAU70NZKE.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/2/IA/ROEZYJ03GDZ7THAK3S54SG.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/2/IA/ROEZYJ03GDZ7THAK3S54SG.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/A/73/83PWDLRNJUCKCWRGWIOGYG.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/A/73/83PWDLRNJUCKCWRGWIOGYG.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Explosivebarrel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Explosivebarrel.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ProjectidkEditor.Target.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ProjectidkEditor.Target.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/ExplosiveBarrel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/ExplosiveBarrel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectidk.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectidk.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,11 +52,14 @@
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/Tests/EnvQueryTest_GameplayTags.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/AIModule/Classes/Perception/PawnSensingComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Core/Public/Logging/LogMacros.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/AI/SBTT_HealSelf.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/AI/SBTT_HealSelf.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/AI/SBTT_RangedAttack.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/UI/SWorldUserWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/UI/SWorldUserWidget.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -401,7 +196,8 @@
       <workItem from="1780273934138" duration="79000" />
       <workItem from="1780274149115" duration="38941000" />
       <workItem from="1780501054583" duration="21174000" />
-      <workItem from="1780595981487" duration="764000" />
+      <workItem from="1780595981487" duration="5643000" />
+      <workItem from="1780607755607" duration="5505000" />
     </task>
     <servers />
   </component>

@@ -4,11 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
 #include "SAICharacter.generated.h"
 
 class UPawnSensingComponent;
 class USAttributeComponent;
 class SoundCue;
+class UUserWidget;
+class USWorldUserWidget;
 
 UCLASS()
 class PROJECTIDK_API ASAICharacter : public ACharacter
@@ -30,6 +33,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UPawnSensingComponent* PawnSensingComp;
 	
+	USWorldUserWidget* ActiveHealthBar;
+	
+	UPROPERTY(EditDefaultsOnly, Category="UI")
+	TSubclassOf<UUserWidget> HealthBarWidgetClass;
+
 	void SetTarget(AActor* Target);
 	
 	UFUNCTION()
