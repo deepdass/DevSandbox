@@ -22,6 +22,8 @@ ASBaseClass_ProjectileSelect::ASBaseClass_ProjectileSelect()
 
 	ProjectileParticle = CreateDefaultSubobject<UNiagaraComponent>("NS_Projectile");
 	ProjectileParticle->SetupAttachment(SphereCollision);
+	BlackHoleParticle_IF_NO_Niagara = CreateDefaultSubobject<UParticleSystemComponent>("P_Projectile");
+	BlackHoleParticle_IF_NO_Niagara->SetupAttachment(SphereCollision);
 	
 	PlateMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlateMesh"));
 	PlateMesh->SetupAttachment(RootComponent);
@@ -64,6 +66,7 @@ void ASBaseClass_ProjectileSelect::Deactivate(ASCharacter* PlayerCharacter)
 	PlayerCharacter->SetPrimaryProjectile(PrimaryProjectile);
 
 	ProjectileParticle->SetHiddenInGame(true);
+	BlackHoleParticle_IF_NO_Niagara->SetHiddenInGame(true);
 	SetActorEnableCollision(false);
 
 	GetWorldTimerManager().SetTimer(ActiveAgainTimerHandle, this, &ASBaseClass_ProjectileSelect::ActivateAgain, ActivateAgainTime, false);
@@ -72,5 +75,6 @@ void ASBaseClass_ProjectileSelect::Deactivate(ASCharacter* PlayerCharacter)
 void ASBaseClass_ProjectileSelect::ActivateAgain()
 {
 	ProjectileParticle->SetHiddenInGame(false);
+	BlackHoleParticle_IF_NO_Niagara->SetHiddenInGame(false);
 	SetActorEnableCollision(true);
 }

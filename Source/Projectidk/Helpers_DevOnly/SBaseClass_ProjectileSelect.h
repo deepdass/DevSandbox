@@ -9,6 +9,7 @@
 
 class ASCharacter;
 class UNiagaraComponent;
+class UParticleSystemComponent;
 class USphereComponent;
 class UBoxComponent;
 class UStaticMeshComponent;
@@ -34,6 +35,9 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> ProjectileParticle;
+	
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UParticleSystemComponent> BlackHoleParticle_IF_NO_Niagara;
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> SphereCollision;
