@@ -12,7 +12,7 @@ class PROJECTIDK_API USInteractionComponent : public UActorComponent
 {
 	GENERATED_BODY()
 	
-public: 
+public:
 	void PrimaryInteract(); 
 
 public:

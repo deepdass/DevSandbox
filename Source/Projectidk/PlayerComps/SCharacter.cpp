@@ -122,6 +122,11 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	}
 }
 
+void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile)
+{
+	primaryprojectile = projectile;
+}
+
 void ASCharacter::func_Move(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
