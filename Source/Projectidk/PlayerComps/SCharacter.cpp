@@ -122,11 +122,6 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	}
 }
 
-void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile)
-{
-	primaryprojectile = projectile;
-}
-
 void ASCharacter::func_Move(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
@@ -199,13 +194,17 @@ void ASCharacter::PrimaryAttack_TimeElapsed()
 	GetWorld()->SpawnActor<AActor>(primaryprojectile, SpawnTM, SpawnParams);
 }
 
+void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile)
+{
+	primaryprojectile = projectile;
+}
+
 void ASCharacter::func_OpenChest()
 {
 	if (InteractionComp)
 	{
 		InteractionComp->PrimaryInteract();
 	}
-	
 }
 
 void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth,
@@ -230,4 +229,9 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		HealPotionSound->Play();
 	}
 	
+}
+
+void ASCharacter::HealSelf(float Amount /* = 100 */)
+{
+	AttributeComp->ApplyHealthChange(this, Amount);
 }

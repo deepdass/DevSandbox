@@ -7,6 +7,9 @@
 #include "AI/SAICharacter.h"
 #include "EnvironmentQuery/EnvQueryManager.h"
 #include "PlayerComps/SAttributeComponent.h"
+#include "PlayerComps/SCharacter.h"
+
+static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
 
 ASGameModeBase::ASGameModeBase()
 {
@@ -21,8 +24,39 @@ void ASGameModeBase::StartPlay()
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle_SpawnBot, this, &ASGameModeBase::SpawnBotTimerElapsed, SpawnTimerInterval, true);
 }
 
+void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
+{
+	ASCharacter* Player = Cast<ASCharacter>(VictimActor);
+	if (Player)
+	{
+		FTimerHandle TimerHandle_RespawnDelay;
+		
+		FTimerDelegate TimerDelegate;
+		TimerDelegate.BindUFunction(this, "RespawnPlayerElapsed", Player->GetController());
+		float SpawnDelay = 2.5f;
+		GetWorldTimerManager().SetTimer(TimerHandle_RespawnDelay, TimerDelegate, SpawnDelay, false);
+	}
+}
+
+
+void ASGameModeBase::RespawnPlayerElapsed(AController* Controller)
+{
+	if (IsValid(Controller))
+	{
+		Controller->UnPossess();
+		RestartPlayer(Controller);
+	}
+}
+
+
 void ASGameModeBase::SpawnBotTimerElapsed()
 {
+	if (!CVarSpawnBots.GetValueOnGameThread())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Spawning of bot is disabled via CVarSpawnBots"));
+		return;
+	}
+	
 	int32 NoOfAliveBots = 0;
 	for (TActorIterator<ASAICharacter> It(GetWorld()); It; ++It)
 	{
@@ -67,5 +101,21 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 		GetWorld()->SpawnActor<AActor>(MinionClass, ResultLocations[0], FRotator::ZeroRotator);
 			
 		DrawDebugSphere(GetWorld(), ResultLocations[0], 80.0f, 20, FColor::Blue, false, 60.0f);
+	}
+}
+
+
+
+
+void ASGameModeBase::KillAll()
+{
+	for (TActorIterator<ASAICharacter> It(GetWorld()); It; ++It)
+	{
+		ASAICharacter* Bot = *It;
+		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(Bot);
+		if (AttributeComp && AttributeComp->GetIsAlive())
+		{
+			AttributeComp->Kill(this);
+		}
 	}
 }

@@ -24,6 +24,10 @@ public:
 	
 	virtual void StartPlay() override;
 	
+	virtual void OnActorKilled(AActor* VictimActor, AActor* Killer);
+	
+	UFUNCTION(Exec)
+	void KillAll();
 	
 protected:
 	
@@ -47,5 +51,8 @@ protected:
 	
 	UFUNCTION()
 	void OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryInstance, EEnvQueryStatus::Type QueryStatus);
+	
+	UFUNCTION()
+	void RespawnPlayerElapsed(AController* Controller);
 	
 };

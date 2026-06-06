@@ -42,6 +42,12 @@ protected:
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
+	
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+	
+	UFUNCTION(Exec)
+	void HealSelf(float Amount = 100);
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Debug")
@@ -73,9 +79,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
 	UFUNCTION(BlueprintCallable)
 	void SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile);
