@@ -20,6 +20,7 @@ protected:
 	virtual void BeginPlay() override;
 	
 	AActor* HitActor;
+	FHitResult SweepResult;
 	
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")

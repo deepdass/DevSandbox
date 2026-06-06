@@ -18,33 +18,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47f1b0de-38f1-4744-b3dd-76040b2667bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP/GM_SpawnBot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP/GM_SpawnBot.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/Helpers/BP_ProjectileSelect.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/Helpers/BP_ProjectileSelect.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Material/BP/BP_TestCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Material/BP/BP_TestCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/BlackHoleProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Projectile/BlackHoleProjectile.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/UI/BPW_Crosshair.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/UI/BPW_DamagePopup.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/UI/BPW_Health.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/UI/BPW_MinionHealthBar.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ParagonGideon/FX/Particles/Gideon/Abilities/Ultimate/FX/P_Gideon_Ultimate_SelectShow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ParagonGideon/FX/Particles/Gideon/Abilities/Ultimate/FX/P_Gideon_Ultimate_SelectShow.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ParagonSparrow/Characters/Heroes/Sparrow/SparrowPlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ParagonSparrow/Characters/Heroes/Sparrow/SparrowPlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/ThirdPerson/Lvl_ThirdPerson.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ThirdPerson/Lvl_ThirdPerson.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/5/GW/MXOGDM0AFZGWRZGZYL71MD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/5/GW/MXOGDM0AFZGWRZGZYL71MD.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/C/HY/Q7CPP7VHOXBAMAJI90W626.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Lvl_ThirdPerson/C/HY/Q7CPP7VHOXBAMAJI90W626.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SInteractionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SInteractionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/SBaseClassProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/SBaseClassProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/SBaseClassProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/SBaseClassProjectile.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +170,7 @@
       <updated>1780631564553</updated>
       <workItem from="1780631613948" duration="5311000" />
       <workItem from="1780680575833" duration="5416000" />
-      <workItem from="1780733408212" duration="10158000" />
+      <workItem from="1780733408212" duration="13987000" />
     </task>
     <servers />
   </component>

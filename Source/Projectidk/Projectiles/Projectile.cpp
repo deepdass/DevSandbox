@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
 #include "Camera/CameraShakeBase.h"
+#include "Core/SGameplayFunctionLibrary.h"
 
 Aprojectile::Aprojectile()
 {
@@ -34,11 +35,13 @@ void Aprojectile::Explode_Implementation()
 {
 	if (IsValid(HitActor))
 	{
-		USAttributeComponent* AttributeComp = HitActor->FindComponentByClass<USAttributeComponent>();
-		if (AttributeComp)
-		{
-			AttributeComp->ApplyHealthChange(GetInstigator() ,DamageAmount); 
-		}
+		USGameplayFunctionLibrary::ApplyDirectionalDamage(GetInstigator(), HitActor, DamageAmount, SweepResult);
+		
+		// USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(HitActor);
+		// if (AttributeComp)
+		// {
+		// 	AttributeComp->ApplyHealthChange(GetInstigator() ,DamageAmount); 
+		// }
 	}
 	
 	UGameplayStatics::PlayWorldCameraShake(GetWorld(), ImpactCameraShake, GetActorLocation(), 0.0f, 1000.0f, 1.0f);

@@ -42,6 +42,7 @@ void ASBaseClassProjectile::OnActorHit(UPrimitiveComponent* HitComponent, AActor
 	if (OtherActor && OtherActor != GetInstigator())
 	{
 		HitActor = OtherActor;
+		SweepResult = Hit;
 		Explode();
 	} 
 }
