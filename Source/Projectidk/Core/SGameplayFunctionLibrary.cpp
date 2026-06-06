@@ -10,7 +10,7 @@ bool USGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* Target
 	
 	if (AttributeComp)
 	{
-		return AttributeComp->ApplyHealthChange(DamageCauser, -DamageAmount);
+		return AttributeComp->ApplyHealthChange(DamageCauser, DamageAmount);
 	}
 	return false;
 }
@@ -22,7 +22,7 @@ bool USGameplayFunctionLibrary::ApplyDirectionalDamage(AActor* DamageCauser, AAc
 		UPrimitiveComponent* HitComp = HitResult.GetComponent();
 		if (HitComp && HitComp->IsSimulatingPhysics(HitResult.BoneName))
 		{
-			HitComp->AddImpulseAtLocation(-HitResult.ImpactNormal * 300000.0f, HitResult.ImpactNormal, HitResult.BoneName);
+			HitComp->AddImpulseAtLocation(-HitResult.ImpactNormal * 500000.0f, HitResult.ImpactNormal, HitResult.BoneName);
 		}
 		return true;
 	}

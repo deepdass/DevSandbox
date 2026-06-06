@@ -21,7 +21,10 @@ ASAICharacter::ASAICharacter()
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
 	
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
-
+		
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	GetMesh()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 }
 
 void ASAICharacter::PostInitializeComponents()
