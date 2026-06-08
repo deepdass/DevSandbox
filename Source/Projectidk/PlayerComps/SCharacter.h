@@ -14,6 +14,7 @@ class UCameraComponent;
 class USpringArmComponent;
 class USInteractionComponent;
 class USAttributeComponent;
+class USActionComponent;
 
 class UInputAction;
 class UInputMappingContext;
@@ -72,6 +73,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	USAttributeComponent* AttributeComp;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
+	TObjectPtr<USActionComponent> ActionComp;
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -106,6 +110,10 @@ protected: // Movement
 	UInputAction* IA_Look;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	UInputAction* IA_Sprint;
+	
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	UInputAction* IA_PrimaryFire;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
@@ -116,6 +124,9 @@ protected: // Movement
 	void func_Move(const FInputActionValue& InputValue);
 	void func_Look(const FInputActionValue& InputValue);
 	void func_Jump();
+	
+	void SprintStart();
+	void SprintStop();
 	
 	void func_PrimaryFire();
 	void PrimaryAttack_TimeElapsed();

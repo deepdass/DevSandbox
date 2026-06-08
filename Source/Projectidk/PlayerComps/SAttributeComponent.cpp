@@ -27,7 +27,7 @@ bool USAttributeComponent::Kill(AActor* InstigatorActor)
 
 bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delta)
 {
-	if (!GetOwner()->CanBeDamaged()){return false;}
+	if (!GetOwner()->CanBeDamaged() && Delta < 0.0f){return false;}
 	
 	if (Delta < 0.0f)
 	{

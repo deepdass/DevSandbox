@@ -18,11 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47f1b0de-38f1-4744-b3dd-76040b2667bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP/GM_SpawnBot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP/GM_SpawnBot.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +45,10 @@
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Engine/Private/CheatManager.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Experimental/Chaos/Public/Chaos/Character/CharacterGroundConstraint.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.h" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -170,7 +179,8 @@
       <workItem from="1780631613948" duration="5311000" />
       <workItem from="1780680575833" duration="5416000" />
       <workItem from="1780733408212" duration="13987000" />
-      <workItem from="1780774218411" duration="1571000" />
+      <workItem from="1780774218411" duration="2210000" />
+      <workItem from="1780863609792" duration="5328000" />
     </task>
     <servers />
   </component>

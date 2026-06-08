@@ -17,7 +17,7 @@
 #include "Components/AudioComponent.h"
 
 #include "DrawDebugHelpers.h"
-
+#include "ActionSystem/SActionComponent.h"
 
 
 // Sets default values
@@ -39,6 +39,7 @@ ASCharacter::ASCharacter()
 	
 	InteractionComp = CreateDefaultSubobject<USInteractionComponent>("Interaction");
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
+	ActionComp = CreateDefaultSubobject<USActionComponent>("ActionComp");
 	
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 350.0f, 0.0f);
@@ -106,7 +107,7 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 			// add input context
 			LocalPlayerSubsystem->AddMappingContext(InputMapping, 0);
 			LocalPlayerSubsystem->AddMappingContext(InputMapping_Combo, 0);
-			LocalPlayerSubsystem->AddMappingContext(InputMapping_Interaction,0 );
+			LocalPlayerSubsystem->AddMappingContext(InputMapping_Interaction,0);
 		}
 	}
 	
@@ -115,6 +116,9 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		Input->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ASCharacter::func_Move);
 		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &ASCharacter::func_Jump);
 		Input->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ASCharacter::func_Look);
+		
+		Input->BindAction(IA_Sprint, ETriggerEvent::Started, this, &ASCharacter::SprintStart);
+		Input->BindAction(IA_Sprint, ETriggerEvent::Completed, this, &ASCharacter::SprintStop);
 		
 		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::func_PrimaryFire);
 		
@@ -152,6 +156,16 @@ void ASCharacter::func_Look(const FInputActionValue& InputValue)
 void ASCharacter::func_Jump()
 {
 	ACharacter::Jump();
+}
+
+void ASCharacter::SprintStart()
+{
+	ActionComp->StartActionByName(this, "Sprint");
+}
+
+void ASCharacter::SprintStop()
+{
+	ActionComp->StopActionByName(this, "Sprint");
 }
 
 void ASCharacter::func_PrimaryFire()
