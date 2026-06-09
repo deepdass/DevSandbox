@@ -18,19 +18,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47f1b0de-38f1-4744-b3dd-76040b2667bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAIController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAIController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Damagesystem/DamageSystemTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Damagesystem/DamageSystemTypes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/ExplosiveBarrel.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/ExplosiveBarrel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/SItemChest.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/SItemChest.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PickUps/SBaseClass_PickUps.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PickUps/SBaseClass_PickUps.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/Projectile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Projectiles/SBaseClassProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Projectiles/SBaseClassProjectile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/TESTs/STestCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/TESTs/STestCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/UI/SWorldUserWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/UI/SWorldUserWidget.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +50,17 @@
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -185,7 +188,7 @@
       <workItem from="1780733408212" duration="13987000" />
       <workItem from="1780774218411" duration="2210000" />
       <workItem from="1780863609792" duration="5328000" />
-      <workItem from="1780964517931" duration="1161000" />
+      <workItem from="1780964517931" duration="10010000" />
     </task>
     <servers />
   </component>

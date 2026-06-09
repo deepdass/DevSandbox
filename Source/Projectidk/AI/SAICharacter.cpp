@@ -93,7 +93,7 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			GetMesh()->SetAllBodiesSimulatePhysics(true);
 			GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			
-			SetLifeSpan(10.0f);
+			SetLifeSpan(15.0f);
 		}
 	}
 }

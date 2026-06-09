@@ -18,6 +18,7 @@
 
 #include "DrawDebugHelpers.h"
 #include "ActionSystem/SActionComponent.h"
+#include "ActionSystem/SAction_ProjectileAttack.h"
 
 
 // Sets default values
@@ -150,7 +151,6 @@ void ASCharacter::Look(const FInputActionValue& InputValue)
 		AddControllerYawInput(InputVector.X);
 		AddControllerPitchInput(InputVector.Y);
 	}
-	
 }
 
 void ASCharacter::Jump()
@@ -170,47 +170,7 @@ void ASCharacter::SprintStop()
 
 void ASCharacter::PrimaryFire()
 {
-	PlayAnimMontage(AttackAnim);
-	
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle_PrimaryAttack, this, &ASCharacter::PrimaryAttack_TimeElapsed, 0.2f);
-}
-
-void ASCharacter::PrimaryAttack_TimeElapsed()
-{
-	FHitResult HitResult;
-	
-	APlayerController* PC = Cast<APlayerController>(GetController());
-	FVector Start;
-	FRotator CamRot; 
-	PC->GetPlayerViewPoint(Start, CamRot);
-
-	FVector End = Start + (CamRot.Vector() * 5000.0f);
-
-	FCollisionQueryParams Params;
-	Params.AddIgnoredActor(this);
-
-	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params); 
-
-	FVector HandLoc = GetMesh()->GetSocketLocation(HandSocketName); 
-	FRotator ProjectileRot = CamRot;
-	if (bHit)
-	{
-		FVector ImpactPt = HitResult.ImpactPoint;
-		ProjectileRot = (ImpactPt - HandLoc).GetSafeNormal().Rotation();
-	}
-
-	FTransform SpawnTM = FTransform(ProjectileRot, HandLoc);
-
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	SpawnParams.Instigator = this;
-
-	GetWorld()->SpawnActor<AActor>(primaryprojectile, SpawnTM, SpawnParams);
-}
-
-void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile)
-{
-	primaryprojectile = projectile;
+	ActionComp->StartActionByName(this, "PrimaryFire");
 }
 
 void ASCharacter::OpenChest()
@@ -243,6 +203,14 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		HealPotionSound->Play();
 	}
 	
+}
+
+void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile)
+{
+	if (USAction_ProjectileAttack* Action = Cast<USAction_ProjectileAttack>(ActionComp->GetActionByName("PrimaryFire")))
+	{
+		Action->SetPrimaryProjectile(projectile);
+	}
 }
 
 void ASCharacter::HealSelf(float Amount /* = 100 */)

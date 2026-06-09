@@ -28,7 +28,10 @@ public:
 protected:
 	
 	UPROPERTY(EditAnywhere, Category="Actions")
-	TArray<USAction*> Actions;
+	TArray<TSubclassOf<USAction>> DefaultActions;
+	
+	UPROPERTY()
+	TArray<TObjectPtr<USAction>> Actions;
 	
 public:
 	
@@ -40,4 +43,7 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category="Actions")
 	bool StopActionByName(AActor* Instigator, FName ActionName);
+	
+	UFUNCTION(BlueprintCallable, Category="Projectile")
+	USAction* GetActionByName(FName ActionName) const;
 };

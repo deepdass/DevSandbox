@@ -26,38 +26,17 @@ UCLASS()
 class PROJECTIDK_API ASCharacter : public ACharacter
 {
 	GENERATED_BODY()
-
-protected:
-	UPROPERTY(EditAnywhere, Category = "Attack")
-    TSubclassOf<ASBaseClassProjectile> primaryprojectile;
-	
-	UPROPERTY(EditAnywhere, Category = "Attack")
-	TObjectPtr<UAnimMontage> AttackAnim;
-	
-	FTimerHandle TimerHandle_PrimaryAttack;
-	
-	UPROPERTY(VisibleAnywhere, Category="Attack")
-	FName HandSocketName = "Muzzle_01";
-	
 	
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
+	
+	virtual void PostInitializeComponents() override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
 	UFUNCTION(Exec)
 	void HealSelf(float Amount = 100);
-
-private:
-	UPROPERTY(EditAnywhere, Category = "Debug")
-	bool bShowDirectionArrows = true;
-
-	UPROPERTY(EditAnywhere, Category = "Debug")
-	float ArrowLength = 150.f;
-
-	UPROPERTY(EditAnywhere, Category = "Debug")
-	float ArrowHeadSize = 25.f;
 
 protected:
 	
@@ -126,7 +105,6 @@ protected: // Movement
 	void SprintStop();
 	
 	void PrimaryFire();
-	void PrimaryAttack_TimeElapsed();
 	
 	void OpenChest();
 	
@@ -134,13 +112,20 @@ protected: // Movement
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
 	
-	UPROPERTY(EditAnywhere, Category="Projectile")
+	UPROPERTY(EditAnywhere, Category="Sound")
 	TObjectPtr<UAudioComponent> HealPotionSound;
 	
 	UPROPERTY()
 	TObjectPtr<UMaterialInstanceDynamic> FlashMID;
 	
-public:
-	virtual void PostInitializeComponents() override;
 	
+private:
+	UPROPERTY(EditAnywhere, Category = "Debug")
+	bool bShowDirectionArrows = true;
+
+	UPROPERTY(EditAnywhere, Category = "Debug")
+	float ArrowLength = 150.f;
+
+	UPROPERTY(EditAnywhere, Category = "Debug")
+	float ArrowHeadSize = 25.f;
 };
