@@ -43,8 +43,7 @@ protected:
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
-	
-	// Called to bind functionality to input
+
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
 	UFUNCTION(Exec)
@@ -69,10 +68,8 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	USInteractionComponent* InteractionComp;
-	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	USAttributeComponent* AttributeComp;
-	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<USActionComponent> ActionComp;
 	
@@ -121,17 +118,17 @@ protected: // Movement
 	
 	
 	// FUNCs - Input
-	void func_Move(const FInputActionValue& InputValue);
-	void func_Look(const FInputActionValue& InputValue);
-	void func_Jump();
+	void Move(const FInputActionValue& InputValue);
+	void Look(const FInputActionValue& InputValue);
+	void Jump();
 	
 	void SprintStart();
 	void SprintStop();
 	
-	void func_PrimaryFire();
+	void PrimaryFire();
 	void PrimaryAttack_TimeElapsed();
 	
-	void func_OpenChest();
+	void OpenChest();
 	
 	
 	UFUNCTION()

@@ -113,20 +113,20 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	
 	if (UEnhancedInputComponent* Input = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		Input->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ASCharacter::func_Move);
-		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &ASCharacter::func_Jump);
-		Input->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ASCharacter::func_Look);
+		Input->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ASCharacter::Move);
+		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &ASCharacter::Jump);
+		Input->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ASCharacter::Look);
 		
 		Input->BindAction(IA_Sprint, ETriggerEvent::Started, this, &ASCharacter::SprintStart);
 		Input->BindAction(IA_Sprint, ETriggerEvent::Completed, this, &ASCharacter::SprintStop);
 		
-		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::func_PrimaryFire);
+		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::PrimaryFire);
 		
-		Input->BindAction(IA_OpenChest, ETriggerEvent::Triggered, this, &ASCharacter::func_OpenChest);
+		Input->BindAction(IA_OpenChest, ETriggerEvent::Triggered, this, &ASCharacter::OpenChest);
 	}
 }
 
-void ASCharacter::func_Move(const FInputActionValue& InputValue)
+void ASCharacter::Move(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
 	FRotator ControlRotation = GetControlRotation();
@@ -142,7 +142,7 @@ void ASCharacter::func_Move(const FInputActionValue& InputValue)
 	}
 }
 
-void ASCharacter::func_Look(const FInputActionValue& InputValue)
+void ASCharacter::Look(const FInputActionValue& InputValue)
 {
 	FVector2D InputVector = InputValue.Get<FVector2D>();
 	if (IsValid(Controller))
@@ -153,7 +153,7 @@ void ASCharacter::func_Look(const FInputActionValue& InputValue)
 	
 }
 
-void ASCharacter::func_Jump()
+void ASCharacter::Jump()
 {
 	ACharacter::Jump();
 }
@@ -168,7 +168,7 @@ void ASCharacter::SprintStop()
 	ActionComp->StopActionByName(this, "Sprint");
 }
 
-void ASCharacter::func_PrimaryFire()
+void ASCharacter::PrimaryFire()
 {
 	PlayAnimMontage(AttackAnim);
 	
@@ -213,7 +213,7 @@ void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projec
 	primaryprojectile = projectile;
 }
 
-void ASCharacter::func_OpenChest()
+void ASCharacter::OpenChest()
 {
 	if (InteractionComp)
 	{
@@ -238,7 +238,7 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		}
 	}
 	
-	if (Delta > 0.0f) // add check later if more than healing actor 
+	if (Delta > 0.0f) // add check actor later if more healing actors
 	{
 		HealPotionSound->Play();
 	}
