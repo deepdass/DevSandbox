@@ -20,7 +20,7 @@ class PROJECTIDK_API USWorldUserWidget : public UUserWidget
 protected:
 	
 	UPROPERTY(meta = (BindWidget))
-	USizeBox* ParentSizeBox;
+	TObjectPtr<USizeBox> ParentSizeBox;
 	
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime);
 	
@@ -29,6 +29,6 @@ protected:
 	
 public:
 	UPROPERTY(BlueprintReadOnly, Category="UI")
-	AActor* AttachToActor;
+	TObjectPtr<AActor> AttachToActor;
 	
 };

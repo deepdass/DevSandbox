@@ -28,10 +28,10 @@ public:
 protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
-	USAttributeComponent* AttributeComp;
+	TObjectPtr<USAttributeComponent> AttributeComp;
 	
 	UPROPERTY(VisibleAnywhere, Category="Components")
-	UPawnSensingComponent* PawnSensingComp;
+	TObjectPtr<UPawnSensingComponent> PawnSensingComp;
 	
 	USWorldUserWidget* ActiveHealthBar;
 	
@@ -48,5 +48,5 @@ protected:
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
 	
 	UPROPERTY()
-	UMaterialInstanceDynamic* FlashMID;
+	TObjectPtr<UMaterialInstanceDynamic> FlashMID;
 };

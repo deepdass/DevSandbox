@@ -30,10 +30,10 @@ public:
 	
 protected:
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* BaseMesh;
+	TObjectPtr<UStaticMeshComponent> BaseMesh;
 	
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* LidMesh;
+	TObjectPtr<UStaticMeshComponent> LidMesh;
 
 public:
 	UPROPERTY(EditAnywhere)

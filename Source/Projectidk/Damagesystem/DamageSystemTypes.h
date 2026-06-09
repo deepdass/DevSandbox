@@ -33,7 +33,7 @@ public:
 	float DamageAmount;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Damage")
-	AActor* DamageCauser;
+	TObjectPtr<AActor> DamageCauser;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Damage")
 	bool CanBeBloacked = true;

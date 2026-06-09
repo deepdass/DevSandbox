@@ -26,10 +26,10 @@ protected:
 	void Interact_Implementation(APawn* InstigatorPawn);
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UStaticMeshComponent* BaseMesh;
+	TObjectPtr<UStaticMeshComponent> BaseMesh;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Components") 
-	UNiagaraComponent* EffectComp;
+	TObjectPtr<UNiagaraComponent> EffectComp;
 	
 	UPROPERTY()
 	float DeactiveforTime;

@@ -20,10 +20,10 @@ public:
 protected:
 	
 	UPROPERTY(VisibleAnywhere)
-	USAttributeComponent* AttributeComponent;
+	TObjectPtr<USAttributeComponent> AttributeComponent;
 	
 	UPROPERTY(VisibleAnywhere)
-	UMeshComponent* MeshComponent;
+	TObjectPtr<UMeshComponent> MeshComponent;
 	
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);

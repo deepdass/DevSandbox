@@ -32,7 +32,7 @@ protected:
     TSubclassOf<ASBaseClassProjectile> primaryprojectile;
 	
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	UAnimMontage* AttackAnim;
+	TObjectPtr<UAnimMontage> AttackAnim;
 	
 	FTimerHandle TimerHandle_PrimaryAttack;
 	
@@ -62,14 +62,14 @@ private:
 protected:
 	
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	USpringArmComponent* SpringArmComp;
+	TObjectPtr<USpringArmComponent> SpringArmComp;
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	UCameraComponent* CameraComp;
+	TObjectPtr<UCameraComponent> CameraComp;
 	
 	UPROPERTY(VisibleAnywhere, Category="Components")
-	USInteractionComponent* InteractionComp;
+	TObjectPtr<USInteractionComponent> InteractionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
-	USAttributeComponent* AttributeComp;
+	TObjectPtr<USAttributeComponent> AttributeComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<USActionComponent> ActionComp;
 	
@@ -89,32 +89,32 @@ protected: // Movement
 	
 	//  Var - Input
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputMappingContext* InputMapping;
+	TObjectPtr<UInputMappingContext> InputMapping;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputMappingContext* InputMapping_Combo;
+	TObjectPtr<UInputMappingContext> InputMapping_Combo;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputMappingContext* InputMapping_Interaction;
+	TObjectPtr<UInputMappingContext> InputMapping_Interaction;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputAction* IA_Move;
+	TObjectPtr<UInputAction> IA_Move;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputAction* IA_Jump;
+	TObjectPtr<UInputAction> IA_Jump;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputAction* IA_Look;
+	TObjectPtr<UInputAction> IA_Look;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputAction* IA_Sprint;
+	TObjectPtr<UInputAction> IA_Sprint;
 	
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputAction* IA_PrimaryFire;
+	TObjectPtr<UInputAction> IA_PrimaryFire;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	UInputAction* IA_OpenChest;
+	TObjectPtr<UInputAction> IA_OpenChest;
 	
 	
 	// FUNCs - Input
@@ -135,10 +135,10 @@ protected: // Movement
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
 	
 	UPROPERTY(EditAnywhere, Category="Projectile")
-	UAudioComponent* HealPotionSound;
+	TObjectPtr<UAudioComponent> HealPotionSound;
 	
 	UPROPERTY()
-	UMaterialInstanceDynamic* FlashMID;
+	TObjectPtr<UMaterialInstanceDynamic> FlashMID;
 	
 public:
 	virtual void PostInitializeComponents() override;

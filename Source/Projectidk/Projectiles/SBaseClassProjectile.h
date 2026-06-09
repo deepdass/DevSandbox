@@ -24,16 +24,16 @@ protected:
 	
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UNiagaraSystem* ImpactVFX;
+	TObjectPtr<UNiagaraSystem> ImpactVFX;
 	
 	UPROPERTY(BlueprintReadOnly ,EditDefaultsOnly, Category = "Components")
-	USphereComponent* SphereComp;
+	TObjectPtr<USphereComponent> SphereComp;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UProjectileMovementComponent* ProjectileMovement;
+	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Components") 
-	UNiagaraComponent* EffectComp;
+	TObjectPtr<UNiagaraComponent> EffectComp;
 	
 	
 	UFUNCTION()

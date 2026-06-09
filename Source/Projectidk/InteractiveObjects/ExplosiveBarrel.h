@@ -28,10 +28,10 @@ public:
 
 protected:
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* SphereComp;
+	TObjectPtr<UStaticMeshComponent> SphereComp;
 	
 	UPROPERTY(VisibleAnywhere)
-	URadialForceComponent* RadComp;
+	TObjectPtr<URadialForceComponent> RadComp;
 	
 	// Funcs
 	

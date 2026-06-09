@@ -38,13 +38,13 @@ protected:
 	float SpawnTimerInterval;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
-	UEnvQuery* EQSpawnBot;
+	TObjectPtr<UEnvQuery> EQSpawnBot;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TSubclassOf<AActor> MinionClass;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
-	UCurveFloat* DifficultyCurve;
+	TObjectPtr<UCurveFloat> DifficultyCurve;
 
 	UFUNCTION()
 	void SpawnBotTimerElapsed();

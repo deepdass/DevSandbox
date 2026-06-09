@@ -23,7 +23,7 @@ protected:
 	float DamageAmount;
 	
 	UPROPERTY(EditAnywhere, Category="Projectile")
-	USoundCue* ImpactSound;
+	TObjectPtr<USoundCue> ImpactSound;
 	
 	UPROPERTY(EditAnywhere, Category="Projectile")
 	TSubclassOf<UCameraShakeBase> ImpactCameraShake;
@@ -35,6 +35,6 @@ protected:
 private:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UNiagaraSystem* SpawnVFX;
+	TObjectPtr<UNiagaraSystem> SpawnVFX;
 	
 };
