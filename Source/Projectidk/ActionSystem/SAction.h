@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Object.h"
 #include "SAction.generated.h"
 
@@ -16,7 +17,27 @@ class PROJECTIDK_API USAction : public UObject
 {
 	GENERATED_BODY()
 	
+protected:
+	
+	UFUNCTION(BlueprintCallable, Category="Action")
+	USActionComponent* GetOwningComponent() const;
+	
+	UPROPERTY(EditDefaultsOnly, Category="Tags")
+	FGameplayTagContainer GrantsTags;
+	
+	UPROPERTY(EditDefaultsOnly, Category="Tags")
+	FGameplayTagContainer BlockedTags;
+	
+	bool bIsActionRunning = false;
+	
 public:
+	
+	
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	bool GetIsActionRunning() const;
+	
+	UFUNCTION(BlueprintNativeEvent, Category="Action")
+	bool CanStartAction(AActor* Instigator);
 	
 	UFUNCTION(BlueprintNativeEvent, Category="Action")
 	void StartAction(AActor* Instigator);
