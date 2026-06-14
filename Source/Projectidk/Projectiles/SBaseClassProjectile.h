@@ -19,7 +19,7 @@ class PROJECTIDK_API ASBaseClassProjectile : public AActor
 protected:
 	virtual void BeginPlay() override;
 	
-	AActor* HitActor;
+	TObjectPtr<AActor> HitActor;
 	FHitResult SweepResult;
 	
 protected:

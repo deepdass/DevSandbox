@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Projectiles/SBaseClassProjectile.h"
 #include "projectile.generated.h"
 
@@ -19,7 +20,10 @@ public:
 
 protected:
 	
-	UPROPERTY(EditAnywhere, Category="Projectile")
+	UPROPERTY(EditDefaultsOnly, Category="Damage")
+	FGameplayTag ParryTag;
+	
+	UPROPERTY(EditAnywhere, Category="Damage")
 	float DamageAmount;
 	
 	UPROPERTY(EditAnywhere, Category="Projectile")
