@@ -15,13 +15,15 @@ class PROJECTIDK_API USInteractionComponent : public UActorComponent
 public:
 	void PrimaryInteract(); 
 
-public:
 	// Sets default values for this component's properties
 	USInteractionComponent();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+	
+	UFUNCTION(Server, Reliable)
+	void ServerInteract();
 
 public:
 	// Called every frame

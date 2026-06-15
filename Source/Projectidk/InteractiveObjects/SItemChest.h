@@ -19,16 +19,15 @@ class PROJECTIDK_API ASItemChest : public AActor, public ISGameplayInterface
 public:
 	// Sets default values for this actor's properties
 	ASItemChest();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	
 protected:
+	
+	UPROPERTY(ReplicatedUsing = "OnRep_LidOpened") // RepNotify
+	bool bLidOpened = false;
+	
+	UFUNCTION()
+	void OnRep_LidOpened();
+	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStaticMeshComponent> BaseMesh;
 	

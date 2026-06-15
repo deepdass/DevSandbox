@@ -23,11 +23,7 @@ USInteractionComponent::USInteractionComponent()
 void USInteractionComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
-	
 }
-
 
 // Called every frame
 void USInteractionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
@@ -35,55 +31,59 @@ void USInteractionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
 }
 
 void USInteractionComponent::PrimaryInteract()
 {
+	ServerInteract();
+}
+
+void USInteractionComponent::ServerInteract_Implementation()
+{
 	bool bDebugDrawInteract = CVarDebugDrawInteraction.GetValueOnAnyThread();
 	
-    AActor* MyOwner = GetOwner();
-    if (!MyOwner) return;
+	AActor* MyOwner = GetOwner();
+	if (!MyOwner) return;
 
-    APawn* MyPawn = Cast<APawn>(MyOwner);
-    APlayerController* PC = Cast<APlayerController>(MyPawn->GetController());
-    if (!PC) return;
+	APawn* MyPawn = Cast<APawn>(MyOwner);
+	APlayerController* PC = Cast<APlayerController>(MyPawn->GetController());
+	if (!PC) return;
 
-    FVector CameraLoc;
-    FRotator CameraRot;
-    PC->GetPlayerViewPoint(CameraLoc, CameraRot);
+	FVector CameraLoc;
+	FRotator CameraRot;
+	PC->GetPlayerViewPoint(CameraLoc, CameraRot);
 
-    FVector End = CameraLoc + (CameraRot.Vector() * 700);
+	FVector End = CameraLoc + (CameraRot.Vector() * 700);
 
-    FCollisionObjectQueryParams ObjectQueryParams;
-    ObjectQueryParams.AddObjectTypesToQuery(ECC_WorldDynamic);
+	FCollisionObjectQueryParams ObjectQueryParams;
+	ObjectQueryParams.AddObjectTypesToQuery(ECC_WorldDynamic);
 
-    float SphereRadius = 30.0f;
-    TArray<FHitResult> Hits;
-    FCollisionShape Shape;
-    Shape.SetSphere(SphereRadius); 
+	float SphereRadius = 30.0f;
+	TArray<FHitResult> Hits;
+	FCollisionShape Shape;
+	Shape.SetSphere(SphereRadius); 
 	
 	//FHitResult Hit;
 	//bool bBlockingHit = GetWorld()->LineTraceSingleByObjectType(Hit, CameraLoc, End, ObjectQueryParams );
 
-    bool bBlockingHit = GetWorld()->SweepMultiByObjectType(Hits, CameraLoc, End, FQuat::Identity, ObjectQueryParams, Shape);
+	bool bBlockingHit = GetWorld()->SweepMultiByObjectType(Hits, CameraLoc, End, FQuat::Identity, ObjectQueryParams, Shape);
 
-    FColor LineColor = bBlockingHit ? FColor::Green : FColor::Red;
+	FColor LineColor = bBlockingHit ? FColor::Green : FColor::Red;
 
-    for (FHitResult Hit : Hits)
-    {
-    	if (bDebugDrawInteract)
-    	{
-    		DrawDebugSphere(GetWorld(), Hit.ImpactPoint, SphereRadius, 16, LineColor, false, 2.0f);
-    	}
+	for (FHitResult Hit : Hits)
+	{
+		if (bDebugDrawInteract)
+		{
+			DrawDebugSphere(GetWorld(), Hit.ImpactPoint, SphereRadius, 16, LineColor, false, 2.0f);
+		}
     	
-        AActor* HitActor = Hit.GetActor();
-        if (HitActor && HitActor->Implements<USGameplayInterface>())
-        {
-            ISGameplayInterface::Execute_Interact(HitActor, MyPawn);
-            break;
-        }
-   	}
+		AActor* HitActor = Hit.GetActor();
+		if (HitActor && HitActor->Implements<USGameplayInterface>())
+		{
+			ISGameplayInterface::Execute_Interact(HitActor, MyPawn);
+			break;
+		}
+	}
 	
 	if (bDebugDrawInteract){
 		DrawDebugLine(GetWorld(), CameraLoc, End, LineColor, false, 2.0f, 0, 2.0f);
