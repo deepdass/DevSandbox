@@ -19,27 +19,27 @@ public:
 	AExplosiveBarrel();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStaticMeshComponent> SphereComp;
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<URadialForceComponent> RadComp;
 	
-	// Funcs
+	
+	UPROPERTY(Replicated)
+	bool bExploded = false;
+
+	UFUNCTION(Server, Reliable)
+	void ServerExplode(AActor* OtherActor);
+
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastExplode();
 	
 	virtual void PostInitializeComponents() override; 
 	
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
-				UPrimitiveComponent* OtherComp, FVector NormalImpulse, 
+				UPrimitiveComponent* OtherComp, FVector NormalImpulse,
 				const FHitResult& Hit);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent) 

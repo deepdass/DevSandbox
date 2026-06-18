@@ -28,7 +28,7 @@ protected:
 	FVector WorldOffset;
 	
 public:
-	UPROPERTY(BlueprintReadOnly, Category="UI")
+	UPROPERTY(BlueprintReadWrite, Category="UI", meta=(ExposeOnSpawn=true))
 	TObjectPtr<AActor> AttachToActor;
 	
 };

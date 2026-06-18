@@ -27,6 +27,8 @@ ASBaseClassProjectile::ASBaseClassProjectile()
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bInitialVelocityInLocalSpace = true;
 	ProjectileMovement->ProjectileGravityScale = 0.0f;
+	
+	SetReplicates(true);
 }
 
 
@@ -39,6 +41,7 @@ void ASBaseClassProjectile::BeginPlay()
 void ASBaseClassProjectile::OnActorHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
                                        UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+	if (!HasAuthority()) return;
 	if (OtherActor && OtherActor != GetInstigator())
 	{
 		HitActor = OtherActor;

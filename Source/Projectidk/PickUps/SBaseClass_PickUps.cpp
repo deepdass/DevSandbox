@@ -18,6 +18,8 @@ ASBaseClass_PickUps::ASBaseClass_PickUps()
 	EffectComp->bAutoActivate = false;
 	
 	DeactiveforTime = 10.0f;
+	
+	SetReplicates(true);
 }
 
 
