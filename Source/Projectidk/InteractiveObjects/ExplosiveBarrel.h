@@ -19,7 +19,7 @@ public:
 	AExplosiveBarrel();
 
 protected:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere) 
 	TObjectPtr<UStaticMeshComponent> SphereComp;
 	
 	UPROPERTY(VisibleAnywhere)

@@ -17,7 +17,7 @@ ASBaseClass_PickUps::ASBaseClass_PickUps()
 	EffectComp->SetupAttachment(BaseMesh);
 	EffectComp->bAutoActivate = false;
 	
-	DeactiveforTime = 10.0f;
+	DeactiveforTime = 7.0f;
 	
 	SetReplicates(true);
 }

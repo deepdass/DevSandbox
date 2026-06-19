@@ -19,6 +19,9 @@ class PROJECTIDK_API USAction : public UObject
 	
 protected:
 	
+	UPROPERTY(Replicated)
+	USActionComponent* ActionComponent;
+	
 	UFUNCTION(BlueprintCallable, Category="Action")
 	USActionComponent* GetOwningComponent() const;
 	
@@ -28,10 +31,15 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Tags")
 	FGameplayTagContainer BlockedTags;
 	
+	UPROPERTY(ReplicatedUsing="OnRep_IsRunning")
 	bool bIsActionRunning = false;
+	
+	UFUNCTION()
+	void OnRep_IsRunning();
 	
 public:
 	
+	void Initialize(USActionComponent* NewActionComp);
 	
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	bool GetIsActionRunning() const;
@@ -49,5 +57,10 @@ public:
 	FName ActionName;
 	
 	UWorld* GetWorld() const override;
+	
+	bool IsSupportedForNetworking() const override
+	{
+		return true;
+	}
 	
 };

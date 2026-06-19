@@ -28,10 +28,16 @@ public:
 	
 protected:
 	
+	UFUNCTION(Server, Reliable)
+	void ServerStartAction(AActor* InstigatorActor, FName ActionName);
+	
+	UFUNCTION(Server, Reliable)
+	void ServerStopAction(AActor* InstigatorActor, FName ActionName);
+	
 	UPROPERTY(EditAnywhere, Category="Actions")
 	TArray<TSubclassOf<USAction>> DefaultActions;
 	
-	UPROPERTY()
+	UPROPERTY(Replicated)
 	TArray<TObjectPtr<USAction>> Actions;
 	
 public:
@@ -50,4 +56,6 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category="Projectile")
 	USAction* GetActionByName(FName ActionName) const;
+	
+	bool ReplicateSubobjects(class UActorChannel *Channel, class FOutBunch *Bunch, FReplicationFlags *RepFlags) override;
 };
