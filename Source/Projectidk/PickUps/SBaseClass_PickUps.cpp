@@ -4,6 +4,7 @@
 #include "SBaseClass_PickUps.h"
 
 #include "NiagaraComponent.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 ASBaseClass_PickUps::ASBaseClass_PickUps()
@@ -17,24 +18,28 @@ ASBaseClass_PickUps::ASBaseClass_PickUps()
 	EffectComp->SetupAttachment(BaseMesh);
 	EffectComp->bAutoActivate = false;
 	
-	DeactiveforTime = 7.0f;
+	DeactiveforTime = 10.0f;
 	
 	SetReplicates(true);
+}
+
+void ASBaseClass_PickUps::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASBaseClass_PickUps, bIsActive);
 }
 
 
 void ASBaseClass_PickUps::Interact_Implementation(APawn* InstigatorPawn)
 {
-	EffectComp->Activate(true);
-	
-	BaseMesh->SetHiddenInGame(true);
-	SetActorEnableCollision(false);
+	bIsActive = false;
+	OnRep_IsActive();
 	
 	FTimerHandle DeactivateForTimerHandle;
 	GetWorldTimerManager().SetTimer(DeactivateForTimerHandle, this, &ASBaseClass_PickUps::Activate, DeactiveforTime, false);
 }
 
-// Called when the game starts or when spawned
 void ASBaseClass_PickUps::BeginPlay()
 {
 	Super::BeginPlay();
@@ -44,9 +49,24 @@ void ASBaseClass_PickUps::BeginPlay()
 
 void ASBaseClass_PickUps::Activate()
 {
-	EffectComp->DeactivateImmediate();
-	
-	BaseMesh->SetHiddenInGame(false); 
-	SetActorEnableCollision(true);
+	bIsActive = true;
+	OnRep_IsActive();
+}
 
+void ASBaseClass_PickUps::OnRep_IsActive()
+{
+	if (bIsActive)
+	{
+		EffectComp->DeactivateImmediate();
+		
+		BaseMesh->SetHiddenInGame(false);
+		SetActorEnableCollision(true);
+	}
+	else
+	{
+		EffectComp->Activate(true);
+		
+		BaseMesh->SetHiddenInGame(true);
+		SetActorEnableCollision(false);
+	}
 }

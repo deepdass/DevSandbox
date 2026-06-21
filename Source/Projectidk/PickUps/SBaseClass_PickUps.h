@@ -34,6 +34,12 @@ protected:
 	UPROPERTY()
 	float DeactiveforTime;
 	
+	UPROPERTY(ReplicatedUsing = "OnRep_IsActive")
+	bool bIsActive = true;
+
+	UFUNCTION()
+	void OnRep_IsActive();
+	
 	UFUNCTION()
 	void Activate();
 	
