@@ -29,6 +29,9 @@
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="30" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -37,6 +40,7 @@
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Engine/Private/CheatManager.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../UE_5.7/Engine/Source/Runtime/Experimental/Chaos/Public/Chaos/Character/CharacterGroundConstraint.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Plugins/MultiplayerSessions/Source/MultiplayerSessions/Private/MultiplayerSessionsSubsystem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -45,11 +49,15 @@
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/Helpers_DevOnly/SBaseClass_ProjectileSelect.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/PlayerComps/SPlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Projectidk/PlayerComps/SPlayerController.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -185,9 +193,15 @@
       <workItem from="1781520891690" duration="15684000" />
       <workItem from="1781695923015" duration="4394000" />
       <workItem from="1781888117549" duration="9911000" />
+      <workItem from="1781949350778" duration="17599000" />
+      <workItem from="1782129815859" duration="1251000" />
+      <workItem from="1782131151301" duration="2000" />
+      <workItem from="1782139183135" duration="7956000" />
+      <workItem from="1782148632262" duration="8464000" />
     </task>
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

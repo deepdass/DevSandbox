@@ -20,8 +20,6 @@ public:
 	ASBaseClass_PickUps();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	
 	void Interact_Implementation(APawn* InstigatorPawn);
 	

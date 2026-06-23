@@ -29,6 +29,10 @@
 		{
 			"Name": "WakatimeIntegration",
 			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemEOS",
+			"Enabled": true
 		}
 	]
 }

@@ -2,7 +2,6 @@
 
 
 #include "SBaseClass_PickUps.h"
-
 #include "NiagaraComponent.h"
 #include "Net/UnrealNetwork.h"
 
@@ -38,13 +37,6 @@ void ASBaseClass_PickUps::Interact_Implementation(APawn* InstigatorPawn)
 	
 	FTimerHandle DeactivateForTimerHandle;
 	GetWorldTimerManager().SetTimer(DeactivateForTimerHandle, this, &ASBaseClass_PickUps::Activate, DeactiveforTime, false);
-}
-
-void ASBaseClass_PickUps::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	
 }
 
 void ASBaseClass_PickUps::Activate()

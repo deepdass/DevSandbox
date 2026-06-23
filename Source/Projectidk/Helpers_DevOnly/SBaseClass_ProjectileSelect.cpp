@@ -13,7 +13,9 @@
 ASBaseClass_ProjectileSelect::ASBaseClass_ProjectileSelect()
 {
 	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("DefaultSceneRoot"));
+#if WITH_EDITORONLY_DATA
 	DefaultSceneRoot->bVisualizeComponent = true;
+#endif
 	RootComponent = DefaultSceneRoot;
 	
 	SphereCollision = CreateDefaultSubobject<USphereComponent>("InteractCollision");

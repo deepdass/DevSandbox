@@ -14,6 +14,7 @@ ASHealthPotion::ASHealthPotion()
 	
 	DeactiveforTime = 10.0f;
 	HealAmount = +50;
+	
 }
 
 
