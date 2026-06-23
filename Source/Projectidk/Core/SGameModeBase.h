@@ -52,6 +52,8 @@ protected:
 	UFUNCTION()
 	void OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryInstance, EEnvQueryStatus::Type QueryStatus);
 	
+	TMap<AController*, FTimerHandle> RespawnTimerHandles;
+	
 	UFUNCTION()
 	void RespawnPlayerElapsed(AController* Controller);
 	

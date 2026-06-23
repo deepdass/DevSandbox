@@ -26,26 +26,40 @@ void ASGameModeBase::StartPlay()
 
 void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 {
-	ASCharacter* Player = Cast<ASCharacter>(VictimActor);
-	if (Player)
-	{
-		FTimerHandle TimerHandle_RespawnDelay;
-		
-		FTimerDelegate TimerDelegate;
-		TimerDelegate.BindUFunction(this, "RespawnPlayerElapsed", Player->GetController());
-		float SpawnDelay = 2.5f;
-		GetWorldTimerManager().SetTimer(TimerHandle_RespawnDelay, TimerDelegate, SpawnDelay, false);
-	}
+    ASCharacter* Player = Cast<ASCharacter>(VictimActor);
+    if (Player)
+    {
+        AController* Controller = Player->GetController();
+        if (!Controller) { return; }
+
+        if (FTimerHandle* ExistingHandle = RespawnTimerHandles.Find(Controller))
+        {
+            if (GetWorldTimerManager().IsTimerActive(*ExistingHandle))
+            {
+                return;
+            }
+        }
+
+        FTimerHandle& TimerHandle = RespawnTimerHandles.FindOrAdd(Controller);
+
+        FTimerDelegate TimerDelegate;
+        TimerDelegate.BindUFunction(this, "RespawnPlayerElapsed", Controller);
+
+        float SpawnDelay = 2.5f;
+        GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, SpawnDelay, false);
+    }
 }
 
 
 void ASGameModeBase::RespawnPlayerElapsed(AController* Controller)
 {
-	if (IsValid(Controller))
-	{
-		Controller->UnPossess();
-		RestartPlayer(Controller);
-	}
+    if (IsValid(Controller))
+    {
+        RespawnTimerHandles.Remove(Controller);
+
+        Controller->UnPossess();
+        RestartPlayer(Controller);
+    }
 }
 
 
