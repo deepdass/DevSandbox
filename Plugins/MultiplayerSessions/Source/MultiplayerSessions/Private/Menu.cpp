@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Menu.h"
 #include "Components/Button.h"
 #include "MultiplayerSessionsSubsystem.h"
@@ -15,7 +14,7 @@ void UMenu::MenuSetup(int32 NumberOfPublicConnections, FString TypeOfMatch, FStr
 	AddToViewport();
 	SetVisibility(ESlateVisibility::Visible);
 
-	// FIX (UE5.3+): SetIsFocusable() was removed; set the member directly.
+	// UE5.3+: SetIsFocusable() was removed; set the member directly.
 	bIsFocusable = true;
 
 	UWorld* World = GetWorld();
@@ -40,18 +39,15 @@ void UMenu::MenuSetup(int32 NumberOfPublicConnections, FString TypeOfMatch, FStr
 
 	if (MultiplayerSessionsSubsystem)
 	{
-		// FIX (UE5.5+/EOS): Bind login delegate FIRST.
-		// Buttons stay disabled until login completes successfully.
+		// Bind login delegate FIRST — buttons stay disabled until login completes.
 		MultiplayerSessionsSubsystem->MultiplayerOnLoginComplete.AddDynamic(this, &ThisClass::OnLoginComplete);
-
 		MultiplayerSessionsSubsystem->MultiplayerOnCreateSessionComplete.AddDynamic(this, &ThisClass::OnCreateSession);
 		MultiplayerSessionsSubsystem->MultiplayerOnFindSessionsComplete.AddUObject(this, &ThisClass::OnFindSessions);
 		MultiplayerSessionsSubsystem->MultiplayerOnJoinSessionComplete.AddUObject(this, &ThisClass::OnJoinSession);
 		MultiplayerSessionsSubsystem->MultiplayerOnDestroySessionComplete.AddDynamic(this, &ThisClass::OnDestroySession);
 		MultiplayerSessionsSubsystem->MultiplayerOnStartSessionComplete.AddDynamic(this, &ThisClass::OnStartSession);
 
-		// FIX (UE5.5+/EOS): Trigger EOS login. Buttons are enabled in OnLoginComplete after success.
-		// Keep both buttons disabled until we know EOS is authenticated.
+		// Keep buttons disabled until EOS login result arrives.
 		if (HostButton) HostButton->SetIsEnabled(false);
 		if (JoinButton) JoinButton->SetIsEnabled(false);
 
@@ -84,7 +80,6 @@ void UMenu::NativeDestruct()
 	Super::NativeDestruct();
 }
 
-// FIX (UE5.5+/EOS): Called after EOS login completes. Enable buttons only on success.
 void UMenu::OnLoginComplete(bool bWasSuccessful)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Menu::OnLoginComplete: %s"), bWasSuccessful ? TEXT("Success") : TEXT("Failed"));
@@ -96,8 +91,7 @@ void UMenu::OnLoginComplete(bool bWasSuccessful)
 	}
 	else
 	{
-		// Login failed — you may want to surface this to the player in your UI.
-		UE_LOG(LogTemp, Error, TEXT("EOS Login failed! Session creation will not work in this shipped build."));
+		UE_LOG(LogTemp, Error, TEXT("EOS Login failed! Online sessions will not work."));
 	}
 }
 
@@ -113,8 +107,6 @@ void UMenu::OnCreateSession(bool bWasSuccessful)
 	}
 	else
 	{
-		// FIX: GEngine->AddOnScreenDebugMessage is a no-op in Shipping builds.
-		// Use UE_LOG so you can run the packaged build with -log to diagnose.
 		UE_LOG(LogTemp, Error, TEXT("Failed to create session!"));
 		if (GEngine)
 		{
@@ -154,20 +146,27 @@ void UMenu::OnFindSessions(const TArray<FOnlineSessionSearchResult>& SessionResu
 
 void UMenu::OnJoinSession(EOnJoinSessionCompleteResult::Type Result)
 {
-	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get();
-	if (Subsystem)
+	// This menu drives the EOS flow only (local/LAN has separate logic elsewhere),
+	// so we target EOS explicitly and never fall back to the default subsystem —
+	// with DefaultPlatformService=Null in the .ini, that fallback would resolve to
+	// NULL, which has no record of the EOS session, leaving the address empty.
+	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get(TEXT("EOS"));
+	if (!Subsystem)
 	{
-		IOnlineSessionPtr SessionInterface = Subsystem->GetSessionInterface();
-		if (SessionInterface.IsValid())
-		{
-			FString Address;
-			SessionInterface->GetResolvedConnectString(NAME_GameSession, Address);
+		UE_LOG(LogTemp, Error, TEXT("OnJoinSession: No EOS Online Subsystem found!"));
+		return;
+	}
 
-			APlayerController* PlayerController = GetGameInstance()->GetFirstLocalPlayerController();
-			if (PlayerController)
-			{
-				PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
-			}
+	IOnlineSessionPtr SessionInt = Subsystem->GetSessionInterface();
+	if (SessionInt.IsValid())
+	{
+		FString Address;
+		SessionInt->GetResolvedConnectString(NAME_GameSession, Address);
+
+		APlayerController* PlayerController = GetGameInstance()->GetFirstLocalPlayerController();
+		if (PlayerController)
+		{
+			PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
 		}
 	}
 }

@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "MultiplayerSessionsSubsystem.h"
 #include "OnlineSubsystem.h"
 #include "OnlineSessionSettings.h"
@@ -14,17 +13,14 @@ UMultiplayerSessionsSubsystem::UMultiplayerSessionsSubsystem():
 	DestroySessionCompleteDelegate(FOnDestroySessionCompleteDelegate::CreateUObject(this, &ThisClass::OnDestroySessionComplete)),
 	StartSessionCompleteDelegate(FOnStartSessionCompleteDelegate::CreateUObject(this, &ThisClass::OnStartSessionComplete))
 {
-	
 }
 
-// FIX (UE5.5+): EOS requires an explicit login before session operations in shipped builds.
-// Call this from Menu::MenuSetup and wait for MultiplayerOnLoginComplete before enabling buttons.
 void UMultiplayerSessionsSubsystem::Login()
 {
-	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get();
+	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get(TEXT("EOS"));
 	if (!Subsystem)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Login: No Online Subsystem found!"));
+		UE_LOG(LogTemp, Error, TEXT("Login: No EOS Online Subsystem found!"));
 		MultiplayerOnLoginComplete.Broadcast(false);
 		return;
 	}
@@ -37,7 +33,7 @@ void UMultiplayerSessionsSubsystem::Login()
 		return;
 	}
 
-	// Skip login if already authenticated (e.g. editor play sessions)
+	// Skip login if already authenticated (e.g. editor play sessions).
 	if (Identity->GetLoginStatus(0) == ELoginStatus::LoggedIn)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Login: Already logged in, skipping."));
@@ -52,17 +48,16 @@ void UMultiplayerSessionsSubsystem::Login()
 
 	FOnlineAccountCredentials Credentials;
 #if WITH_EDITOR
-	// Editor/PIE: use the EOS Developer Authentication Tool so login completes instantly
-	// instead of waiting on a browser-based sign-in that's easy to miss behind other windows.
+	// Editor/PIE: use the EOS Developer Authentication Tool.
 	// Setup (one-time):
-	//   1. Run the Dev Auth Tool (ships with the EOS SDK / OnlineSubsystemEOS plugin binaries).
-	//   2. Sign in once with your Epic account and create a named credential (e.g. "test1").
-	//   3. Note the port the tool prints (default 6300-ish) and put it below.
-	Credentials.Type = TEXT("developer");
-	Credentials.Id = TEXT("127.0.0.1:6300");   // <-- match the Dev Auth Tool's listening address
-	Credentials.Token = TEXT("test1");          // <-- match the credential name you created
+	//   1. Run the Dev Auth Tool (ships with the EOS SDK).
+	//   2. Sign in and create a named credential (e.g. "test1").
+	//   3. Match the port and credential name below.
+	Credentials.Type  = TEXT("developer");
+	Credentials.Id    = TEXT("127.0.0.1:6300"); // <-- match Dev Auth Tool address
+	Credentials.Token = TEXT("test1");           // <-- match credential name
 #else
-	// Packaged/shipping builds: real players sign in via the Epic account portal browser flow.
+	// Packaged/shipping: players sign in via the Epic account portal browser flow.
 	Credentials.Type = TEXT("accountportal");
 #endif
 	Identity->Login(0, Credentials);
@@ -71,7 +66,7 @@ void UMultiplayerSessionsSubsystem::Login()
 void UMultiplayerSessionsSubsystem::OnLoginComplete(int32 LocalUserNum, bool bWasSuccessful,
 	const FUniqueNetId& UserId, const FString& Error)
 {
-	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get();
+	IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get(TEXT("EOS"));
 	if (Subsystem)
 	{
 		IOnlineIdentityPtr Identity = Subsystem->GetIdentityInterface();
@@ -100,28 +95,43 @@ void UMultiplayerSessionsSubsystem::CreateSession(int32 NumPublicConnections, FS
 		bCreateSessionOnDestroy = true;
 		LastNumPublicConnections = NumPublicConnections;
 		LastMatchType = MatchType;
-
 		DestroySession();
 	}
 
-	// Store the delegate in a FDelegateHandle so we can later remove it from the delegate list
 	CreateSessionCompleteDelegateHandle = SessionInterface->AddOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegate);
 
 	LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
-	LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL" ? true : false;
+
+	// This subsystem is EOS-only (LAN is handled by separate logic elsewhere),
+	// so this is always an online session, never LAN.
+	LastSessionSettings->bIsLANMatch = false;
+
 	LastSessionSettings->NumPublicConnections = NumPublicConnections;
 	LastSessionSettings->bAllowJoinInProgress = true;
 	LastSessionSettings->bAllowJoinViaPresence = true;
 	LastSessionSettings->bShouldAdvertise = true;
 	LastSessionSettings->bUsesPresence = true;
-	// FIX (UE5.3+/EOS): Without this flag EOS silently rejects the session and the callback never fires.
+	// Without this flag EOS silently rejects the session and the callback never fires.
 	LastSessionSettings->bUseLobbiesIfAvailable = true;
 	LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 	LastSessionSettings->BuildUniqueId = 1;
 
-	const ULocalPlayer* LocalPlayer = GetWorld()->GetFirstLocalPlayerFromController();
+	// FIX: ULocalPlayer::GetPreferredUniqueNetId() resolves via the default
+	// OnlineSubsystem (Null, per DefaultPlatformService=Null in the .ini), so it
+	// returns a Null-typed net id. FOnlineSessionEOS::CreateSession() internally
+	// casts the net id to FUniqueNetIdEOS and asserts/crashes on the type mismatch.
+	// We must fetch the net id directly from the EOS identity interface instead.
+	IOnlineSubsystem* EOSSubsystem = IOnlineSubsystem::Get(TEXT("EOS"));
+	if (!EOSSubsystem)
+	{
+		UE_LOG(LogTemp, Error, TEXT("CreateSession: No EOS Online Subsystem found!"));
+		SessionInterface->ClearOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegateHandle);
+		MultiplayerOnCreateSessionComplete.Broadcast(false);
+		return;
+	}
 
-	FUniqueNetIdRepl NetId = LocalPlayer->GetPreferredUniqueNetId();
+	IOnlineIdentityPtr Identity = EOSSubsystem->GetIdentityInterface();
+	TSharedPtr<const FUniqueNetId> NetId = Identity.IsValid() ? Identity->GetUniquePlayerId(0) : nullptr;
 	if (!NetId.IsValid())
 	{
 		UE_LOG(LogTemp, Error, TEXT("CreateSession: UniqueNetId is invalid. Was Login() called and did it succeed?"));
@@ -133,8 +143,6 @@ void UMultiplayerSessionsSubsystem::CreateSession(int32 NumPublicConnections, FS
 	if (!SessionInterface->CreateSession(*NetId, NAME_GameSession, *LastSessionSettings))
 	{
 		SessionInterface->ClearOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegateHandle);
-
-		// Broadcast our own custom delegate
 		MultiplayerOnCreateSessionComplete.Broadcast(false);
 	}
 }
@@ -150,21 +158,28 @@ void UMultiplayerSessionsSubsystem::FindSessions(int32 MaxSearchResults)
 
 	LastSessionSearch = MakeShareable(new FOnlineSessionSearch());
 	LastSessionSearch->MaxSearchResults = MaxSearchResults;
-	LastSessionSearch->bIsLanQuery = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL" ? true : false;
 
-	// NOTE: SEARCH_PRESENCE was marked deprecated in UE 5.5 (a future engine version may remove it),
-	// but it still works today. Rider sometimes shows a false "cannot resolve symbol" squiggle on this
-	// macro even though it compiles fine - that's a known Rider indexing quirk, not a real error.
-	LastSessionSearch->QuerySettings.Set(
-	SEARCH_LOBBIES,
-	true,
-	EOnlineComparisonOp::Equals);
+	// This subsystem is EOS-only (LAN is handled by separate logic elsewhere),
+	// so this is always an online search, never LAN.
+	LastSessionSearch->bIsLanQuery = false;
 
+	// FIX: Removed the duplicate QuerySettings.Set call that was in the original.
 	LastSessionSearch->QuerySettings.Set(SEARCH_LOBBIES, true, EOnlineComparisonOp::Equals);
 
-	const ULocalPlayer* LocalPlayer = GetWorld()->GetFirstLocalPlayerFromController();
+	// FIX: same as CreateSession — fetch the net id from the EOS identity interface
+	// directly, not from ULocalPlayer::GetPreferredUniqueNetId(), which resolves
+	// via the default (Null) subsystem and would crash FOnlineSessionEOS internals.
+	IOnlineSubsystem* EOSSubsystem = IOnlineSubsystem::Get(TEXT("EOS"));
+	if (!EOSSubsystem)
+	{
+		UE_LOG(LogTemp, Error, TEXT("FindSessions: No EOS Online Subsystem found!"));
+		SessionInterface->ClearOnFindSessionsCompleteDelegate_Handle(FindSessionsCompleteDelegateHandle);
+		MultiplayerOnFindSessionsComplete.Broadcast(TArray<FOnlineSessionSearchResult>(), false);
+		return;
+	}
 
-	FUniqueNetIdRepl NetId = LocalPlayer->GetPreferredUniqueNetId();
+	IOnlineIdentityPtr Identity = EOSSubsystem->GetIdentityInterface();
+	TSharedPtr<const FUniqueNetId> NetId = Identity.IsValid() ? Identity->GetUniquePlayerId(0) : nullptr;
 	if (!NetId.IsValid())
 	{
 		UE_LOG(LogTemp, Error, TEXT("FindSessions: UniqueNetId is invalid."));
@@ -176,7 +191,6 @@ void UMultiplayerSessionsSubsystem::FindSessions(int32 MaxSearchResults)
 	if (!SessionInterface->FindSessions(*NetId, LastSessionSearch.ToSharedRef()))
 	{
 		SessionInterface->ClearOnFindSessionsCompleteDelegate_Handle(FindSessionsCompleteDelegateHandle);
-
 		MultiplayerOnFindSessionsComplete.Broadcast(TArray<FOnlineSessionSearchResult>(), false);
 	}
 }
@@ -191,9 +205,20 @@ void UMultiplayerSessionsSubsystem::JoinSession(const FOnlineSessionSearchResult
 
 	JoinSessionCompleteDelegateHandle = SessionInterface->AddOnJoinSessionCompleteDelegate_Handle(JoinSessionCompleteDelegate);
 
-	const ULocalPlayer* LocalPlayer = GetWorld()->GetFirstLocalPlayerFromController();
+	// FIX: same as CreateSession/FindSessions — use the EOS identity interface's
+	// net id directly instead of ULocalPlayer::GetPreferredUniqueNetId(), which
+	// resolves via the default (Null) subsystem and would crash FOnlineSessionEOS.
+	IOnlineSubsystem* EOSSubsystem = IOnlineSubsystem::Get(TEXT("EOS"));
+	if (!EOSSubsystem)
+	{
+		UE_LOG(LogTemp, Error, TEXT("JoinSession: No EOS Online Subsystem found!"));
+		SessionInterface->ClearOnJoinSessionCompleteDelegate_Handle(JoinSessionCompleteDelegateHandle);
+		MultiplayerOnJoinSessionComplete.Broadcast(EOnJoinSessionCompleteResult::UnknownError);
+		return;
+	}
 
-	FUniqueNetIdRepl NetId = LocalPlayer->GetPreferredUniqueNetId();
+	IOnlineIdentityPtr Identity = EOSSubsystem->GetIdentityInterface();
+	TSharedPtr<const FUniqueNetId> NetId = Identity.IsValid() ? Identity->GetUniquePlayerId(0) : nullptr;
 	if (!NetId.IsValid())
 	{
 		UE_LOG(LogTemp, Error, TEXT("JoinSession: UniqueNetId is invalid."));
@@ -205,7 +230,6 @@ void UMultiplayerSessionsSubsystem::JoinSession(const FOnlineSessionSearchResult
 	if (!SessionInterface->JoinSession(*NetId, NAME_GameSession, SessionResult))
 	{
 		SessionInterface->ClearOnJoinSessionCompleteDelegate_Handle(JoinSessionCompleteDelegateHandle);
-
 		MultiplayerOnJoinSessionComplete.Broadcast(EOnJoinSessionCompleteResult::UnknownError);
 	}
 }
@@ -233,16 +257,18 @@ void UMultiplayerSessionsSubsystem::StartSession()
 
 bool UMultiplayerSessionsSubsystem::IsValidSessionInterface()
 {
-	if (!SessionInterface)
+	if (!SessionInterface.IsValid())
 	{
-		IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get();
+		// This subsystem is EOS-only — LAN is handled by separate logic elsewhere,
+		// so there's no fallback to the NULL/default subsystem here.
+		IOnlineSubsystem* Subsystem = IOnlineSubsystem::Get(TEXT("EOS"));
 		if (Subsystem)
 		{
 			SessionInterface = Subsystem->GetSessionInterface();
 		}
 		else
 		{
-			UE_LOG(LogTemp, Error, TEXT("IsValidSessionInterface: No Online Subsystem found!"));
+			UE_LOG(LogTemp, Error, TEXT("IsValidSessionInterface: No EOS Online Subsystem found!"));
 		}
 	}
 

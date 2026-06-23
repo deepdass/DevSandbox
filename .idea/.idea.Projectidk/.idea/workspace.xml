@@ -29,9 +29,6 @@
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
   </component>
-  <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="30" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -198,6 +195,7 @@
       <workItem from="1782131151301" duration="2000" />
       <workItem from="1782139183135" duration="7956000" />
       <workItem from="1782148632262" duration="9072000" />
+      <workItem from="1782242907317" duration="3383000" />
     </task>
     <servers />
   </component>
