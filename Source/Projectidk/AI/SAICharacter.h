@@ -43,6 +43,10 @@ protected:
 	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
 	
+	UPROPERTY()
+	TArray<TObjectPtr<APawn>> SeenPawns;
+	
+	void UpdateBestTarget();
 	
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);

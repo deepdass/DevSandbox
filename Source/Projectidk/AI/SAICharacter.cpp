@@ -38,8 +38,38 @@ void ASAICharacter::PostInitializeComponents()
 
 void ASAICharacter::OnPawnSeen(APawn* Pawn)
 {
-	SetTarget(Pawn);
+	SeenPawns.AddUnique(Pawn);
+	
+	UpdateBestTarget();
+	
 	DrawDebugString(GetWorld(), GetActorLocation(), "Player Spotted", nullptr, FColor::Green, 4.0f, true);
+}
+
+
+void ASAICharacter::UpdateBestTarget()
+{
+	SeenPawns.RemoveAll([](const TObjectPtr<APawn>& P)
+	{
+		return !IsValid(P) || !USAttributeComponent::GetIsActorAlive(P);
+	});
+	
+	AActor* BestTarget = nullptr;
+	float BestDistSq = MAX_FLT;
+	
+	for (const TObjectPtr<APawn>& Pawn : SeenPawns)
+	{
+		const float DistSq = FVector::DistSquared(GetActorLocation(), Pawn->GetActorLocation());
+		if (DistSq < BestDistSq)
+		{
+			BestDistSq = DistSq;
+			BestTarget = Pawn;
+		}
+	}
+	
+	if (BestTarget)
+	{
+		SetTarget(BestTarget);
+	}
 }
 
 
@@ -63,6 +93,10 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 		
 		if (InstigatorActor != this)
 		{
+			if (APawn* InstigatorPawn = Cast<APawn>(InstigatorActor))
+			{
+				SeenPawns.AddUnique(InstigatorPawn);
+			}
 			SetTarget(InstigatorActor);
 		}
 		
@@ -97,5 +131,3 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 		}
 	}
 }
-
-
