@@ -13,3 +13,7 @@ Controls
 Action System - similar to Gameplay Ability System (GAS) with data objects called action having ability which can be given to any actor having action component. Uses Gameplay Tags and modular design - Credit Tom Looman's Design Followed [Github Repo](https://github.com/tomlooman/ActionRoguelike)
 
 moree
+
+## Resources
+Framework based on - https://github.com/tomlooman/ActionRoguelike
+For a modular and scalable code which is optimized to be performant.
