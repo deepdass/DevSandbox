@@ -10,7 +10,7 @@
 
 USAction_ProjectileAttack::USAction_ProjectileAttack()
 {
-	AttackAnimDelay = 0.2f;
+	AttackAnimDelay = 0.24f;
 }
 
 void USAction_ProjectileAttack::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> NewProjectile)
@@ -20,16 +20,24 @@ void USAction_ProjectileAttack::SetPrimaryProjectile(TSubclassOf<ASBaseClassProj
 
 void USAction_ProjectileAttack::StartAction_Implementation(AActor* Instigator)
 {
+	const float CurrentTime = GetWorld()->GetTimeSeconds();
+	if (CurrentTime < NextAttackAllowedTime)
+	{
+		return;
+	}
+
 	Super::StartAction_Implementation(Instigator);
-	
+
 	ACharacter* Character = Cast<ACharacter>(Instigator);
 	if (Character)
 	{
+		NextAttackAllowedTime = CurrentTime + TimeBetweenAttacks;
+
 		Character->PlayAnimMontage(AttackAnim);
-		
+
 		FTimerDelegate Delegate;
 		Delegate.BindUFunction(this, "AttackDelay_Elapsed", Character);
-		
+
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle_AttackDelay, Delegate, AttackAnimDelay, false);
 	}
 }
@@ -39,22 +47,22 @@ void USAction_ProjectileAttack::AttackDelay_Elapsed(ACharacter* InstigatorCharac
 	if (ensureAlways(ProjectileClass))
 	{
 		APlayerController* PC = Cast<APlayerController>(InstigatorCharacter->GetController());
-        if (!PC) return;
-		
+		if (!PC) return;
+
 		FVector CamStart;
-		FRotator CamRot; 
+		FRotator CamRot;
 		PC->GetPlayerViewPoint(CamStart, CamRot);
 
-		const FVector TraceEnd  = CamStart + (CamRot.Vector() * 5000.0f);
-	
+		const FVector TraceEnd = CamStart + (CamRot.Vector() * 5000.0f);
+
 		FHitResult HitResult;
-		
+
 		FCollisionQueryParams Params;
 		Params.AddIgnoredActor(InstigatorCharacter);
 
-		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, CamStart, TraceEnd , ECC_Visibility, Params); 
+		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, CamStart, TraceEnd, ECC_Visibility, Params);
 
-		FVector HandLoc = InstigatorCharacter->GetMesh()->GetSocketLocation(HandSocketName); 
+		FVector HandLoc = InstigatorCharacter->GetMesh()->GetSocketLocation(HandSocketName);
 		FRotator ProjectileRot = CamRot;
 		if (bHit)
 		{
@@ -70,9 +78,6 @@ void USAction_ProjectileAttack::AttackDelay_Elapsed(ACharacter* InstigatorCharac
 
 		GetWorld()->SpawnActor<ASBaseClassProjectile>(ProjectileClass, SpawnTM, SpawnParams);
 	}
-	
+
 	StopAction(InstigatorCharacter);
 }
-
-
-

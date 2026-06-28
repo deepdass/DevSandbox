@@ -5,6 +5,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Components/CapsuleComponent.h"
 
 #include "PlayerComps/SAttributeComponent.h"
 #include "PlayerComps/SInteractionComponent.h"
@@ -195,6 +196,10 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 		{
 			APlayerController* PC = Cast<APlayerController>(GetController());
 			DisableInput(PC);
+			GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+			GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+			
+			SetLifeSpan(10.0f);
 		}
 	}
 	

@@ -18,8 +18,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47f1b0de-38f1-4744-b3dd-76040b2667bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Projectidk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultGame.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGame.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_Health.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_Health.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_LocalMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_LocalMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_MinionHealthBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_MinionHealthBar.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_ModeChoose.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_ModeChoose.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_MultiplayerMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_MultiplayerMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_MultiplayerType.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_MultiplayerType.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WBP_SteamSession.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WBP_SteamSession.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction_ProjectileAttack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,6 +209,7 @@
       <workItem from="1782148632262" duration="9072000" />
       <workItem from="1782242907317" duration="3383000" />
       <workItem from="1782426413081" duration="3097000" />
+      <workItem from="1782517700339" duration="2193000" />
     </task>
     <servers />
   </component>
