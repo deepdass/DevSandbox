@@ -12,6 +12,8 @@ USAttributeComponent::USAttributeComponent()
 {
 	HealthData.MaxHealth = 100.0f;
 	HealthData.Health = HealthData.MaxHealth;
+	
+	CanEarnCredit = false;
 
 	SetIsReplicatedByDefault(true);
 }
@@ -25,6 +27,12 @@ void USAttributeComponent::OnRep_HealthData(FHealthChangeData OldHealthData)
 {
 	const float Delta = HealthData.Health - OldHealthData.Health;
 	OnHealthChanged.Broadcast(HealthData.Instigator, this, HealthData.Health, Delta);
+}
+
+void USAttributeComponent::OnRep_CreditData(FCreditChangeData OldCreditData)
+{
+	const int Delta = CreditData.Credit - OldCreditData.Credit;
+	OnCreditChanged.Broadcast(CreditData.Instigator, this, CreditData.Credit, Delta);
 }
 
 bool USAttributeComponent::Kill(AActor* InstigatorActor)
@@ -66,6 +74,20 @@ bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 	return !FMath::IsNearlyZero(ActualDelta);
 }
 
+bool USAttributeComponent::ApplyCreditChange(AActor* InstigatorActor, int Credit)
+{
+	if (!GetOwner()->HasAuthority()) {return false; }
+	if (CanEarnCredit)
+	{
+		CreditData.Credit += Credit;
+		CreditData.Instigator = InstigatorActor;
+
+		OnCreditChanged.Broadcast(InstigatorActor, this, CreditData.Credit, Credit);
+
+		return true;
+	}
+	return false;
+}
 
 USAttributeComponent* USAttributeComponent::GetAttributes(AActor* FromActor)
 {
@@ -92,5 +114,5 @@ void USAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(USAttributeComponent, HealthData);
+	DOREPLIFETIME(USAttributeComponent, CreditData);
 }
-

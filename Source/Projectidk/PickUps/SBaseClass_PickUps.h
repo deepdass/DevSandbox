@@ -29,7 +29,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components") 
 	TObjectPtr<UNiagaraComponent> EffectComp;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly)
 	float DeactiveforTime;
 	
 	UPROPERTY(ReplicatedUsing = "OnRep_IsActive")

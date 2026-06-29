@@ -4,6 +4,7 @@
 #include "InteractiveObjects/SItemChest.h"
 #include "Components/StaticMeshComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "PlayerComps/SAttributeComponent.h"
 
 // Sets default values
 ASItemChest::ASItemChest()
@@ -19,11 +20,26 @@ ASItemChest::ASItemChest()
 	
 	LidOpenPitch = 115.0f;
 	
+	CreditAmount = 10;
+	
 	SetReplicates(true);
 }
 
 void ASItemChest::Interact_Implementation(APawn* InstigatorPawn)
 {
+	if (!IsValid(InstigatorPawn))
+	{
+		return;
+	}
+	
+	if (!bLidOpened)
+	{
+		USAttributeComponent* AttributeComp = InstigatorPawn->FindComponentByClass<USAttributeComponent>();
+		if (ensure(IsValid(AttributeComp)))
+		{
+			AttributeComp->ApplyCreditChange(this ,CreditAmount);
+		}
+	}
 	bLidOpened = !bLidOpened;
 	OnRep_LidOpened();
 }

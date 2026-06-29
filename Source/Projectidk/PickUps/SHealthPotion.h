@@ -10,14 +10,16 @@ UCLASS()
 class PROJECTIDK_API ASHealthPotion : public ASBaseClass_PickUps
 {
 	GENERATED_BODY()
-	
-	void Interact_Implementation(APawn* InstigatorPawn) override;
+
 
 public:
 	// Sets default values for this actor's properties
 	ASHealthPotion();
 	
 protected:
+	
+	void Interact_Implementation(APawn* InstigatorPawn) override;
+	
 	UPROPERTY(EditDefaultsOnly, Category="Potion")
 	float HealAmount;
 

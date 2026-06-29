@@ -49,14 +49,20 @@ void ASBaseClass_PickUps::OnRep_IsActive()
 {
 	if (bIsActive)
 	{
-		EffectComp->DeactivateImmediate();
+		if(EffectComp)
+		{
+			EffectComp->DeactivateImmediate();
+		}
 		
 		BaseMesh->SetHiddenInGame(false);
 		SetActorEnableCollision(true);
 	}
 	else
 	{
-		EffectComp->Activate(true);
+		if(EffectComp)
+		{
+			EffectComp->Activate(true);
+		}
 		
 		BaseMesh->SetHiddenInGame(true);
 		SetActorEnableCollision(false);
