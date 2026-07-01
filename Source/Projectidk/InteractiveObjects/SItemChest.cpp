@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "InteractiveObjects/SItemChest.h"
 #include "Components/StaticMeshComponent.h"
 #include "Net/UnrealNetwork.h"

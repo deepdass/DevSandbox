@@ -8,6 +8,7 @@
 
 class URadialForceComponent;
 class UStaticMeshComponent;
+class UNiagaraComponent;
 
 UCLASS()
 class PROJECTIDK_API AExplosiveBarrel : public AActor
@@ -19,11 +20,14 @@ public:
 	AExplosiveBarrel();
 
 protected:
-	UPROPERTY(VisibleAnywhere) 
+	UPROPERTY(BlueprintReadOnly) 
 	TObjectPtr<UStaticMeshComponent> SphereComp;
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<URadialForceComponent> RadComp;
+	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Components")
+	TObjectPtr<UNiagaraComponent> EffectComp;
 	
 	
 	UPROPERTY(Replicated)

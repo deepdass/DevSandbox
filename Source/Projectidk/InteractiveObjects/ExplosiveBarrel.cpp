@@ -1,6 +1,9 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
 #include "ExplosiveBarrel.h"
 #include "GameFramework/Character.h"
 #include "PhysicsEngine/RadialForceComponent.h"
+#include "NiagaraComponent.h"
 #include "Net/UnrealNetwork.h"
 
 AExplosiveBarrel::AExplosiveBarrel()
@@ -17,6 +20,10 @@ AExplosiveBarrel::AExplosiveBarrel()
 	RadComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadForceComp"));
 	RadComp->SetupAttachment(SphereComp);
 	RadComp->SetAutoActivate(false);
+	
+	EffectComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("EffectComp"));
+	EffectComp->SetupAttachment(SphereComp);
+	EffectComp->bAutoActivate = false;
 }
 
 void AExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -63,6 +70,8 @@ void AExplosiveBarrel::MulticastExplode_Implementation()
 void AExplosiveBarrel::Explode_Implementation()
 {
 	RadComp->FireImpulse();
+	EffectComp->Activate(true);
+	
 	bExploded = false;
 	UE_LOG(LogTemp, Log, TEXT("BOOM!! Haha"));
 }
