@@ -1,6 +1,6 @@
 # DevSandbox
 A Development Sandbox made in unreal engine using both c++ and blueprint, Fully replicated
-<br> Plannig to make this into a sandbox which will contain my game dev shenanigans
+<br> Planning to make this into a sandbox which will contain my game dev shenanigans
 
 <img width="1917" height="995" alt="Editor Screenshot" src="https://github.com/user-attachments/assets/4a5c66e9-fa27-4283-8867-231c70ec1aa1" />
 
