@@ -14,8 +14,10 @@ WASD - Move
 <br> Space - Jump
 <br> Left Click - Fire
 <br> Right Click - Parry
+<br> E - Interact
 <br> ESC - Quit
 <br> R - Reset Level (Single Player)
+<br> 1 - Scalability Settings
 
 ### Debug Only
 ~ - All Console Command
