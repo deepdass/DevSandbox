@@ -4,8 +4,11 @@
 #include "SGameModeBase.h"
 
 #include "EngineUtils.h"
+#include "SSaveGame.h"
 #include "AI/SAICharacter.h"
 #include "EnvironmentQuery/EnvQueryManager.h"
+#include "GameFramework/SaveGame.h"
+#include "Kismet/GameplayStatics.h"
 #include "PlayerComps/SAttributeComponent.h"
 #include "PlayerComps/SCharacter.h"
 
@@ -131,5 +134,29 @@ void ASGameModeBase::KillAll()
 		{
 			AttributeComp->Kill(this);
 		}
+	}
+}
+
+void ASGameModeBase::WriteSaveGame()
+{
+	UGameplayStatics::SaveGameToSlot(CurrentSaveGame, SlotName, 0);
+}
+
+void ASGameModeBase::LoadSaveGame()
+{
+	if (UGameplayStatics::DoesSaveGameExist(SlotName, 0))
+	{
+		CurrentSaveGame = Cast<USSaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+		if (CurrentSaveGame == nullptr)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Can't Load Save Game %s"), *SlotName);
+			return;
+		}
+		UE_LOG(LogTemp, Log, TEXT("Loaded Save Game %s"), *SlotName);
+	}
+	else
+	{
+		CurrentSaveGame = Cast<USSaveGame>(UGameplayStatics::CreateSaveGameObject(USSaveGame::StaticClass()));
+		UE_LOG(LogTemp, Log, TEXT("Created New Save Game %s"), *SlotName);
 	}
 }

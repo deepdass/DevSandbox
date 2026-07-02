@@ -18,18 +18,12 @@ class PROJECTIDK_API ASGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
-public:
-	
-	ASGameModeBase();
-	
-	virtual void StartPlay() override;
-	
-	virtual void OnActorKilled(AActor* VictimActor, AActor* Killer);
-	
-	UFUNCTION(Exec)
-	void KillAll();
-	
 protected:
+	
+	FString SlotName;
+	
+	UPROPERTY()
+	TObjectPtr<USSaveGame> CurrentSaveGame;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	FTimerHandle TimerHandle_SpawnBot;
@@ -56,5 +50,21 @@ protected:
 	
 	UFUNCTION()
 	void RespawnPlayerElapsed(AController* Controller);
+
 	
+public:
+	
+	ASGameModeBase();
+	
+	virtual void StartPlay() override;
+	
+	virtual void OnActorKilled(AActor* VictimActor, AActor* Killer);
+	
+	UFUNCTION(Exec)
+	void KillAll();
+	
+	UFUNCTION(BlueprintCallable, Category= "SaveGame")
+	void WriteSaveGame();
+	
+	void LoadSaveGame();
 };
