@@ -7,6 +7,7 @@
 #include "EnvironmentQuery/EnvQueryTypes.h" 
 #include "SGameModeBase.generated.h"
 
+class USSaveGame;
 class UEnvQuery;
 class UEnvQueryInstanceBlueprintWrapper;
 class UCurveFloat;
@@ -21,6 +22,9 @@ class PROJECTIDK_API ASGameModeBase : public AGameModeBase
 protected:
 	
 	FString SlotName;
+	
+	UPROPERTY(EditDefaultsOnly)
+	int32 CreditPerKill;
 	
 	UPROPERTY()
 	TObjectPtr<USSaveGame> CurrentSaveGame;

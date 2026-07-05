@@ -3,7 +3,7 @@
 
 #include "SCredit.h"
 
-#include "PlayerComps/SAttributeComponent.h"
+#include "Core/SPlayerState.h"
 
 
 // Sets default values
@@ -37,11 +37,11 @@ void ASCredit::AddCredit(APawn* InstigatorPawn)
 		return;
 	}
 	
-	USAttributeComponent* AttributeComp = InstigatorPawn->FindComponentByClass<USAttributeComponent>();
-	if (ensure(IsValid(AttributeComp)))
+	ASPlayerState* PlayerState = InstigatorPawn->GetPlayerState<ASPlayerState>();
+	if (ensure(IsValid(PlayerState)))
 	{
-		AttributeComp->ApplyCreditChange(this ,CreditAmount);
-		
+		PlayerState->ApplyCreditChange(this, CreditAmount);
+
 		Super::Interact_Implementation(InstigatorPawn);
 	}
 }

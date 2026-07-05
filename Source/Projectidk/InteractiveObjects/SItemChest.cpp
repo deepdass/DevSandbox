@@ -2,6 +2,7 @@
 
 #include "InteractiveObjects/SItemChest.h"
 #include "Components/StaticMeshComponent.h"
+#include "Core/SPlayerState.h"
 #include "Net/UnrealNetwork.h"
 #include "PlayerComps/SAttributeComponent.h"
 
@@ -33,10 +34,10 @@ void ASItemChest::Interact_Implementation(APawn* InstigatorPawn)
 	
 	if (!bLidOpened)
 	{
-		USAttributeComponent* AttributeComp = InstigatorPawn->FindComponentByClass<USAttributeComponent>();
-		if (ensure(IsValid(AttributeComp)))
+		ASPlayerState* PlayerState = InstigatorPawn->GetPlayerState<ASPlayerState>();
+		if (ensure(IsValid(PlayerState)))
 		{
-			AttributeComp->ApplyCreditChange(this ,CreditAmount);
+			PlayerState->ApplyCreditChange(this, CreditAmount);
 		}
 	}
 	bLidOpened = !bLidOpened;

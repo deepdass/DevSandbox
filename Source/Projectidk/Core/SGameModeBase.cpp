@@ -4,6 +4,7 @@
 #include "SGameModeBase.h"
 
 #include "EngineUtils.h"
+#include "SPlayerState.h"
 #include "SSaveGame.h"
 #include "AI/SAICharacter.h"
 #include "EnvironmentQuery/EnvQueryManager.h"
@@ -18,6 +19,7 @@ ASGameModeBase::ASGameModeBase()
 {
 	SpawnTimerInterval = 5.0f;
 	
+	CreditPerKill = 5;
 }
 
 void ASGameModeBase::StartPlay()
@@ -51,6 +53,16 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
         float SpawnDelay = 2.5f;
         GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, SpawnDelay, false);
     }
+	
+	APawn* KillerPawn = Cast<APawn>(Killer);
+	if (KillerPawn)
+	{
+		ASPlayerState* PlayerState = KillerPawn->GetPlayerState<ASPlayerState>();
+		if (ensure(IsValid(PlayerState)))
+		{
+			PlayerState->ApplyCreditChange(this, CreditPerKill);
+		}
+	}
 }
 
 

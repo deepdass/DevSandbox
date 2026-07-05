@@ -7,7 +7,6 @@
 #include "SAttributeComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, float, Health, float, Delta);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnCreditChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, int, Credit, int, Delta);
 
 USTRUCT()
 struct FHealthChangeData
@@ -22,18 +21,6 @@ struct FHealthChangeData
 
 	UPROPERTY()
 	float MaxHealth = 0.0f;
-};
-
-USTRUCT()
-struct FCreditChangeData
-{
-	GENERATED_BODY()
-
-	UPROPERTY()
-	AActor* Instigator = nullptr;
-
-	UPROPERTY()
-	int Credit = 0;
 };
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -58,15 +45,6 @@ protected:
 
 	UFUNCTION()
 	void OnRep_HealthData(FHealthChangeData OldHealthData);
-	
-	UPROPERTY(EditDefaultsOnly, Category="Credit")
-	bool CanEarnCredit;
-
-	UPROPERTY(ReplicatedUsing = "OnRep_CreditData")
-	FCreditChangeData CreditData;
-
-	UFUNCTION()
-	void OnRep_CreditData(FCreditChangeData OldCreditData);
 
 public:
 
@@ -76,14 +54,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnHealthChanged OnHealthChanged;
 
-	UPROPERTY(BlueprintAssignable)
-	FOnCreditChanged OnCreditChanged;
-
 	UFUNCTION(BlueprintCallable, Category = "Attribute")
 	bool ApplyHealthChange(AActor* InstigatorActor, float Delta);
-	
-	UFUNCTION(BlueprintCallable, Category = "Attribute")
-	bool ApplyCreditChange(AActor* InstigatorActor, int Credit);
 
 	UFUNCTION(BlueprintCallable)
 	bool GetIsAlive() const;

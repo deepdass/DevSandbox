@@ -22,5 +22,8 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, Category="Potion")
 	float HealAmount;
+	
+	UPROPERTY(EditDefaultsOnly, Category="Potion")
+	int32 CreditCost;
 
 };

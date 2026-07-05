@@ -3,6 +3,7 @@
 
 #include "SHealthPotion.h"
 
+#include "Core/SPlayerState.h"
 #include "PlayerComps/SAttributeComponent.h"
 
 
@@ -14,6 +15,7 @@ ASHealthPotion::ASHealthPotion()
 	
 	DeactiveforTime = 10.0f;
 	HealAmount = +50;
+	CreditCost = -10;
 	
 }
 
@@ -26,14 +28,23 @@ void ASHealthPotion::Interact_Implementation(APawn* InstigatorPawn)
 	}
 	
 	USAttributeComponent* AttributeComp = InstigatorPawn->FindComponentByClass<USAttributeComponent>();
-	if (ensure(IsValid(AttributeComp)))
+	ASPlayerState* PlayerState = InstigatorPawn->GetPlayerState<ASPlayerState>();
+
+	if (ensure(IsValid(AttributeComp) && IsValid(PlayerState)))
 	{
-		if (AttributeComp->GetHealth() >= AttributeComp->GetMaxHealth())
+
+		if (!((AttributeComp->GetHealth() < AttributeComp->GetMaxHealth())) || !((PlayerState->GetCredit() >= FMath::Abs(CreditCost))))
 		{
 			return;
 		}
-		AttributeComp->ApplyHealthChange(this ,HealAmount);
-		
+
+		if (!PlayerState->ApplyCreditChange(this, CreditCost))
+		{
+			return;
+		}
+
+		AttributeComp->ApplyHealthChange(this, HealAmount);
+
 		Super::Interact_Implementation(InstigatorPawn);
 	}
 }
