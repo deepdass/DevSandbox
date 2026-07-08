@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerState.h"
 #include "SPlayerState.generated.h"
 
+class USSaveGame;
 class ASPlayerState;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnCreditChanged, AActor*, InstigatorActor, ASPlayerState*, OwningState, int32, Credit, int32, Delta);
@@ -35,11 +36,19 @@ public:
 	bool ApplyCreditChange(AActor* InstigatorActor, int32 Credit);
 
 	UFUNCTION(BlueprintCallable, Category = "Credit")
-	int32 GetCredit() const { return CreditData.Credit; }
+	int32 GetCredit() const { return CreditData.Credit;}
 
 	UPROPERTY(BlueprintAssignable)
 	FOnCreditChanged OnCreditChanged;
+	
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+	UFUNCTION(BlueprintNativeEvent)
+	void SavePlayerState(USSaveGame* SaveObject);
+	
+	UFUNCTION(BlueprintNativeEvent)
+	void LoadPlayerState(USSaveGame* SaveObject);
+	
 protected:
 
 	// Whether this player is allowed to earn/spend credit at all
@@ -51,6 +60,5 @@ protected:
 
 	UFUNCTION()
 	void OnRep_CreditData(FCreditData OldCreditData);
-
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	
 };

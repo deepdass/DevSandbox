@@ -14,7 +14,10 @@ class PROJECTIDK_API ASItemChest : public AActor, public ISGameplayInterface
 {
 	GENERATED_BODY()
 	
+public:
 	void Interact_Implementation(APawn* InstigatorPawn) override;
+	
+	void OnActorLoaded_Implementation() override;
 
 public:
 	// Sets default values for this actor's properties
@@ -22,7 +25,7 @@ public:
 	
 protected:
 	
-	UPROPERTY(BlueprintReadOnly ,ReplicatedUsing = "OnRep_LidOpened")
+	UPROPERTY(BlueprintReadOnly ,ReplicatedUsing = "OnRep_LidOpened", SaveGame)
 	bool bLidOpened = false;
 	
 	UFUNCTION()
