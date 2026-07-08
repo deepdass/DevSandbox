@@ -180,7 +180,7 @@ void ASGameModeBase::WriteSaveGame()
 		if (PlayerState)
 		{
 			PlayerState->SavePlayerState(CurrentSaveGame);
-			break;
+			break; //SinglePlayer
 		}
 	}
 	
