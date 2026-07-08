@@ -5,12 +5,42 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "EnvironmentQuery/EnvQueryTypes.h" 
+#include "Engine/DataTable.h"
 #include "SGameModeBase.generated.h"
 
 class USSaveGame;
 class UEnvQuery;
 class UEnvQueryInstanceBlueprintWrapper;
 class UCurveFloat;
+class UDataTable;
+
+USTRUCT(BlueprintType)
+struct FMonsterInfoRow : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	FMonsterInfoRow()
+	{
+		Weight = 1.0f;
+		SpawnCost = 1.0f;
+		KillReward = 15.0;
+	}
+	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+    TSubclassOf<AActor> MinionClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Weight;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float SpawnCost;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float KillReward;
+	
+};
+
 /**
  * 
  */
@@ -38,8 +68,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TObjectPtr<UEnvQuery> EQSpawnBot;
 	
-	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
-	TSubclassOf<AActor> MinionClass;
+	
+	TObjectPtr<UDataTable> MonsterDataTable;
+	
+	//UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
+	//TSubclassOf<AActor> MinionClass;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TObjectPtr<UCurveFloat> DifficultyCurve;

@@ -147,11 +147,18 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 	}
 	
 	TArray<FVector> ResultLocations = QueryInstance->GetResultsAsLocations();
-	
 	if (ResultLocations.IsValidIndex(0))
 	{
-		GetWorld()->SpawnActor<AActor>(MinionClass, ResultLocations[0], FRotator::ZeroRotator);
+		if (MonsterDataTable)
+		{
+			TArray<FMonsterInfoRow*> Rows;
+			MonsterDataTable->GetAllRows("", Rows);
 			
+			int32 RandomIndex = FMath::RandRange(0, Rows.Num() - 1);
+			FMonsterInfoRow* SelectedRow = Rows[RandomIndex];
+			GetWorld()->SpawnActor<AActor>(SelectedRow->MinionClass, ResultLocations[0], FRotator::ZeroRotator);
+		}
+		
 		DrawDebugSphere(GetWorld(), ResultLocations[0], 80.0f, 20, FColor::Blue, false, 60.0f);
 	}
 }
