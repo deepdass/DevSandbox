@@ -13,12 +13,14 @@ class UEnvQuery;
 class UEnvQueryInstanceBlueprintWrapper;
 class UCurveFloat;
 class UDataTable;
+class USMonsterData;
 
 USTRUCT(BlueprintType)
 struct FMonsterInfoRow : public FTableRowBase
 {
 	GENERATED_BODY()
 
+public:
 	FMonsterInfoRow()
 	{
 		Weight = 1.0f;
@@ -26,9 +28,8 @@ struct FMonsterInfoRow : public FTableRowBase
 		KillReward = 15.0;
 	}
 	
-public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-    TSubclassOf<AActor> MinionClass;
+    FPrimaryAssetId MonsterId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Weight;
@@ -68,7 +69,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TObjectPtr<UEnvQuery> EQSpawnBot;
 	
-	
+	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TObjectPtr<UDataTable> MonsterDataTable;
 	
 	//UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
@@ -88,6 +89,7 @@ protected:
 	UFUNCTION()
 	void RespawnPlayerElapsed(AController* Controller);
 
+	void OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLocation);
 	
 public:
 	

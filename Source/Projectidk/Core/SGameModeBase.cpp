@@ -7,6 +7,8 @@
 #include "SPlayerState.h"
 #include "SSaveGame.h"
 #include "AI/SAICharacter.h"
+#include "AI/SMonsterData.h"
+#include "Engine/AssetManager.h"
 #include "EnvironmentQuery/EnvQueryManager.h"
 #include "GameFramework/GameStateBase.h"
 #include "GameFramework/SaveGame.h"
@@ -15,6 +17,7 @@
 #include "PlayerComps/SCharacter.h"
 #include "PlayerComps/SGameplayInterface.h"
 #include "Serialization/ObjectAndNameAsStringProxyArchive.h"
+
 
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
 
@@ -151,20 +154,39 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 	{
 		if (MonsterDataTable)
 		{
+			
 			TArray<FMonsterInfoRow*> Rows;
 			MonsterDataTable->GetAllRows("", Rows);
 			
 			int32 RandomIndex = FMath::RandRange(0, Rows.Num() - 1);
 			FMonsterInfoRow* SelectedRow = Rows[RandomIndex];
-			GetWorld()->SpawnActor<AActor>(SelectedRow->MinionClass, ResultLocations[0], FRotator::ZeroRotator);
+			
+			UAssetManager* Manager = UAssetManager::GetIfValid();
+			if (Manager)
+			{
+				UE_LOG(LogTemp, Log, TEXT("Monster Loading.."));
+				TArray<FName> Bundles;
+				FStreamableDelegate Delegate = FStreamableDelegate::CreateUObject(this, &ASGameModeBase::OnMonsterLoaded, SelectedRow->MonsterId, ResultLocations[0]);
+				Manager->LoadPrimaryAsset(SelectedRow->MonsterId, Bundles, Delegate);
+			}
 		}
-		
-		DrawDebugSphere(GetWorld(), ResultLocations[0], 80.0f, 20, FColor::Blue, false, 60.0f);
 	}
 }
 
-
-
+void ASGameModeBase::OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLocation)
+{
+	UE_LOG(LogTemp, Log, TEXT("Monster Loaded"));
+	UAssetManager* Manager = UAssetManager::GetIfValid();
+	if (Manager)
+	{
+		USMonsterData* MonsterData = Cast<USMonsterData>(Manager->GetPrimaryAssetObject(LoadedID));
+		if (MonsterData)
+		{
+			GetWorld()->SpawnActor<AActor>(MonsterData->MonsterClass, SpawnLocation, FRotator::ZeroRotator);
+		}
+	}
+	DrawDebugSphere(GetWorld(), SpawnLocation, 80.0f, 20, FColor::Blue, false, 60.0f);
+}
 
 void ASGameModeBase::KillAll()
 {
