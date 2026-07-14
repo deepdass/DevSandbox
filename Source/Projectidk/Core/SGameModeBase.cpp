@@ -161,7 +161,7 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 			int32 RandomIndex = FMath::RandRange(0, Rows.Num() - 1);
 			FMonsterInfoRow* SelectedRow = Rows[RandomIndex];
 			
-			UAssetManager* Manager = UAssetManager::GetIfValid();
+			UAssetManager* Manager = UAssetManager::GetIfInitialized();
 			if (Manager)
 			{
 				UE_LOG(LogTemp, Log, TEXT("Monster Loading.."));
@@ -176,7 +176,7 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 void ASGameModeBase::OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLocation)
 {
 	UE_LOG(LogTemp, Log, TEXT("Monster Loaded"));
-	UAssetManager* Manager = UAssetManager::GetIfValid();
+	UAssetManager* Manager = UAssetManager::GetIfInitialized();
 	if (Manager)
 	{
 		USMonsterData* MonsterData = Cast<USMonsterData>(Manager->GetPrimaryAssetObject(LoadedID));
