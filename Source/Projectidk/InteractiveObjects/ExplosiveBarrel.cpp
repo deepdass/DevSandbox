@@ -4,6 +4,8 @@
 #include "GameFramework/Character.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "NiagaraComponent.h"
+#include "ActionSystem/SActionComponent.h"
+#include "ActionSystem/SActionEffect.h"
 #include "Net/UnrealNetwork.h"
 
 AExplosiveBarrel::AExplosiveBarrel()
@@ -71,6 +73,37 @@ void AExplosiveBarrel::Explode_Implementation()
 {
 	RadComp->FireImpulse();
 	EffectComp->Activate(true);
+	
+	TArray<FHitResult> HitResults;
+	FCollisionShape CollisionShape = FCollisionShape::MakeSphere(800.0f);
+	DrawDebugSphere(GetWorld(), GetActorLocation(), 800.0f, 16, FColor::Green);
+
+	FCollisionQueryParams TraceParams(FName(TEXT("ExplosionSweep")), false, this);
+	TraceParams.bTraceComplex = false;
+	TraceParams.bReturnPhysicalMaterial = false;
+
+	bool bHit = GetWorld()->SweepMultiByChannel(HitResults,GetActorLocation(),GetActorLocation(),FQuat::Identity, ECC_Pawn, CollisionShape, TraceParams);
+
+	if (bHit)
+	{
+		TSet<AActor*> AlreadyProcessed;
+
+		for (const FHitResult& Hit : HitResults)
+		{
+			AActor* HitActor = Hit.GetActor();
+			if (!HitActor || AlreadyProcessed.Contains(HitActor))
+			{
+				continue;
+			}
+			AlreadyProcessed.Add(HitActor);
+
+			if (USActionComponent* ActionComp = HitActor->FindComponentByClass<USActionComponent>())
+			{
+				UE_LOG(LogTemp, Log, TEXT("status effect: %s"), *HitActor->GetName());
+				ActionComp->AddAction(this, StatusEffect);
+			}
+		}
+	}
 	
 	bExploded = false;
 	UE_LOG(LogTemp, Log, TEXT("BOOM!! Haha"));

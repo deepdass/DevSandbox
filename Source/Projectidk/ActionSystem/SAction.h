@@ -47,6 +47,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category="Action")
 	bool CanStartAction(AActor* Instigator);
 	
+	UPROPERTY(EditDefaultsOnly, Category="Action")
+	bool bAutoStartAction = false;
+	
 	UFUNCTION(BlueprintNativeEvent, Category="Action")
 	void StartAction(AActor* Instigator);
 	

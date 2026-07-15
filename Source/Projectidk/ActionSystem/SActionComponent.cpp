@@ -25,7 +25,7 @@ void USActionComponent::BeginPlay()
 	{
 		for (TSubclassOf<USAction> ActionClass : DefaultActions)
 		{
-			AddAction(ActionClass);
+			AddAction(GetOwner() ,ActionClass);
 		}
 	}
 }
@@ -40,7 +40,7 @@ void USActionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 }
 
 
-void USActionComponent::AddAction(TSubclassOf<USAction> ActionClass)
+void USActionComponent::AddAction(AActor* InstigatorActor, TSubclassOf<USAction> ActionClass)
 {
 	if (!ensure(ActionClass))
 	{
@@ -52,7 +52,22 @@ void USActionComponent::AddAction(TSubclassOf<USAction> ActionClass)
 	{
 		NewAction->Initialize(this);
 		Actions.Add(NewAction);
+		
+		if (NewAction->bAutoStartAction && NewAction->CanStartAction(InstigatorActor))
+		{
+			NewAction->StartAction(InstigatorActor);
+		}
 	}
+}
+
+void USActionComponent::RemoveAction(USAction* ActionClass)
+{
+	if (!(ActionClass && !ActionClass->GetIsActionRunning()))
+	{
+		return;
+	}
+	
+	Actions.Remove(ActionClass);
 }
 
 void USActionComponent::ServerStartAction_Implementation(AActor* InstigatorActor, FName ActionName)

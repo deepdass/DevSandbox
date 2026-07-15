@@ -9,6 +9,7 @@
 class URadialForceComponent;
 class UStaticMeshComponent;
 class UNiagaraComponent;
+class USActionEffect;
 
 UCLASS()
 class PROJECTIDK_API AExplosiveBarrel : public AActor
@@ -20,15 +21,17 @@ public:
 	AExplosiveBarrel();
 
 protected:
-	UPROPERTY(BlueprintReadOnly) 
+	UPROPERTY(BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UStaticMeshComponent> SphereComp;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	TObjectPtr<URadialForceComponent> RadComp;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Components")
 	TObjectPtr<UNiagaraComponent> EffectComp;
 	
+	UPROPERTY(EditDefaultsOnly, Category="Effects")
+	TSubclassOf<USActionEffect> StatusEffect;
 	
 	UPROPERTY(Replicated)
 	bool bExploded = false;
@@ -39,13 +42,13 @@ protected:
 	UFUNCTION(NetMulticast, Reliable)
 	void MulticastExplode();
 	
-	virtual void PostInitializeComponents() override; 
+	virtual void PostInitializeComponents() override;
 	
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
 				UPrimitiveComponent* OtherComp, FVector NormalImpulse,
 				const FHitResult& Hit);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent) 
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void Explode();
 }; 
