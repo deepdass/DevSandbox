@@ -66,6 +66,23 @@ bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 	return !FMath::IsNearlyZero(ActualDelta);
 }
 
+bool USAttributeComponent::ApplyRageChange(AActor* InstigatorActor, float Delta)
+{
+	
+	const float OldRage = RageData.Rage;
+	RageData.Rage = FMath::Clamp(OldRage + Delta, 0.0f, RageData.MaxRage);
+
+	const float ActualDelta = RageData.Rage - OldRage;
+
+	if (!FMath::IsNearlyZero(ActualDelta))
+	{
+		OnRageChanged.Broadcast(InstigatorActor, this, RageData.Rage, ActualDelta);
+	}
+	
+	return true;
+	
+}
+
 USAttributeComponent* USAttributeComponent::GetAttributes(AActor* FromActor)
 {
 	if (IsValid(FromActor))

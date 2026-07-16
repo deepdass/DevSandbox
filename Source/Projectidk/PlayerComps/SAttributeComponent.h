@@ -7,7 +7,7 @@
 #include "SAttributeComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, float, Health, float, Delta);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRageChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, float, Rage, float, Delta);
 
 USTRUCT()
 struct FHealthChangeData
@@ -22,6 +22,18 @@ struct FHealthChangeData
 
 	UPROPERTY()
 	float MaxHealth = 0.0f;
+};
+
+USTRUCT()
+struct FRageChangeData
+{
+	GENERATED_BODY()
+
+	UPROPERTY()
+	float Rage = 0.0f;
+
+	UPROPERTY()
+	float MaxRage = 0.0f;
 };
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -46,6 +58,9 @@ protected:
 
 	UFUNCTION()
 	void OnRep_HealthData(FHealthChangeData OldHealthData);
+	
+	UPROPERTY()
+	FRageChangeData RageData;
 
 public:
 
@@ -54,9 +69,15 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnHealthChanged OnHealthChanged;
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnRageChanged OnRageChanged;
 
 	UFUNCTION(BlueprintCallable, Category = "Attribute")
 	bool ApplyHealthChange(AActor* InstigatorActor, float Delta);
+	
+	UFUNCTION(BlueprintCallable, Category = "Attribute")
+	bool ApplyRageChange(AActor* InstigatorActor, float Delta);
 
 	UFUNCTION(BlueprintCallable)
 	bool GetIsAlive() const;
@@ -66,4 +87,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetMaxHealth() const { return HealthData.MaxHealth; }
+	
+	UFUNCTION(BlueprintCallable)
+    float GetRage() const { return RageData.Rage; }
+	
+    UFUNCTION(BlueprintCallable)
+    float GetMaxRage() const { return RageData.MaxRage; }
 };
