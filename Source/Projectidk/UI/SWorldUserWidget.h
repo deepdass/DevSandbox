@@ -8,7 +8,6 @@
 
 class USizeBox;
 
-
 /**
  * 
  */
@@ -16,9 +15,8 @@ UCLASS()
 class PROJECTIDK_API USWorldUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 protected:
-	
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<USizeBox> ParentSizeBox;
 	

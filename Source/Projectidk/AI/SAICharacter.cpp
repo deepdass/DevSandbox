@@ -64,7 +64,7 @@ void ASAICharacter::OnPawnSeen(APawn* Pawn)
 
 void ASAICharacter::PlayerSpotted_Elapsed()
 {
-	ActivePlayerSpotted->RemoveFromParent();
+	ActivePlayerSpotted->RemoveFromViewport();
 }
 
 void ASAICharacter::UpdateBestTarget()
