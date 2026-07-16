@@ -30,6 +30,9 @@ struct FRageChangeData
 	GENERATED_BODY()
 
 	UPROPERTY()
+	AActor* Instigator = nullptr;
+	
+	UPROPERTY()
 	float Rage = 0.0f;
 
 	UPROPERTY()

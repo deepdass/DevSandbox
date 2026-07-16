@@ -17,6 +17,7 @@
 #include "PlayerComps/SCharacter.h"
 #include "PlayerComps/SGameplayInterface.h"
 #include "Serialization/ObjectAndNameAsStringProxyArchive.h"
+#include "PlayerComps/SAttributeComponent.h"
 
 
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
@@ -26,6 +27,7 @@ ASGameModeBase::ASGameModeBase()
 	SpawnTimerInterval = 5.0f;
 	
 	CreditPerKill = 15;
+	RagePerKill = 20;
 	
 	SlotName = "SaveGame01";
 }
@@ -87,6 +89,11 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 		if (ensure(IsValid(PlayerState)))
 		{
 			PlayerState->ApplyCreditChange(this, CreditPerKill);
+		}
+		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(KillerPawn);
+		if (AttributeComp)
+		{
+			AttributeComp->ApplyRageChange(KillerPawn, RagePerKill);
 		}
 	}
 }

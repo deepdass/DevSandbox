@@ -13,6 +13,9 @@ USAttributeComponent::USAttributeComponent()
 	HealthData.MaxHealth = 100.0f;
 	HealthData.Health = HealthData.MaxHealth;
 
+	RageData.MaxRage = 100.0f;
+	RageData.Rage = 0.0f;
+	
 	SetIsReplicatedByDefault(true);
 }
 
@@ -68,18 +71,12 @@ bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 
 bool USAttributeComponent::ApplyRageChange(AActor* InstigatorActor, float Delta)
 {
+	RageData.Rage = FMath::Clamp(RageData.Rage + Delta, 0.0f, RageData.MaxRage);
+	RageData.Instigator = InstigatorActor;
 	
-	const float OldRage = RageData.Rage;
-	RageData.Rage = FMath::Clamp(OldRage + Delta, 0.0f, RageData.MaxRage);
-
-	const float ActualDelta = RageData.Rage - OldRage;
-
-	if (!FMath::IsNearlyZero(ActualDelta))
-	{
-		OnRageChanged.Broadcast(InstigatorActor, this, RageData.Rage, ActualDelta);
-	}
+	OnRageChanged.Broadcast(InstigatorActor, this, RageData.Rage, Delta);
 	
-	return true;
+	return !FMath::IsNearlyZero(Delta);
 	
 }
 

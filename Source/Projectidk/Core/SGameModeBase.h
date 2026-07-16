@@ -57,6 +57,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	int32 CreditPerKill;
 	
+	UPROPERTY(EditDefaultsOnly)
+	int32 RagePerKill;
+	
 	UPROPERTY()
 	TObjectPtr<USSaveGame> CurrentSaveGame;
 	
