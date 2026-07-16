@@ -60,7 +60,7 @@ void ASGameModeBase::HandleStartingNewPlayer_Implementation(APlayerController* N
 void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 {
     ASCharacter* Player = Cast<ASCharacter>(VictimActor);
-    if (Player)
+    if (IsValid(Player))
     {
         AController* Controller = Player->GetController();
         if (!Controller) { return; }
@@ -83,7 +83,7 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
     }
 	
 	APawn* KillerPawn = Cast<APawn>(Killer);
-	if (KillerPawn)
+	if (IsValid(KillerPawn))
 	{
 		ASPlayerState* PlayerState = KillerPawn->GetPlayerState<ASPlayerState>();
 		if (ensure(IsValid(PlayerState)))
@@ -91,7 +91,7 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 			PlayerState->ApplyCreditChange(this, CreditPerKill);
 		}
 		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(KillerPawn);
-		if (AttributeComp)
+		if (IsValid(AttributeComp))
 		{
 			AttributeComp->ApplyRageChange(KillerPawn, RagePerKill);
 		}

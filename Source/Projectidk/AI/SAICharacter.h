@@ -37,11 +37,13 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	TObjectPtr<USActionComponent> ActionComp;
 	
+	UPROPERTY()
 	TObjectPtr<USWorldUserWidget> ActiveHealthBar;
 	
 	UPROPERTY(EditDefaultsOnly, Category="UI")
 	TSubclassOf<UUserWidget> HealthBarWidgetClass;
 
+	UPROPERTY()
 	TObjectPtr<USWorldUserWidget> ActivePlayerSpotted;
 	
 	UPROPERTY(EditDefaultsOnly, Category="UI")

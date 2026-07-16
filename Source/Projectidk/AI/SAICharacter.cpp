@@ -45,11 +45,11 @@ void ASAICharacter::OnPawnSeen(APawn* Pawn)
 	
 	UpdateBestTarget();
 	
-	if (ActivePlayerSpotted == nullptr)
+	if (!IsValid(ActivePlayerSpotted))
 	{
 		ActivePlayerSpotted = CreateWidget<USWorldUserWidget>(GetWorld(), PlayerSpottedWidgetClass);
 	}
-	if (ActivePlayerSpotted && !GetWorldTimerManager().IsTimerActive(ActivePlayerSpottedTimerHandle))
+	if (!GetWorldTimerManager().IsTimerActive(ActivePlayerSpottedTimerHandle))
 	{
 		ActivePlayerSpotted->AttachToActor = this;
 		ActivePlayerSpotted->AddToViewport();
@@ -64,7 +64,10 @@ void ASAICharacter::OnPawnSeen(APawn* Pawn)
 
 void ASAICharacter::PlayerSpotted_Elapsed()
 {
-	ActivePlayerSpotted->RemoveFromViewport();
+	if (IsValid(ActivePlayerSpotted))
+	{
+		ActivePlayerSpotted->RemoveFromViewport();
+	}
 }
 
 void ASAICharacter::UpdateBestTarget()
@@ -100,10 +103,9 @@ void ASAICharacter::SetTarget(AActor* Target)
 {
 	AAIController* AICont = Cast<AAIController>(GetController());
 	
-	if (AICont)
+	if (IsValid(AICont))
 	{
 		AICont->GetBlackboardComponent()->SetValueAsObject("TargetActor", Target);
-		
 	}
 }
 
@@ -114,7 +116,7 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 	if (Delta < 0.0f)
 	{
 		
-		if (InstigatorActor != this)
+		if (IsValid(InstigatorActor) && InstigatorActor != this)
 		{
 			if (APawn* InstigatorPawn = Cast<APawn>(InstigatorActor))
 			{
@@ -123,10 +125,10 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			SetTarget(InstigatorActor);
 		}
 		
-		if (ActiveHealthBar == nullptr)
+		if (!(IsValid(ActiveHealthBar)))
 		{
 			ActiveHealthBar = CreateWidget<USWorldUserWidget>(GetWorld(), HealthBarWidgetClass);
-			if (ActiveHealthBar)
+			if (IsValid(ActiveHealthBar))
 			{
 				ActiveHealthBar->AttachToActor = this;
 				ActiveHealthBar->AddToViewport();
@@ -145,6 +147,14 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			{
 				AICont->GetBrainComponent()->StopLogic("Dead");
 			}
+			
+			PawnSensingComp->bEnableSensingUpdates = false;
+            GetWorldTimerManager().ClearTimer(ActivePlayerSpottedTimerHandle);
+            
+            if (IsValid(ActivePlayerSpotted))
+            {
+            	ActivePlayerSpotted->RemoveFromParent();
+            }
 			
 			GetMesh()->SetCollisionProfileName("Ragdoll");
 			GetMesh()->SetAllBodiesSimulatePhysics(true);
