@@ -7,6 +7,7 @@
 #include "STestCharacter.generated.h"
 
 class USAttributeComponent;
+class USActionComponent;
 
 UCLASS()
 class PROJECTIDK_API ASTestCharacter : public AActor
@@ -19,11 +20,14 @@ public:
 
 protected:
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category="Components")
 	TObjectPtr<USAttributeComponent> AttributeComponent;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category="Components")
 	TObjectPtr<UMeshComponent> MeshComponent;
+	
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	TObjectPtr<USActionComponent> ActionComp;
 	
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);

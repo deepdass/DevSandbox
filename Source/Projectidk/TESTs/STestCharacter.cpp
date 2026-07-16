@@ -4,6 +4,7 @@
 #include "STestCharacter.h"
 
 #include "PlayerComps/SAttributeComponent.h"
+#include  "ActionSystem//SActionComponent.h"
 
 
 // Sets default values
@@ -13,6 +14,8 @@ ASTestCharacter::ASTestCharacter()
 	RootComponent = MeshComponent;
 	
 	AttributeComponent = CreateDefaultSubobject<USAttributeComponent>("AttributeComponent");
+	
+	ActionComp = CreateDefaultSubobject<USActionComponent>("ActionComp");
 	
 }
 

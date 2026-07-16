@@ -4,6 +4,8 @@
 #include "SInteractionComponent.h"
 
 #include "SGameplayInterface.h"
+#include "Blueprint/UserWidget.h"
+#include "UI/SWorldUserWidget.h"
 
 static TAutoConsoleVariable<bool> CVarDebugDrawInteraction(TEXT("su.DebugDrawInteraction"), false, TEXT("Enable Debug Lines for Interaction Component."), ECVF_Cheat);
 
@@ -11,19 +13,15 @@ static TAutoConsoleVariable<bool> CVarDebugDrawInteraction(TEXT("su.DebugDrawInt
 // Sets default values for this component's properties
 USInteractionComponent::USInteractionComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
+
+	TraceDistance = 700.0f;
+	TraceRadius = 30.0f;
+	CollisionChannel = ECC_WorldDynamic;
+	
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
-
-// Called when the game starts
-void USInteractionComponent::BeginPlay()
-{
-	Super::BeginPlay();
-}
 
 // Called every frame
 void USInteractionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
@@ -31,14 +29,10 @@ void USInteractionComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	FindBestInteractable();
 }
 
-void USInteractionComponent::PrimaryInteract()
-{
-	ServerInteract();
-}
-
-void USInteractionComponent::ServerInteract_Implementation()
+void USInteractionComponent::FindBestInteractable()
 {
 	bool bDebugDrawInteract = CVarDebugDrawInteraction.GetValueOnAnyThread();
 	
@@ -53,15 +47,14 @@ void USInteractionComponent::ServerInteract_Implementation()
 	FRotator CameraRot;
 	PC->GetPlayerViewPoint(CameraLoc, CameraRot);
 
-	FVector End = CameraLoc + (CameraRot.Vector() * 700);
+	FVector End = CameraLoc + (CameraRot.Vector() * TraceDistance);
 
 	FCollisionObjectQueryParams ObjectQueryParams;
-	ObjectQueryParams.AddObjectTypesToQuery(ECC_WorldDynamic);
-
-	float SphereRadius = 30.0f;
+	ObjectQueryParams.AddObjectTypesToQuery(CollisionChannel);
+	
 	TArray<FHitResult> Hits;
 	FCollisionShape Shape;
-	Shape.SetSphere(SphereRadius); 
+	Shape.SetSphere(TraceRadius); 
 	
 	//FHitResult Hit;
 	//bool bBlockingHit = GetWorld()->LineTraceSingleByObjectType(Hit, CameraLoc, End, ObjectQueryParams );
@@ -70,22 +63,59 @@ void USInteractionComponent::ServerInteract_Implementation()
 
 	FColor LineColor = bBlockingHit ? FColor::Green : FColor::Red;
 
+	FocusedActor = nullptr;
+	
 	for (FHitResult Hit : Hits)
 	{
 		if (bDebugDrawInteract)
 		{
-			DrawDebugSphere(GetWorld(), Hit.ImpactPoint, SphereRadius, 16, LineColor, false, 2.0f);
+			DrawDebugSphere(GetWorld(), Hit.ImpactPoint, TraceRadius, 16, LineColor, false, 2.0f);
 		}
     	
 		AActor* HitActor = Hit.GetActor();
 		if (HitActor && HitActor->Implements<USGameplayInterface>())
 		{
-			ISGameplayInterface::Execute_Interact(HitActor, MyPawn);
+			FocusedActor = HitActor;
 			break;
+		}
+	}
+	
+	if (FocusedActor)
+	{
+		if (DefaultWidgetInst == nullptr && DefaultWidgetClass)
+		{
+			DefaultWidgetInst = CreateWidget<USWorldUserWidget>(GetWorld(), DefaultWidgetClass);
+		}
+		
+		DefaultWidgetInst->AttachToActor = FocusedActor;
+		
+		if (!DefaultWidgetInst->IsInViewport())
+		{
+			DefaultWidgetInst->AddToViewport();
+		}
+	}
+	else
+	{
+		if (DefaultWidgetInst)
+		{
+			DefaultWidgetInst->RemoveFromParent();
 		}
 	}
 	
 	if (bDebugDrawInteract){
 		DrawDebugLine(GetWorld(), CameraLoc, End, LineColor, false, 2.0f, 0, 2.0f);
 	}
+}
+
+void USInteractionComponent::PrimaryInteract()
+{
+	ServerInteract();
+}
+
+void USInteractionComponent::ServerInteract_Implementation()
+{
+	if (FocusedActor == nullptr) return;
+	
+	APawn* MyPawn = Cast<APawn>(GetOwner());
+	ISGameplayInterface::Execute_Interact(FocusedActor, MyPawn);
 }

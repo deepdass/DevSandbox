@@ -9,6 +9,7 @@
 
 class UPawnSensingComponent;
 class USAttributeComponent;
+class USActionComponent;
 class SoundCue;
 class UUserWidget;
 class USWorldUserWidget;
@@ -32,6 +33,9 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	TObjectPtr<UPawnSensingComponent> PawnSensingComp;
+	
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	TObjectPtr<USActionComponent> ActionComp;
 	
 	USWorldUserWidget* ActiveHealthBar;
 	
