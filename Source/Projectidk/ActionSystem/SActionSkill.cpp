@@ -29,7 +29,7 @@ void USActionSkill::StartAction_Implementation(AActor* Instigator)
 	}
 
 	Super::StartAction_Implementation(Instigator);
-
+	
 	ACharacter* Character = Cast<ACharacter>(Instigator);
 	USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(Character);
 	if (Character && AttributeComp)

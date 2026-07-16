@@ -45,15 +45,33 @@ void ASAICharacter::OnPawnSeen(APawn* Pawn)
 	
 	UpdateBestTarget();
 	
-	DrawDebugString(GetWorld(), GetActorLocation(), "Player Spotted", nullptr, FColor::Green, 4.0f, true);
+	if (ActivePlayerSpotted == nullptr)
+	{
+		ActivePlayerSpotted = CreateWidget<USWorldUserWidget>(GetWorld(), PlayerSpottedWidgetClass);
+	}
+	if (ActivePlayerSpotted && !GetWorldTimerManager().IsTimerActive(ActivePlayerSpottedTimerHandle))
+	{
+		ActivePlayerSpotted->AttachToActor = this;
+		ActivePlayerSpotted->AddToViewport();
+			
+		FTimerDelegate Delegate;
+		Delegate.BindUFunction(this, "PlayerSpotted_Elapsed");
+		GetWorld()->GetTimerManager().SetTimer(ActivePlayerSpottedTimerHandle, Delegate, 2.0f,false);
+	}
+	
+	DrawDebugString(GetWorld(), GetActorLocation(), "Player Spotted!!", nullptr, FColor::Green, 4.0f, true);
 }
 
+void ASAICharacter::PlayerSpotted_Elapsed()
+{
+	ActivePlayerSpotted->RemoveFromParent();
+}
 
 void ASAICharacter::UpdateBestTarget()
 {
-	SeenPawns.RemoveAll([](const TObjectPtr<APawn>& P)
+	SeenPawns.RemoveAll([](const TObjectPtr<APawn>& MyPawn)
 	{
-		return !IsValid(P) || !USAttributeComponent::GetIsActorAlive(P);
+		return !IsValid(MyPawn) || !USAttributeComponent::GetIsActorAlive(MyPawn);
 	});
 	
 	AActor* BestTarget = nullptr;
@@ -74,6 +92,8 @@ void ASAICharacter::UpdateBestTarget()
 		SetTarget(BestTarget);
 	}
 }
+
+
 
 
 void ASAICharacter::SetTarget(AActor* Target)

@@ -37,10 +37,20 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	TObjectPtr<USActionComponent> ActionComp;
 	
-	USWorldUserWidget* ActiveHealthBar;
+	TObjectPtr<USWorldUserWidget> ActiveHealthBar;
 	
 	UPROPERTY(EditDefaultsOnly, Category="UI")
 	TSubclassOf<UUserWidget> HealthBarWidgetClass;
+
+	TObjectPtr<USWorldUserWidget> ActivePlayerSpotted;
+	
+	UPROPERTY(EditDefaultsOnly, Category="UI")
+	TSubclassOf<UUserWidget> PlayerSpottedWidgetClass;
+	
+	FTimerHandle ActivePlayerSpottedTimerHandle;
+	
+	UFUNCTION()
+	void PlayerSpotted_Elapsed();
 
 	void SetTarget(AActor* Target);
 	
