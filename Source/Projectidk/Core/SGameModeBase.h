@@ -94,6 +94,16 @@ protected:
 
 	void OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLocation);
 	
+	UPROPERTY(EditDefaultsOnly)
+	UEnvQuery* PickupEnvQuery;
+	
+	UFUNCTION()
+	void OnPickupSpawnQueryCompleted(UEnvQueryInstanceBlueprintWrapper* QueryInstance, EEnvQueryStatus::Type QueryStatus);
+	
+	UPROPERTY(EditDefaultsOnly)
+	TArray<TSubclassOf<AActor>> PickupArray;
+
+	
 public:
 	
 	ASGameModeBase();

@@ -64,7 +64,6 @@ void ASCharacter::BeginPlay()
 	
 	FlashMID = UMaterialInstanceDynamic::Create(GetMesh()->GetOverlayMaterial(), this);
 	GetMesh()->SetOverlayMaterial(FlashMID);
-	
 }
 
 

@@ -17,10 +17,11 @@
 #include "PlayerComps/SCharacter.h"
 #include "PlayerComps/SGameplayInterface.h"
 #include "Serialization/ObjectAndNameAsStringProxyArchive.h"
-#include "PlayerComps/SAttributeComponent.h"
 
 
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
+
+
 
 ASGameModeBase::ASGameModeBase()
 {
@@ -83,12 +84,18 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
     }
 	
 	APawn* KillerPawn = Cast<APawn>(Killer);
+	
 	if (IsValid(KillerPawn))
 	{
 		ASPlayerState* PlayerState = KillerPawn->GetPlayerState<ASPlayerState>();
 		if (ensure(IsValid(PlayerState)))
 		{
 			PlayerState->ApplyCreditChange(this, CreditPerKill);
+			UEnvQueryInstanceBlueprintWrapper* QueryInstance = UEnvQueryManager::RunEQSQuery(this, PickupEnvQuery, KillerPawn, EEnvQueryRunMode::AllMatching, nullptr);
+			if (IsValid(QueryInstance))
+			{
+				QueryInstance->GetOnQueryFinishedEvent().AddDynamic(this, &ASGameModeBase::OnPickupSpawnQueryCompleted);
+			}
 		}
 		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(KillerPawn);
 		if (IsValid(AttributeComp))
@@ -98,6 +105,19 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 	}
 }
 
+void ASGameModeBase::OnPickupSpawnQueryCompleted(UEnvQueryInstanceBlueprintWrapper* QueryInstance, EEnvQueryStatus::Type QueryStatus)
+{
+	TArray<FVector> Locations = QueryInstance->GetResultsAsLocations();
+	
+	int32 RandomLocIndex = FMath::RandRange(0, Locations.Num() - 1);
+	FVector Location = Locations[RandomLocIndex];
+	Location.Z += 50.0f;
+	
+	int32 RandomPickupIndex = FMath::RandRange(0, PickupArray.Num() - 1);
+	TSubclassOf<AActor> PickupClass = PickupArray[RandomPickupIndex];
+	
+	GetWorld()->SpawnActor<AActor>(PickupClass, Location, FRotator::ZeroRotator);
+}
 
 void ASGameModeBase::RespawnPlayerElapsed(AController* Controller)
 {
