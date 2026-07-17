@@ -26,6 +26,9 @@ public:
 public:
 	virtual void PostInitializeComponents() override;
 	
+	UFUNCTION(BlueprintCallable)
+	APawn* GetTarget() const;
+	
 protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
@@ -57,12 +60,23 @@ protected:
 	void SetTarget(AActor* Target);
 	
 	UFUNCTION()
+	void ShowPlayerSpottedWidget();
+	
+	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
 	
 	UPROPERTY()
 	TArray<TObjectPtr<APawn>> SeenPawns;
 	
 	void UpdateBestTarget();
+	
+	UPROPERTY(EditDefaultsOnly, Category="AI")
+	float LoseTargetTime = 5.0f;
+	
+	FTimerHandle LoseTargetTimerHandle;
+	
+	UFUNCTION()
+	void LoseTarget_Elapsed();
 	
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);

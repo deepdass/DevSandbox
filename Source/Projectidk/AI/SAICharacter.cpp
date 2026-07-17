@@ -39,25 +39,22 @@ void ASAICharacter::PostInitializeComponents()
 	
 }
 
+APawn* ASAICharacter::GetTarget() const
+{
+	AAIController* AICont = Cast<AAIController>(GetController());
+	if (IsValid(AICont))
+	{
+		APawn* Target = Cast<APawn>(AICont->GetBlackboardComponent()->GetValueAsObject("TargetActor"));
+		return IsValid(Target) ? Target : nullptr;
+	}
+	return nullptr;
+}
+
 void ASAICharacter::OnPawnSeen(APawn* Pawn)
 {
 	SeenPawns.AddUnique(Pawn);
 	
 	UpdateBestTarget();
-	
-	if (!IsValid(ActivePlayerSpotted))
-	{
-		ActivePlayerSpotted = CreateWidget<USWorldUserWidget>(GetWorld(), PlayerSpottedWidgetClass);
-	}
-	if (!GetWorldTimerManager().IsTimerActive(ActivePlayerSpottedTimerHandle))
-	{
-		ActivePlayerSpotted->AttachToActor = this;
-		ActivePlayerSpotted->AddToViewport();
-			
-		FTimerDelegate Delegate;
-		Delegate.BindUFunction(this, "PlayerSpotted_Elapsed");
-		GetWorld()->GetTimerManager().SetTimer(ActivePlayerSpottedTimerHandle, Delegate, 2.0f,false);
-	}
 	
 	DrawDebugString(GetWorld(), GetActorLocation(), "Player Spotted!!", nullptr, FColor::Green, 4.0f, true);
 }
@@ -68,6 +65,28 @@ void ASAICharacter::PlayerSpotted_Elapsed()
 	{
 		ActivePlayerSpotted->RemoveFromViewport();
 	}
+}
+
+void ASAICharacter::ShowPlayerSpottedWidget()
+{
+	if (!IsValid(ActivePlayerSpotted))
+	{
+		ActivePlayerSpotted = CreateWidget<USWorldUserWidget>(GetWorld(), PlayerSpottedWidgetClass);
+	}
+	if (!GetWorldTimerManager().IsTimerActive(ActivePlayerSpottedTimerHandle))
+	{
+		ActivePlayerSpotted->AttachToActor = this;
+		ActivePlayerSpotted->AddToViewport();
+		
+		FTimerDelegate Delegate;
+		Delegate.BindUFunction(this, "PlayerSpotted_Elapsed");
+		GetWorld()->GetTimerManager().SetTimer(ActivePlayerSpottedTimerHandle, Delegate, 2.0f, false);
+	}
+}
+
+void ASAICharacter::LoseTarget_Elapsed()
+{
+	SetTarget(nullptr);
 }
 
 void ASAICharacter::UpdateBestTarget()
@@ -90,13 +109,8 @@ void ASAICharacter::UpdateBestTarget()
 		}
 	}
 	
-	if (BestTarget)
-	{
-		SetTarget(BestTarget);
-	}
+	SetTarget(BestTarget);
 }
-
-
 
 
 void ASAICharacter::SetTarget(AActor* Target)
@@ -105,7 +119,26 @@ void ASAICharacter::SetTarget(AActor* Target)
 	
 	if (IsValid(AICont))
 	{
-		AICont->GetBlackboardComponent()->SetValueAsObject("TargetActor", Target);
+		UBlackboardComponent* BB = AICont->GetBlackboardComponent();
+		AActor* OldTarget = Cast<AActor>(BB->GetValueAsObject("TargetActor"));
+		
+		BB->SetValueAsObject("TargetActor", Target);
+		
+		if (IsValid(Target))
+		{
+			if (Target != OldTarget)
+			{
+				ShowPlayerSpottedWidget();
+			}
+			
+			FTimerDelegate Delegate;
+			Delegate.BindUFunction(this, "LoseTarget_Elapsed");
+			GetWorld()->GetTimerManager().SetTimer(LoseTargetTimerHandle, Delegate, LoseTargetTime, false);
+		}
+		else
+		{
+			GetWorldTimerManager().ClearTimer(LoseTargetTimerHandle);
+		}
 	}
 }
 
@@ -149,12 +182,13 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			}
 			
 			PawnSensingComp->bEnableSensingUpdates = false;
-            GetWorldTimerManager().ClearTimer(ActivePlayerSpottedTimerHandle);
+			GetWorldTimerManager().ClearTimer(ActivePlayerSpottedTimerHandle);
+			GetWorldTimerManager().ClearTimer(LoseTargetTimerHandle);
             
-            if (IsValid(ActivePlayerSpotted))
-            {
-            	ActivePlayerSpotted->RemoveFromParent();
-            }
+			if (IsValid(ActivePlayerSpotted))
+			{
+				ActivePlayerSpotted->RemoveFromParent();
+			}
 			
 			GetMesh()->SetCollisionProfileName("Ragdoll");
 			GetMesh()->SetAllBodiesSimulatePhysics(true);
