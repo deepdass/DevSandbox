@@ -24,16 +24,13 @@ bool USAttributeComponent::GetIsAlive() const
 	return !FMath::IsNearlyZero(HealthData.Health);
 }
 
+
 void USAttributeComponent::OnRep_HealthData(FHealthChangeData OldHealthData)
 {
 	const float Delta = HealthData.Health - OldHealthData.Health;
 	OnHealthChanged.Broadcast(HealthData.Instigator, this, HealthData.Health, Delta);
 }
 
-bool USAttributeComponent::Kill(AActor* InstigatorActor)
-{
-	return ApplyHealthChange(InstigatorActor, -GetMaxHealth());
-}
 
 bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delta)
 {
@@ -69,15 +66,22 @@ bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 	return !FMath::IsNearlyZero(ActualDelta);
 }
 
+void USAttributeComponent::OnRep_RageData(FRageChangeData OldRageData)
+{
+	const float Delta = RageData.Rage - OldRageData.Rage;
+	OnRageChanged.Broadcast(RageData.Instigator, this, RageData.Rage, Delta);
+}
+
 bool USAttributeComponent::ApplyRageChange(AActor* InstigatorActor, float Delta)
 {
+	if (!GetOwner()->HasAuthority()) { return false; }
+
 	RageData.Rage = FMath::Clamp(RageData.Rage + Delta, 0.0f, RageData.MaxRage);
 	RageData.Instigator = InstigatorActor;
-	
+
 	OnRageChanged.Broadcast(InstigatorActor, this, RageData.Rage, Delta);
-	
+
 	return !FMath::IsNearlyZero(Delta);
-	
 }
 
 USAttributeComponent* USAttributeComponent::GetAttributes(AActor* FromActor)
@@ -105,4 +109,11 @@ void USAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(USAttributeComponent, HealthData);
+	DOREPLIFETIME(USAttributeComponent, RageData);
 }
+
+
+bool USAttributeComponent::Kill(AActor* InstigatorActor)
+ {
+ 	return ApplyHealthChange(InstigatorActor, -GetMaxHealth());
+ }

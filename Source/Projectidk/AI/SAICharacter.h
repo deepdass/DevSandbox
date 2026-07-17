@@ -62,6 +62,9 @@ protected:
 	UFUNCTION()
 	void ShowPlayerSpottedWidget();
 	
+	UFUNCTION(NetMulticast, UnReliable)
+	void MulticastPlayerSpotted();
+	
 	UFUNCTION()
 	void OnPawnSeen(APawn* Pawn);
 	

@@ -55,15 +55,17 @@ public:
 	USAttributeComponent();
 
 protected:
-
 	UPROPERTY(ReplicatedUsing = "OnRep_HealthData")
 	FHealthChangeData HealthData;
 
 	UFUNCTION()
 	void OnRep_HealthData(FHealthChangeData OldHealthData);
-	
-	UPROPERTY()
+
+	UPROPERTY(ReplicatedUsing = "OnRep_RageData")
 	FRageChangeData RageData;
+
+	UFUNCTION()
+	void OnRep_RageData(FRageChangeData OldRageData);
 
 public:
 

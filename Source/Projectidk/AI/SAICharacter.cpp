@@ -67,6 +67,11 @@ void ASAICharacter::PlayerSpotted_Elapsed()
 	}
 }
 
+void ASAICharacter::MulticastPlayerSpotted_Implementation()
+{
+	ShowPlayerSpottedWidget();
+}
+
 void ASAICharacter::ShowPlayerSpottedWidget()
 {
 	if (!IsValid(ActivePlayerSpotted))
@@ -128,7 +133,7 @@ void ASAICharacter::SetTarget(AActor* Target)
 		{
 			if (Target != OldTarget)
 			{
-				ShowPlayerSpottedWidget();
+				MulticastPlayerSpotted();
 			}
 			
 			FTimerDelegate Delegate;
