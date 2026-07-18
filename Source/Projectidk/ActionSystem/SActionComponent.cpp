@@ -108,6 +108,7 @@ bool USActionComponent::StopActionByName(AActor* Instigator, FName ActionName)
 	{
 		if (IsValid(Action) && Action->ActionName == ActionName)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Found action %s, IsRunning=%s"), *ActionName.ToString(), Action->GetIsActionRunning() ? TEXT("true") : TEXT("false"));
 			if (Action->GetIsActionRunning())
 			{
 				if (!GetOwner()->HasAuthority())
