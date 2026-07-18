@@ -44,7 +44,8 @@ void ASPlayerState::SavePlayerState_Implementation(USSaveGame* SaveObject)
 {
 	if (SaveObject)
 	{
-		SaveObject->Credit = CreditData.Credit;
+		//SaveObject->Credit = CreditData.Credit;
+		ApplyCreditChange(GetPawn(), SaveObject->Credit);
 	}
 }
 

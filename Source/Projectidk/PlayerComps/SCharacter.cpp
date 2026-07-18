@@ -77,14 +77,14 @@ void ASCharacter::Tick(float DeltaTime)
 
 	FVector Origin = GetActorLocation();
 
-	// --- Arrow 1: Movement direction (velocity) ---
+	// Arrow 1: Movement direction (velocity)
 	FVector MoveDir = GetVelocity().GetSafeNormal();
 	if (!MoveDir.IsNearlyZero())
 	{
 		DrawDebugDirectionalArrow(GetWorld(),Origin,Origin + MoveDir * ArrowLength,ArrowHeadSize,FColor::Green,false,-1.f,0,3.f);
 	}
 
-	// --- Arrow 2: Controller/look direction ---
+	// Arrow 2: Controller/look direction
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{
 		FVector LookDir = PC->PlayerCameraManager->GetCameraRotation().Vector();
@@ -100,7 +100,7 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	
 	// Add the input mapping 
-	if (APlayerController* PlayerController = Cast<APlayerController>(Controller)) 
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
 		// gets local player subsystem
 		if (UEnhancedInputLocalPlayerSubsystem* LocalPlayerSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -217,7 +217,48 @@ void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projec
 	}
 }
 
-void ASCharacter::HealSelf(float Amount /* = 100 */)
+void ASCharacter::HealSelf(float Amount)
 {
+	if (Amount < 0)
+	{
+		Amount = AttributeComp->GetMaxHealth();
+	}
+	
 	AttributeComp->ApplyHealthChange(this, Amount);
 }
+
+void ASCharacter::KillSelf(float Amount)
+{
+	if (Amount < 0)
+	{
+		Amount = AttributeComp->GetMaxHealth();
+	}
+	
+	AttributeComp->ApplyHealthChange(this, -Amount);
+}
+
+void ASCharacter::MoveInDirectionBy(float ByCm, EMoveAxis Axis)
+{
+	if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+	{
+		MoveComp->Velocity = FVector::ZeroVector;
+	}
+	
+	FVector Direction = FVector::ZeroVector;
+
+	switch (Axis)
+	{
+	case EMoveAxis::X:
+		Direction = GetActorForwardVector();
+		break;
+	case EMoveAxis::Y:
+		Direction = GetActorRightVector();
+		break;
+	case EMoveAxis::Z:
+		Direction = FVector::UpVector;
+		break;
+	}
+	
+	AddActorWorldOffset(Direction * ByCm, false);
+}
+

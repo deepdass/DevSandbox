@@ -21,4 +21,10 @@ protected:
 	FOnPawnChanged OnPawnChanged;
 	
 	virtual void SetPawn(APawn* InPawn) override;
+	
+	
+	virtual void BeginPlayingState() override;
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void BlueprintBeginPlayingEvent();
 };

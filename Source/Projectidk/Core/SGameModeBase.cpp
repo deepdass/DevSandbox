@@ -22,7 +22,6 @@
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
 
 
-
 ASGameModeBase::ASGameModeBase()
 {
 	SpawnTimerInterval = 5.0f;
@@ -49,13 +48,14 @@ void ASGameModeBase::StartPlay()
 
 void ASGameModeBase::HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer)
 {
-	Super::HandleStartingNewPlayer_Implementation(NewPlayer);
 	
 	ASPlayerState* PlayerState = NewPlayer->GetPlayerState<ASPlayerState>();
 	if (PlayerState)
 	{
 		PlayerState->LoadPlayerState(CurrentSaveGame);
 	}
+	
+	Super::HandleStartingNewPlayer_Implementation(NewPlayer);
 }
 
 void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
@@ -109,14 +109,17 @@ void ASGameModeBase::OnPickupSpawnQueryCompleted(UEnvQueryInstanceBlueprintWrapp
 {
 	TArray<FVector> Locations = QueryInstance->GetResultsAsLocations();
 	
-	int32 RandomLocIndex = FMath::RandRange(0, Locations.Num() - 1);
-	FVector Location = Locations[RandomLocIndex];
-	Location.Z += 50.0f;
-	
-	int32 RandomPickupIndex = FMath::RandRange(0, PickupArray.Num() - 1);
-	TSubclassOf<AActor> PickupClass = PickupArray[RandomPickupIndex];
-	
-	GetWorld()->SpawnActor<AActor>(PickupClass, Location, FRotator::ZeroRotator);
+	if (Locations.Num() > 0)
+	{
+		int32 RandomLocIndex = FMath::RandRange(0, Locations.Num() - 1);
+		FVector Location = Locations[RandomLocIndex];
+		Location.Z += 50.0f;
+			
+		int32 RandomPickupIndex = FMath::RandRange(0, PickupArray.Num() - 1);
+		TSubclassOf<AActor> PickupClass = PickupArray[RandomPickupIndex];
+			
+		GetWorld()->SpawnActor<AActor>(PickupClass, Location, FRotator::ZeroRotator);
+	}
 }
 
 void ASGameModeBase::RespawnPlayerElapsed(AController* Controller)
