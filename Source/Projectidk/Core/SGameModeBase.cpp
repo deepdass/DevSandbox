@@ -138,7 +138,7 @@ void ASGameModeBase::SpawnBotTimerElapsed()
 {
 	if (!CVarSpawnBots.GetValueOnGameThread())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Spawning of bot is disabled via CVarSpawnBots"));
+		UE_LOG(LogTemp, Warning, TEXT("Spawning of bot is disabled via CVarSpawnBots command"));
 		return;
 	}
 	

@@ -20,6 +20,7 @@
 #include "DrawDebugHelpers.h"
 #include "ActionSystem/SActionComponent.h"
 #include "ActionSystem/SAction_ProjectileAttack.h"
+#include "Core/SPlayerState.h"
 
 
 // Sets default values
@@ -227,7 +228,7 @@ void ASCharacter::HealSelf(float Amount)
 	AttributeComp->ApplyHealthChange(this, Amount);
 }
 
-void ASCharacter::KillSelf(float Amount)
+void ASCharacter::DamageSelf(float Amount)
 {
 	if (Amount < 0)
 	{
@@ -235,6 +236,16 @@ void ASCharacter::KillSelf(float Amount)
 	}
 	
 	AttributeComp->ApplyHealthChange(this, -Amount);
+}
+
+void ASCharacter::GrantCoin(int32 Amount)
+{
+	ASPlayerState* SPlayerState = GetPlayerState<ASPlayerState>();
+	if (IsValid(SPlayerState))
+	{
+		// Amount = 2147483647;  // Max int32
+		SPlayerState->ApplyCreditChange(this, Amount);
+	}
 }
 
 void ASCharacter::MoveInDirectionBy(float ByCm, EMoveAxis Axis)

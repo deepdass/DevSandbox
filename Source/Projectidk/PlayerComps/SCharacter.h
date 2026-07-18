@@ -47,7 +47,10 @@ public:
 	void HealSelf(float Amount = -1.0f);
 	
 	UFUNCTION(Exec)
-	void KillSelf(float Amount = -1.0f);
+	void DamageSelf(float Amount = -1.0f);
+	
+	UFUNCTION(Exec)
+	void GrantCoin(int32 Amount = 1000);
 
 	UFUNCTION(Exec)
 	void MoveInDirectionBy(float ByCm = 200, EMoveAxis Axis = EMoveAxis::Z);
