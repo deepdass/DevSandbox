@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "NiagaraComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "ActionSystem/SActionComponent.h"
 #include "ActionSystem/SActionEffect.h"
 #include "Net/UnrealNetwork.h"
@@ -15,17 +16,19 @@ AExplosiveBarrel::AExplosiveBarrel()
 	bReplicates = true;
 	SetReplicateMovement(true);
 
-	SphereComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SphereComp"));
-	SphereComp->SetSimulatePhysics(true);
-	SphereComp->SetupAttachment(RootComponent);
+	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>("SphereComp");
+	BaseMesh->SetSimulatePhysics(true);
+	BaseMesh->SetupAttachment(RootComponent);
 	
 	RadComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadForceComp"));
-	RadComp->SetupAttachment(SphereComp);
+	RadComp->SetupAttachment(BaseMesh);
 	RadComp->SetAutoActivate(false);
 	
 	EffectComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("EffectComp"));
-	EffectComp->SetupAttachment(SphereComp);
+	EffectComp->SetupAttachment(BaseMesh);
 	EffectComp->bAutoActivate = false;
+	
+	StatusEffectRadius = 500.0f;
 }
 
 void AExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -37,30 +40,27 @@ void AExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 void AExplosiveBarrel::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	SphereComp->OnComponentHit.AddDynamic(this, &AExplosiveBarrel::OnHit);
+	BaseMesh->OnComponentHit.AddDynamic(this, &AExplosiveBarrel::OnHit);
 }
 
 void AExplosiveBarrel::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 							 UPrimitiveComponent* OtherComp, FVector NormalImpulse,
 							 const FHitResult& Hit)
 {
-	if (!OtherActor || bExploded) return;
+	if (!(OtherActor) || bExploded) return;
 	if (OtherActor->IsA(ACharacter::StaticClass())) return;
 
 	if (HasAuthority())
-		ServerExplode(OtherActor);
-
-	UE_LOG(LogTemp, Warning, TEXT("otherActor: %s, at game time: %f"), *GetNameSafe(OtherActor), GetWorld()->TimeSeconds);
+		ServerExplode();
 
 	FString CombinedString = FString::Printf(TEXT("Hit at location: %s"), *Hit.ImpactPoint.ToString());
 	DrawDebugString(GetWorld(), Hit.ImpactPoint, CombinedString, nullptr, FColor::Green, 2.0f, true);
 }
 
-void AExplosiveBarrel::ServerExplode_Implementation(AActor* OtherActor)
+void AExplosiveBarrel::ServerExplode_Implementation()
 {
 	if (bExploded) return;
 	bExploded = true;
-	if (OtherActor) OtherActor->Destroy();
 	MulticastExplode();
 }
 
@@ -75,8 +75,8 @@ void AExplosiveBarrel::Explode_Implementation()
 	EffectComp->Activate(true);
 	
 	TArray<FHitResult> HitResults;
-	FCollisionShape CollisionShape = FCollisionShape::MakeSphere(800.0f);
-	DrawDebugSphere(GetWorld(), GetActorLocation(), 800.0f, 16, FColor::Green);
+	FCollisionShape CollisionShape = FCollisionShape::MakeSphere(StatusEffectRadius);
+	DrawDebugSphere(GetWorld(), GetActorLocation(), StatusEffectRadius, 16, FColor::Green);
 
 	FCollisionQueryParams TraceParams(FName(TEXT("ExplosionSweep")), false, this);
 	TraceParams.bTraceComplex = false;
@@ -101,6 +101,15 @@ void AExplosiveBarrel::Explode_Implementation()
 			{
 				UE_LOG(LogTemp, Log, TEXT("status effect: %s"), *HitActor->GetName());
 				ActionComp->AddAction(this, StatusEffect);
+			}
+			
+			AExplosiveBarrel* OtherBarrel = Cast<AExplosiveBarrel>(HitActor);
+			if (IsValid(OtherBarrel))
+			{
+				if (!OtherBarrel->bExploded)
+				{
+					OtherBarrel->ServerExplode();
+				}
 			}
 		}
 	}

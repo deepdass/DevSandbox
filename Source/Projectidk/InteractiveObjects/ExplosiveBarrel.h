@@ -7,6 +7,7 @@
 #include "ExplosiveBarrel.generated.h"
 
 class URadialForceComponent;
+class UCapsuleComponent;
 class UStaticMeshComponent;
 class UNiagaraComponent;
 class USActionEffect;
@@ -21,8 +22,8 @@ public:
 	AExplosiveBarrel();
 
 protected:
-	UPROPERTY(BlueprintReadOnly, Category = "Components")
-	TObjectPtr<UStaticMeshComponent> SphereComp;
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> BaseMesh;
 	
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	TObjectPtr<URadialForceComponent> RadComp;
@@ -33,11 +34,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Effects")
 	TSubclassOf<USActionEffect> StatusEffect;
 	
+	UPROPERTY(EditDefaultsOnly, Category="Effects")
+	float StatusEffectRadius;
+	
 	UPROPERTY(Replicated)
 	bool bExploded = false;
 
-	UFUNCTION(Server, Reliable)
-	void ServerExplode(AActor* OtherActor);
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void ServerExplode();
 
 	UFUNCTION(NetMulticast, Reliable)
 	void MulticastExplode();
@@ -49,6 +53,6 @@ protected:
 				UPrimitiveComponent* OtherComp, FVector NormalImpulse,
 				const FHitResult& Hit);
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void Explode();
 }; 
