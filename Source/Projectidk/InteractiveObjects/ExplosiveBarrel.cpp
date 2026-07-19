@@ -86,7 +86,6 @@ void AExplosiveBarrel::Explode_Implementation()
 	TraceParams.bReturnPhysicalMaterial = false;
 
 	bool bHit = GetWorld()->SweepMultiByChannel(HitResults,GetActorLocation(),GetActorLocation(),FQuat::Identity, ECC_Pawn, CollisionShape, TraceParams);
-
 	if (bHit)
 	{
 		TSet<AActor*> AlreadyProcessed;
