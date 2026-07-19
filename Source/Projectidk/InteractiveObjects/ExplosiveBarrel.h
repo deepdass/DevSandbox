@@ -37,6 +37,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Effects")
 	float StatusEffectRadius;
 	
+	UPROPERTY(EditDefaultsOnly)
+	float ImpulseThresholdForExplosion;
+	
 	UPROPERTY(Replicated)
 	bool bExploded = false;
 

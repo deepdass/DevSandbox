@@ -29,6 +29,7 @@ AExplosiveBarrel::AExplosiveBarrel()
 	EffectComp->bAutoActivate = false;
 	
 	StatusEffectRadius = 500.0f;
+	ImpulseThresholdForExplosion = 5000000.0f;
 }
 
 void AExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -49,6 +50,8 @@ void AExplosiveBarrel::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 {
 	if (!(OtherActor) || bExploded) return;
 	if (OtherActor->IsA(ACharacter::StaticClass())) return;
+	
+	if (NormalImpulse.Size() < ImpulseThresholdForExplosion) return;
 
 	if (HasAuthority())
 		ServerExplode();
