@@ -86,6 +86,7 @@ void AExplosiveBarrel::Explode_Implementation()
 	TraceParams.bReturnPhysicalMaterial = false;
 
 	bool bHit = GetWorld()->SweepMultiByChannel(HitResults,GetActorLocation(),GetActorLocation(),FQuat::Identity, ECC_Pawn, CollisionShape, TraceParams);
+
 	if (bHit)
 	{
 		TSet<AActor*> AlreadyProcessed;
@@ -108,7 +109,7 @@ void AExplosiveBarrel::Explode_Implementation()
 			AExplosiveBarrel* OtherBarrel = Cast<AExplosiveBarrel>(HitActor);
 			if (IsValid(OtherBarrel))
 			{
-				if (!OtherBarrel->bExploded)
+				if ((!OtherBarrel->bExploded) && HasAuthority())
 				{
 					OtherBarrel->ServerExplode();
 				}

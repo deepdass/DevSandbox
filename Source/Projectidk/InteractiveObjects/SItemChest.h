@@ -37,7 +37,7 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStaticMeshComponent> LidMesh;
 	
-	UPROPERTY(EditDefaultsOnly, Category="Credit")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Credit")
 	int CreditAmount;
 
 public:

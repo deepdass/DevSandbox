@@ -50,7 +50,7 @@ void ASItemChest::OnActorLoaded_Implementation()
 	ISGameplayInterface::OnActorLoaded_Implementation();
 }
 
-void ASItemChest::OnRep_LidOpened() 
+void ASItemChest::OnRep_LidOpened()
 {
 	float CurrentPitch = bLidOpened ? LidOpenPitch : 0.0f;
 	LidMesh->SetRelativeRotation(FRotator(CurrentPitch, 0.0f, 0.0f));
