@@ -94,13 +94,14 @@ void AExplosiveBarrel::Explode_Implementation()
 		for (const FHitResult& Hit : HitResults)
 		{
 			AActor* HitActor = Hit.GetActor();
-			if (!HitActor || AlreadyProcessed.Contains(HitActor))
+			if (!IsValid(HitActor) || AlreadyProcessed.Contains(HitActor))
 			{
 				continue;
 			}
 			AlreadyProcessed.Add(HitActor);
-
-			if (USActionComponent* ActionComp = HitActor->FindComponentByClass<USActionComponent>())
+			
+			USActionComponent* ActionComp = HitActor->FindComponentByClass<USActionComponent>();
+			if (IsValid(ActionComp))
 			{
 				UE_LOG(LogTemp, Log, TEXT("status effect: %s"), *HitActor->GetName());
 				ActionComp->AddAction(this, StatusEffect);
