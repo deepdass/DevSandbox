@@ -18,19 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84f06f3c-7540-4613-9838-433f7e42c194" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/HalfLifeSawBlade/BP_HalfLifeSawBlade.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/HalfLifeSawBlade/BP_HalfLifeSawBlade.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_AttractExplosivebarrel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_AttractExplosivebarrel.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Explosivebarrel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Explosivebarrel.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_PhysicsCube.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_PhysicsCube.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/EQS_CoinsOnChestOnDestroy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/EQS_CoinsOnChestOnDestroy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Player/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Player/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_StarterAssets/ExampleContent/Materials/M_Toy_Cow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_StarterAssets/ExampleContent/Materials/M_Toy_Cow.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_StarterAssets/ExampleContent/Meshes/SM_Toy_Cow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_StarterAssets/ExampleContent/Meshes/SM_Toy_Cow.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/C/QQ/X3AOTN0UA8M1DMMI3S13D2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/C/QQ/X3AOTN0UA8M1DMMI3S13D2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/ExplosiveBarrel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/ExplosiveBarrel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/SItemChest.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/InteractiveObjects/SItemChest.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +161,7 @@
       <workItem from="1784619881640" duration="10672000" />
       <workItem from="1784649957234" duration="1193000" />
       <workItem from="1784657900507" duration="8747000" />
-      <workItem from="1784733142715" duration="874000" />
+      <workItem from="1784733142715" duration="1702000" />
     </task>
     <servers />
   </component>
