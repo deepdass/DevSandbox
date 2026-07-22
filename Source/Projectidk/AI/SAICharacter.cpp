@@ -163,7 +163,7 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			SetTarget(InstigatorActor);
 		}
 		
-		if (!(IsValid(ActiveHealthBar)))
+		if (!(IsValid(ActiveHealthBar)) && NewHealth > 0.0f)
 		{
 			ActiveHealthBar = CreateWidget<USWorldUserWidget>(GetWorld(), HealthBarWidgetClass);
 			if (IsValid(ActiveHealthBar))
