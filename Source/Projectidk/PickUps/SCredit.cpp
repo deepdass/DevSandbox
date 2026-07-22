@@ -38,7 +38,7 @@ void ASCredit::AddCredit(APawn* InstigatorPawn)
 	}
 	
 	ASPlayerState* PlayerState = InstigatorPawn->GetPlayerState<ASPlayerState>();
-	if (ensure(IsValid(PlayerState)))
+	if (IsValid(PlayerState))
 	{
 		PlayerState->ApplyCreditChange(this, CreditAmount);
 

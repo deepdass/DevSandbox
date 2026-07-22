@@ -90,7 +90,7 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 		ASPlayerState* PlayerState = KillerPawn->GetPlayerState<ASPlayerState>();
 		if (ensure(IsValid(PlayerState)))
 		{
-			PlayerState->ApplyCreditChange(this, CreditPerKill);
+			PlayerState->ApplyCreditChange(this, CreditPerKill); 
 			UEnvQueryInstanceBlueprintWrapper* QueryInstance = UEnvQueryManager::RunEQSQuery(this, PickupEnvQuery, KillerPawn, EEnvQueryRunMode::AllMatching, nullptr);
 			if (IsValid(QueryInstance))
 			{
