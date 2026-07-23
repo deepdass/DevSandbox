@@ -20,7 +20,10 @@
     <list default="true" id="84f06f3c-7540-4613-9838-433f7e42c194" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/3/KB/M68TUNJ97GPN9VEP3JNJOD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/3/KB/M68TUNJ97GPN9VEP3JNJOD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/DamageSystem/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DamageSystem/BP_Enemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/1/Z2/54NU08QOWJZ0Q1H3VNOMVM.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/1/Z2/54NU08QOWJZ0Q1H3VNOMVM.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/A/OC/1UP7O9Y2CS0J2OBI4Y9NZK.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/A/OC/1UP7O9Y2CS0J2OBI4Y9NZK.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/C/E7/IAZQWLC58TKCGZY698EROS.uasset" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +167,8 @@
       <workItem from="1784649957234" duration="1193000" />
       <workItem from="1784657900507" duration="8747000" />
       <workItem from="1784733142715" duration="3051000" />
+      <workItem from="1784751864238" duration="3013000" />
+      <workItem from="1784794923552" duration="1610000" />
     </task>
     <servers />
   </component>
