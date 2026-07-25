@@ -47,22 +47,22 @@ void ASBaseClass_ProjectileSelect::OnOverlapBegin(UPrimitiveComponent* Overlappe
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	ASCharacter* PlayerCharacter = Cast<ASCharacter>(OtherActor);
-	if (PlayerCharacter)
+	if (IsValid(PlayerCharacter))
 	{
-		Deactivate(PlayerCharacter);
+		DeactivateTrigger(PlayerCharacter);
 	}
 }
 
 void ASBaseClass_ProjectileSelect::Interact_Implementation(APawn* InstigatorPawn)
 {
 	ASCharacter* PlayerCharacter = Cast<ASCharacter>(InstigatorPawn);
-	if (PlayerCharacter)
+	if (IsValid(PlayerCharacter))
 	{
-		Deactivate(PlayerCharacter);
+		DeactivateTrigger(PlayerCharacter);
 	}
 }
 
-void ASBaseClass_ProjectileSelect::Deactivate(ASCharacter* PlayerCharacter)
+void ASBaseClass_ProjectileSelect::DeactivateTrigger(ASCharacter* PlayerCharacter)
 {
 	GetWorldTimerManager().ClearTimer(ActiveAgainTimerHandle);
 	PlayerCharacter->SetPrimaryProjectile(PrimaryProjectile);

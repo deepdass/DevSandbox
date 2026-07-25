@@ -56,7 +56,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	float ActivateAgainTime;
 	
-	void Deactivate(ASCharacter* PlayerCharacter);
+	void DeactivateTrigger(ASCharacter* PlayerCharacter);
 	
 	void ActivateAgain();
 	
