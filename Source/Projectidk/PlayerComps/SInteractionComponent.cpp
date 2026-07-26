@@ -65,7 +65,7 @@ void USInteractionComponent::FindBestInteractable()
 
 	FocusedActor = nullptr;
 	
-	for (FHitResult Hit : Hits)
+	for (FHitResult Hit : Hits) 
 	{
 		if (bDebugDrawInteract)
 		{

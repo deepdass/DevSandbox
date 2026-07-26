@@ -19,13 +19,13 @@
   <component name="ChangeListManager">
     <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Actions/Action_Sprint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Actions/Action_Sprint.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/GM_Game.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/GM_Game.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGun.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/HalfLifeSawBlade/BP_HalfLifeSawBlade.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/HalfLifeSawBlade/BP_HalfLifeSawBlade.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Player/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Player/BP_PlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/VFX/Blood/M_Blood.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/VFX/Blood/M_Blood.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/VFX/Blood/M_BloodSplash.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/VFX/Blood/M_BloodSplash.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/VFX/Blood/NS_Blood.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/VFX/Blood/NS_Blood.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/DamageSystem/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DamageSystem/BP_Enemy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Player/BP_PlayerCharacter.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Player/Gideon_AnimBlueprint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Player/Gideon_AnimBlueprint.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/PlayerCharacter.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +165,9 @@
       <workItem from="1784805560687" duration="1347000" />
       <workItem from="1784815505022" duration="2722000" />
       <workItem from="1784841132333" duration="5637000" />
+      <workItem from="1785004748538" duration="1569000" />
+      <workItem from="1785025066943" duration="1630000" />
+      <workItem from="1785085822263" duration="2011000" />
     </task>
     <servers />
   </component>
