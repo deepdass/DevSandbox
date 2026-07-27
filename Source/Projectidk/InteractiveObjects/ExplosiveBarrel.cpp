@@ -4,7 +4,6 @@
 #include "GameFramework/Character.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "NiagaraComponent.h"
-#include "Components/CapsuleComponent.h"
 #include "ActionSystem/SActionComponent.h"
 #include "ActionSystem/SActionEffect.h"
 #include "Net/UnrealNetwork.h"
@@ -12,8 +11,8 @@
 AExplosiveBarrel::AExplosiveBarrel()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	
-	bReplicates = true;
+
+	SetReplicates(true);
 	SetReplicateMovement(true);
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>("SphereComp");
