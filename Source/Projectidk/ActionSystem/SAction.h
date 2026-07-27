@@ -38,6 +38,8 @@ protected:
 	void OnRep_IsRunning();
 	
 public:
+	virtual int32 GetFunctionCallspace(UFunction* Function, FFrame* Stack) override;
+	virtual bool CallRemoteFunction(UFunction* Function, void* Parms, FOutParmRec* OutParms, FFrame* Stack) override;
 	
 	void Initialize(USActionComponent* NewActionComp);
 	

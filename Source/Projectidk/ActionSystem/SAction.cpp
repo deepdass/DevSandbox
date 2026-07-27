@@ -89,3 +89,24 @@ bool USAction::CanStartAction_Implementation(AActor* Instigator)
 	}
 	return true;
 }
+
+
+int32 USAction::GetFunctionCallspace(UFunction* Function, FFrame* Stack)
+{
+	AActor* Owner = GetOwningComponent() ? GetOwningComponent()->GetOwner() : nullptr;
+	check(Owner);
+	return Owner->GetFunctionCallspace(Function, Stack);
+}
+
+bool USAction::CallRemoteFunction(UFunction* Function, void* Parms, FOutParmRec* OutParms, FFrame* Stack)
+{
+	check(!HasAnyFlags(RF_ClassDefaultObject));
+	AActor* Owner = GetOwningComponent() ? GetOwningComponent()->GetOwner() : nullptr;
+	UNetDriver* NetDriver = Owner ? Owner->GetNetDriver() : nullptr;
+	if (NetDriver)
+	{
+		NetDriver->ProcessRemoteFunction(Owner, Function, Parms, OutParms, Stack, this);
+		return true;
+	}
+	return false;
+}
