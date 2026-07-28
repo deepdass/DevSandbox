@@ -57,7 +57,7 @@ public:
 
 protected:
 	
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Camera")
 	TObjectPtr<USpringArmComponent> SpringArmComp;
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
 	TObjectPtr<UCameraComponent> CameraComp;
@@ -85,13 +85,17 @@ protected: // Movement
 	
 	//  Var - Input
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	TObjectPtr<UInputMappingContext> InputMapping;
+	TObjectPtr<UInputMappingContext> InputMappingMovement;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	TObjectPtr<UInputMappingContext> InputMapping_Combo;
+	TObjectPtr<UInputMappingContext> InputMappingCombot;
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
-	TObjectPtr<UInputMappingContext> InputMapping_Interaction;
+	TObjectPtr<UInputMappingContext> InputMappingInteraction;
+	
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	TObjectPtr<UInputMappingContext> InputMappingSetting;
+	
 	
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	TObjectPtr<UInputAction> IA_Move;

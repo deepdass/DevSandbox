@@ -107,9 +107,10 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		if (UEnhancedInputLocalPlayerSubsystem* LocalPlayerSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			// add input context
-			LocalPlayerSubsystem->AddMappingContext(InputMapping, 0);
-			LocalPlayerSubsystem->AddMappingContext(InputMapping_Combo, 0);
-			LocalPlayerSubsystem->AddMappingContext(InputMapping_Interaction,0);
+			LocalPlayerSubsystem->AddMappingContext(InputMappingMovement, 0);
+			LocalPlayerSubsystem->AddMappingContext(InputMappingCombot, 0);
+			LocalPlayerSubsystem->AddMappingContext(InputMappingInteraction,0);
+			LocalPlayerSubsystem->AddMappingContext(InputMappingSetting,0);
 		}
 	}
 	
