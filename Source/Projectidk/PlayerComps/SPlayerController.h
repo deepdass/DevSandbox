@@ -16,12 +16,12 @@ class PROJECTIDK_API ASPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void SetPawn(APawn* InPawn) override;
+	
 protected:
 	UPROPERTY(BlueprintAssignable)
 	FOnPawnChanged OnPawnChanged;
-	
-	virtual void SetPawn(APawn* InPawn) override;
-	
 	
 	virtual void BeginPlayingState() override;
 	

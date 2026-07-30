@@ -17,13 +17,10 @@ class PROJECTIDK_API USActionComponent : public UActorComponent
 public:
 	// Sets default values for this component's properties
 	USActionComponent();
-
-protected:
+	
 	virtual void BeginPlay() override;
 
-public:
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-	                           FActorComponentTickFunction* ThisTickFunction) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
 	
 protected:
@@ -60,5 +57,5 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Projectile")
 	USAction* GetActionByName(FName ActionName) const;
 	
-	bool ReplicateSubobjects(class UActorChannel *Channel, class FOutBunch *Bunch, FReplicationFlags *RepFlags) override;
+	virtual bool ReplicateSubobjects(class UActorChannel *Channel, class FOutBunch *Bunch, FReplicationFlags *RepFlags) override;
 };

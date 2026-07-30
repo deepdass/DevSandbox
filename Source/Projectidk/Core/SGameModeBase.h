@@ -75,9 +75,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TObjectPtr<UDataTable> MonsterDataTable;
 	
-	//UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
-	//TSubclassOf<AActor> MinionClass;
-	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	TObjectPtr<UCurveFloat> DifficultyCurve;
 
@@ -87,6 +84,7 @@ protected:
 	UFUNCTION()
 	void OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryInstance, EEnvQueryStatus::Type QueryStatus);
 	
+	UPROPERTY()
 	TMap<AController*, FTimerHandle> RespawnTimerHandles;
 	
 	UFUNCTION()
@@ -108,11 +106,11 @@ public:
 	
 	ASGameModeBase();
 	
-	void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage);
+	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage) override;
 	
 	virtual void StartPlay() override;
 	
-	void HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer) override;
+	virtual void HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer) override;
 	
 	virtual void OnActorKilled(AActor* VictimActor, AActor* Killer);
 	

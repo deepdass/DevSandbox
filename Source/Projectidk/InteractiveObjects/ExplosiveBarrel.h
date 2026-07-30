@@ -20,6 +20,8 @@ class PROJECTIDK_API AExplosiveBarrel : public AActor
 public:
 	// Sets default values for this actor's properties
 	AExplosiveBarrel();
+	
+	virtual void PostInitializeComponents() override;
 
 protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -48,8 +50,6 @@ protected:
 
 	UFUNCTION(NetMulticast, Reliable)
 	void MulticastExplode();
-	
-	virtual void PostInitializeComponents() override;
 	
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 

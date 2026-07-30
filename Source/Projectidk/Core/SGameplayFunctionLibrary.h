@@ -14,7 +14,7 @@ class PROJECTIDK_API USGameplayFunctionLibrary : public UBlueprintFunctionLibrar
 {
 	GENERATED_BODY()
 	
-	public:
+public:
 	
 	UFUNCTION(BlueprintCallable, Category="Gameplay")
 	static bool ApplyDamage(AActor* DamageCauser, AActor* TargetActor, float Damage);

@@ -74,7 +74,7 @@ protected:
 	void UpdateBestTarget();
 	
 	UPROPERTY(EditDefaultsOnly, Category="AI")
-	float LoseTargetTime = 5.0f;
+	float LoseTargetTime;
 	
 	FTimerHandle LoseTargetTimerHandle;
 	

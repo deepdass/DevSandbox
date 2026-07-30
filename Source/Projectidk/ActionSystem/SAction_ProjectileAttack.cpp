@@ -11,6 +11,10 @@
 USAction_ProjectileAttack::USAction_ProjectileAttack()
 {
 	AttackAnimDelay = 0.24f;
+	TimeBetweenAttacks = 0.6f;
+	NextAttackAllowedTime = 0.0f;
+	
+	HandSocketName = "Muzzle_01";
 }
 
 void USAction_ProjectileAttack::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> NewProjectile)

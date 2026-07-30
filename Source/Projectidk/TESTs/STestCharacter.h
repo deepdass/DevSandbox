@@ -17,6 +17,8 @@ class PROJECTIDK_API ASTestCharacter : public AActor
 public:
 	// Sets default values for this actor's properties
 	ASTestCharacter();
+	
+	virtual void PostInitializeComponents() override;
 
 protected:
 	
@@ -31,7 +33,5 @@ protected:
 	
 	UFUNCTION()
 	void OnHealthChanged(AActor* InstigatorActor, USAttributeComponent* OwningComponent, float NewHealth, float Delta);
-	
-	virtual void PostInitializeComponents() override;
 	
 };

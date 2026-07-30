@@ -24,9 +24,9 @@ public:
 	// Sets default values for this actor's properties
 	ASBaseClass_ProjectileSelect();
 	
-	void Interact_Implementation(APawn* InstigatorPawn) override;
+	virtual void Interact_Implementation(APawn* InstigatorPawn) override;
 	
-	void PostInitializeComponents() override;
+	virtual void PostInitializeComponents() override;
 
 protected:
 	

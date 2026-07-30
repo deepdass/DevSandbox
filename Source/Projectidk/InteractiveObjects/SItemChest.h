@@ -15,9 +15,9 @@ class PROJECTIDK_API ASItemChest : public AActor, public ISGameplayInterface
 	GENERATED_BODY()
 	
 public:
-	void Interact_Implementation(APawn* InstigatorPawn) override;
+	virtual void Interact_Implementation(APawn* InstigatorPawn) override;
 	
-	void OnActorLoaded_Implementation() override;
+	virtual void OnActorLoaded_Implementation() override;
 
 public:
 	// Sets default values for this actor's properties

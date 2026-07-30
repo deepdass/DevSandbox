@@ -40,6 +40,9 @@ public:
 	ASCharacter();
 	
 	virtual void PostInitializeComponents() override;
+	
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
@@ -68,9 +71,6 @@ protected:
 	TObjectPtr<USAttributeComponent> AttributeComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<USActionComponent> ActionComp;
-	
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 
 public:	

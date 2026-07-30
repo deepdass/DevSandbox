@@ -179,7 +179,7 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 		return;
 	}
 	
-	TArray<FVector> ResultLocations = QueryInstance->GetResultsAsLocations();
+	const TArray<FVector> ResultLocations = QueryInstance->GetResultsAsLocations();
 	if (ResultLocations.IsValidIndex(0))
 	{
 		if (MonsterDataTable)

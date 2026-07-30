@@ -10,8 +10,6 @@
 // Sets default values
 ASHealthPotion::ASHealthPotion()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
 	
 	DeactiveforTime = 10.0f;
 	HealAmount = +50;

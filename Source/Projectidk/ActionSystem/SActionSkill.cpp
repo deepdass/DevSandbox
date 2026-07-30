@@ -11,6 +11,8 @@
 USActionSkill::USActionSkill()
 {
 	AttackAnimDelay = 0.24f;
+	TimeBetweenAttacks = 0.6f;
+	NextAttackAllowedTime = 0.0f;
 	
 	ActionCost = 20.0f;
 }

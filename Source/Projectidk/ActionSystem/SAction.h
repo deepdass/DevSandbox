@@ -59,9 +59,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Action")
 	FName ActionName;
 	
-	UWorld* GetWorld() const override;
+	virtual  UWorld* GetWorld() const override;
 	
-	bool IsSupportedForNetworking() const override
+	virtual bool IsSupportedForNetworking() const override
 	{
 		return true;
 	}

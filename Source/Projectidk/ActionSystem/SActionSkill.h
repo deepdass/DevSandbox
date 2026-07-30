@@ -33,9 +33,9 @@ protected:
 	TObjectPtr<UAnimMontage> AttackAnim;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float TimeBetweenAttacks = 0.6f;
+	float TimeBetweenAttacks;
 
-	float NextAttackAllowedTime = 0.0f;
+	float NextAttackAllowedTime;
 	
 	UPROPERTY(EditDefaultsOnly)
 	float ActionCost;

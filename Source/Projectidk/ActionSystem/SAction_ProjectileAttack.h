@@ -22,7 +22,7 @@ protected:
 	TSubclassOf<ASBaseClassProjectile> ProjectileClass;
 
 	UPROPERTY(VisibleAnywhere, Category = "Attack")
-	FName HandSocketName = "Muzzle_01";
+	FName HandSocketName;
 
 	FTimerHandle TimerHandle_AttackDelay;
 
@@ -33,9 +33,9 @@ protected:
 	TObjectPtr<UAnimMontage> AttackAnim;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float TimeBetweenAttacks = 0.6f;
+	float TimeBetweenAttacks;
 
-	float NextAttackAllowedTime = 0.0f;
+	float NextAttackAllowedTime;
 
 	UFUNCTION()
 	void AttackDelay_Elapsed(ACharacter* InstigatorCharacter);

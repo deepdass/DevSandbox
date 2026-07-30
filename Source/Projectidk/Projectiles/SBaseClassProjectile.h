@@ -16,13 +16,18 @@ class PROJECTIDK_API ASBaseClassProjectile : public AActor
 {
 	GENERATED_BODY()
 	
+public:
+	
+	ASBaseClassProjectile();
+	
 protected:
 	virtual void BeginPlay() override;
 	
+	UPROPERTY()
 	TObjectPtr<AActor> HitActor;
+	
 	FHitResult SweepResult;
 	
-protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	TObjectPtr<UNiagaraSystem> ImpactVFX;
 	
@@ -44,9 +49,5 @@ protected:
 	void Explode();
 	
 	virtual void PostInitializeComponents() override;
-	
-public:
-	
-	ASBaseClassProjectile();
 	
 };

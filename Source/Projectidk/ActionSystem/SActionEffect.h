@@ -17,9 +17,9 @@ class PROJECTIDK_API USActionEffect : public USAction
 public:
 	USActionEffect();
 	
-	void StartAction_Implementation(AActor* Instigator) override;
+	virtual void StartAction_Implementation(AActor* Instigator) override;
 	
-	void StopAction_Implementation(AActor* Instigator) override;
+	virtual void StopAction_Implementation(AActor* Instigator) override;
 	
 protected:
 	

@@ -27,6 +27,8 @@ ASAICharacter::ASAICharacter()
 		
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
 	GetMesh()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+	
+	LoseTargetTime = 5.0f;
 }
 
 void ASAICharacter::PostInitializeComponents()
@@ -34,7 +36,6 @@ void ASAICharacter::PostInitializeComponents()
 	Super::PostInitializeComponents();
 	
 	PawnSensingComp->OnSeePawn.AddDynamic(this, &ASAICharacter::OnPawnSeen);
-	
 	AttributeComp->OnHealthChanged.AddDynamic(this, &ASAICharacter::OnHealthChanged);
 	
 }

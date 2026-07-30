@@ -14,19 +14,12 @@ class PROJECTIDK_API ASCredit : public ASBaseClass_PickUps
 public:
 	// Sets default values for this actor's properties
 	ASCredit();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	
-	void Interact_Implementation(APawn* InstigatorPawn) override;
+protected:
+	virtual void Interact_Implementation(APawn* InstigatorPawn) override;
 	
 	UPROPERTY(EditDefaultsOnly, Category="Credit")
 	int CreditAmount;
-
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	
 	UFUNCTION(BlueprintCallable)
 	void AddCredit(APawn* InstigatorPawn);
