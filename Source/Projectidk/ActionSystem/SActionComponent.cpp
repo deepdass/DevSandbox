@@ -100,6 +100,9 @@ bool USActionComponent::StartActionByName(AActor* Instigator, FName ActionName)
 			{
 				Action->StartAction(Instigator);
 			}
+			
+			TRACE_BOOKMARK(TEXT("StartAction: %s"), *GetNameSafe(Action));
+			
 			return true;
 		}
 	}

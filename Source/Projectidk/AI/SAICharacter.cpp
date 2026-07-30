@@ -25,8 +25,8 @@ ASAICharacter::ASAICharacter()
 	
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 		
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
-	GetMesh()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+	//GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
+	//GetMesh()->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 	
 	LoseTargetTime = 5.0f;
 }
@@ -198,6 +198,7 @@ void ASAICharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponen
 			
 			GetMesh()->SetCollisionProfileName("Ragdoll");
 			GetMesh()->SetAllBodiesSimulatePhysics(true);
+			GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 			GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			
 			SetLifeSpan(15.0f);
