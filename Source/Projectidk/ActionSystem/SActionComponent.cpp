@@ -6,7 +6,9 @@
 #include "SAction.h"
 #include "Engine/ActorChannel.h"
 #include "Net/UnrealNetwork.h"
+#include "Projectidk.h"
 
+DECLARE_CYCLE_STAT(TEXT("StartActionByName"), STAT_StartActionByName, STATGROUP_ACTIONS);
 
 // Sets default values for this component's properties
 USActionComponent::USActionComponent()
@@ -78,6 +80,8 @@ void USActionComponent::ServerStartAction_Implementation(AActor* InstigatorActor
 
 bool USActionComponent::StartActionByName(AActor* Instigator, FName ActionName)
 {
+	SCOPE_CYCLE_COUNTER(STAT_StartActionByName);
+	
 	for (USAction* Action : Actions)
 	{
 		if (IsValid(Action) && Action->ActionName == ActionName)
