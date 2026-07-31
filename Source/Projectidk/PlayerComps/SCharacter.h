@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h" 
 #include "Projectiles/SBaseClassProjectile.h"
-
 
 #include "SCharacter.generated.h"
 
@@ -71,7 +71,16 @@ protected:
 	TObjectPtr<USAttributeComponent> AttributeComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<USActionComponent> ActionComp;
+	
+	void StartActionByTag(const FInputActionValue& Instance, const FGameplayTag NameTag);
 
+	void StopActionByTag(const FInputActionValue& Instance, const FGameplayTag NameTag);
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Actions")
+	FGameplayTag SprintTag;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Actions")
+	FGameplayTag PrimaryFireTag;
 
 public:	
 	// Called every frame
@@ -121,11 +130,6 @@ protected: // Movement
 	void Move(const FInputActionValue& InputValue);
 	void Look(const FInputActionValue& InputValue);
 	void Jump();
-	
-	void SprintStart();
-	void SprintStop();
-	
-	void PrimaryFire();
 	
 	void OpenChest();
 	

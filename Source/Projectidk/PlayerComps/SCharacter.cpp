@@ -68,6 +68,16 @@ void ASCharacter::BeginPlay()
 }
 
 
+void ASCharacter::StartActionByTag(const FInputActionValue& Instance, const FGameplayTag NameTag)
+{
+	ActionComp->StartActionByName(this, NameTag);
+}
+
+void ASCharacter::StopActionByTag(const FInputActionValue& Instance, const FGameplayTag NameTag)
+{
+	ActionComp->StopActionByName(this, NameTag);
+}
+
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
@@ -120,10 +130,10 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 		Input->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &ASCharacter::Jump);
 		Input->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ASCharacter::Look);
 		
-		Input->BindAction(IA_Sprint, ETriggerEvent::Started, this, &ASCharacter::SprintStart);
-		Input->BindAction(IA_Sprint, ETriggerEvent::Completed, this, &ASCharacter::SprintStop);
+		Input->BindAction(IA_Sprint, ETriggerEvent::Started, this, &ASCharacter::StartActionByTag, SprintTag);
+		Input->BindAction(IA_Sprint, ETriggerEvent::Completed, this, &ASCharacter::StopActionByTag, SprintTag);
 		
-		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::PrimaryFire);
+		Input->BindAction(IA_PrimaryFire, ETriggerEvent::Triggered, this, &ASCharacter::StartActionByTag, PrimaryFireTag);
 		
 		Input->BindAction(IA_OpenChest, ETriggerEvent::Triggered, this, &ASCharacter::OpenChest);
 	}
@@ -158,21 +168,6 @@ void ASCharacter::Look(const FInputActionValue& InputValue)
 void ASCharacter::Jump()
 {
 	ACharacter::Jump();
-}
-
-void ASCharacter::SprintStart()
-{
-	ActionComp->StartActionByName(this, "Sprint");
-}
-
-void ASCharacter::SprintStop()
-{
-	ActionComp->StopActionByName(this, "Sprint");
-}
-
-void ASCharacter::PrimaryFire()
-{
-	ActionComp->StartActionByName(this, "PrimaryFire");
 }
 
 void ASCharacter::OpenChest()
@@ -213,7 +208,7 @@ void ASCharacter::OnHealthChanged(AActor* InstigatorActor, USAttributeComponent*
 
 void ASCharacter::SetPrimaryProjectile(TSubclassOf<ASBaseClassProjectile> projectile)
 {
-	if (USAction_ProjectileAttack* Action = Cast<USAction_ProjectileAttack>(ActionComp->GetActionByName("PrimaryFire")))
+	if (USAction_ProjectileAttack* Action = Cast<USAction_ProjectileAttack>(ActionComp->GetActionByName(PrimaryFireTag)))
 	{
 		Action->SetPrimaryProjectile(projectile);
 	}

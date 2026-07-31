@@ -55,7 +55,7 @@ void USActionComponent::AddAction(AActor* InstigatorActor, TSubclassOf<USAction>
 		NewAction->Initialize(this);
 		Actions.Add(NewAction);
 		
-		if (NewAction->bAutoStartAction && NewAction->CanStartAction(InstigatorActor))
+		if (NewAction->GetAutoStartAction() && NewAction->CanStartAction(InstigatorActor))
 		{
 			NewAction->StartAction(InstigatorActor);
 		}
@@ -72,29 +72,32 @@ void USActionComponent::RemoveAction(USAction* ActionClass)
 	Actions.Remove(ActionClass);
 }
 
-void USActionComponent::ServerStartAction_Implementation(AActor* InstigatorActor, FName ActionName)
+void USActionComponent::ServerStartAction_Implementation(AActor* InstigatorActor, FGameplayTag NameTag)
 {
-	StartActionByName(InstigatorActor, ActionName);
+	StartActionByName(InstigatorActor, NameTag);
 }
 
 
-bool USActionComponent::StartActionByName(AActor* Instigator, FName ActionName)
+bool USActionComponent::StartActionByName(AActor* Instigator, FGameplayTag NameTag)
 {
 	SCOPE_CYCLE_COUNTER(STAT_StartActionByName);
-	
+	UE_LOG(LogTemp, Warning, TEXT("StartActionByName called with: %s, Actions.Num()=%d"), *NameTag.ToString(), Actions.Num());
+
 	for (USAction* Action : Actions)
 	{
-		if (IsValid(Action) && Action->ActionName == ActionName)
+		UE_LOG(LogTemp, Warning, TEXT("  Checking action tag: %s"), *Action->GetNameTag().ToString());
+		if (IsValid(Action) && Action->GetNameTag() == NameTag)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("  MATCHED"));
 			if (!Action->CanStartAction(Instigator))
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Failed to run: %s"), *ActionName.ToString()));
+				GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Failed to run: %s"), *NameTag.ToString()));
 				continue;
 			}
 
 			if (!GetOwner()->HasAuthority())
 			{
-				ServerStartAction(Instigator, ActionName);
+				ServerStartAction(Instigator, NameTag);
 			}
 			else
 			{
@@ -106,21 +109,22 @@ bool USActionComponent::StartActionByName(AActor* Instigator, FName ActionName)
 			return true;
 		}
 	}
+	
 	return false;
 }
 
-bool USActionComponent::StopActionByName(AActor* Instigator, FName ActionName)
+bool USActionComponent::StopActionByName(AActor* Instigator, FGameplayTag NameTag)
 {
 	for (USAction* Action : Actions)
 	{
-		if (IsValid(Action) && Action->ActionName == ActionName)
+		if (IsValid(Action) && Action->GetNameTag() == NameTag)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Found action %s, IsRunning=%s"), *ActionName.ToString(), Action->GetIsActionRunning() ? TEXT("true") : TEXT("false"));
+			UE_LOG(LogTemp, Warning, TEXT("Found action %s, IsRunning=%s"), *NameTag.ToString(), Action->GetIsActionRunning() ? TEXT("true") : TEXT("false"));
 			if (Action->GetIsActionRunning())
 			{
 				if (!GetOwner()->HasAuthority())
 				{
-					ServerStopAction(Instigator, ActionName);
+					ServerStopAction(Instigator, NameTag);
 				}
 				else
 				{
@@ -133,16 +137,16 @@ bool USActionComponent::StopActionByName(AActor* Instigator, FName ActionName)
 	return false;
 }
 
-void USActionComponent::ServerStopAction_Implementation(AActor* InstigatorActor, FName ActionName)
+void USActionComponent::ServerStopAction_Implementation(AActor* InstigatorActor, FGameplayTag NameTag)
 {
-	StopActionByName(InstigatorActor, ActionName);
+	StopActionByName(InstigatorActor, NameTag);
 }
 
-USAction* USActionComponent::GetActionByName(FName ActionName) const
+USAction* USActionComponent::GetActionByName(FGameplayTag NameTag) const
 {
 	for (USAction* Action : Actions)
 	{
-		if (IsValid(Action) && Action->ActionName == ActionName)
+		if (IsValid(Action) && Action->GetNameTag() == NameTag)
 		{
 			return Action;
 		}

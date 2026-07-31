@@ -26,10 +26,10 @@ public:
 protected:
 	
 	UFUNCTION(Server, Reliable)
-	void ServerStartAction(AActor* InstigatorActor, FName ActionName);
+	void ServerStartAction(AActor* InstigatorActor, FGameplayTag NameTag);
 	
 	UFUNCTION(Server, Reliable)
-	void ServerStopAction(AActor* InstigatorActor, FName ActionName);
+	void ServerStopAction(AActor* InstigatorActor, FGameplayTag NameTag);
 	
 	UPROPERTY(EditAnywhere, Category="Actions")
 	TArray<TSubclassOf<USAction>> DefaultActions;
@@ -49,13 +49,13 @@ public:
 	void RemoveAction(USAction* ActionClass);
 	
 	UFUNCTION(BlueprintCallable, Category="Actions")
-	bool StartActionByName(AActor* Instigator, FName ActionName);
+	bool StartActionByName(AActor* Instigator, FGameplayTag NameTag);
 	
 	UFUNCTION(BlueprintCallable, Category="Actions")
-	bool StopActionByName(AActor* Instigator, FName ActionName);
+	bool StopActionByName(AActor* Instigator, FGameplayTag NameTag);
 	
 	UFUNCTION(BlueprintCallable, Category="Projectile")
-	USAction* GetActionByName(FName ActionName) const;
+	USAction* GetActionByName(FGameplayTag NameTag) const;
 	
 	virtual bool ReplicateSubobjects(class UActorChannel *Channel, class FOutBunch *Bunch, FReplicationFlags *RepFlags) override;
 };

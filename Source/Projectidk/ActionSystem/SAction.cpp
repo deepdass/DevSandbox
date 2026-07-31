@@ -6,6 +6,28 @@
 #include "SActionComponent.h"
 
 
+void USAction::Initialize(USActionComponent* NewActionComp)
+{
+	ActionComponent = NewActionComp;
+}
+
+bool USAction::CanStartAction_Implementation(AActor* Instigator)
+{
+	if (GetIsActionRunning())
+	{
+		return false;
+	}
+	
+	USActionComponent* ActionComp = GetOwningComponent();
+	
+	if (ActionComp->ActiveGameplayTags.HasAny(BlockedTags))
+	{
+		return false;
+	}
+	return true;
+}
+
+
 void USAction::StartAction_Implementation(AActor* Instigator)
 {
 	UE_LOG(LogTemp, Log, TEXT("Running Action: %s"), *GetNameSafe(this))
@@ -56,10 +78,6 @@ void USAction::OnRep_IsRunning()
 	}
 }
 
-void USAction::Initialize(USActionComponent* NewActionComp)
-{
-	ActionComponent = NewActionComp;
-}
 
 bool USAction::GetIsActionRunning() const
 {
@@ -74,18 +92,4 @@ void USAction::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLi
 	DOREPLIFETIME(USAction ,ActionComponent);
 }
 
-bool USAction::CanStartAction_Implementation(AActor* Instigator)
-{
-	if (GetIsActionRunning())
-	{
-		return false;
-	}
-	
-	USActionComponent* ActionComp = GetOwningComponent();
-	
-	if (ActionComp->ActiveGameplayTags.HasAny(BlockedTags))
-	{
-		return false;
-	}
-	return true;
-}
+

@@ -8,6 +8,7 @@
 #include "SAction.generated.h"
 
 class UWorld;
+class USActionComponent;
 
 /**
  * 
@@ -20,7 +21,7 @@ class PROJECTIDK_API USAction : public UObject
 protected:
 	
 	UPROPERTY(Replicated)
-	USActionComponent* ActionComponent;
+	TObjectPtr<USActionComponent> ActionComponent;
 	
 	UFUNCTION(BlueprintCallable, Category="Action")
 	USActionComponent* GetOwningComponent() const;
@@ -37,9 +38,28 @@ protected:
 	UFUNCTION()
 	void OnRep_IsRunning();
 	
+	UPROPERTY(EditDefaultsOnly, Category="Action")
+    bool bAutoStartAction = false;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Action")
+	FGameplayTag NameTag;
+	
 public:
 	
+	
+	UFUNCTION(BlueprintPure)
+	FGameplayTag GetNameTag() const
+	{
+		return NameTag;
+	}
+	
 	void Initialize(USActionComponent* NewActionComp);
+	
+	UFUNCTION(BlueprintCallable, Category="Action")
+	bool GetAutoStartAction() const 
+	{
+		return bAutoStartAction;
+	}
 	
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	bool GetIsActionRunning() const;
@@ -47,17 +67,11 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category="Action")
 	bool CanStartAction(AActor* Instigator);
 	
-	UPROPERTY(EditDefaultsOnly, Category="Action")
-	bool bAutoStartAction = false;
-	
 	UFUNCTION(BlueprintNativeEvent, Category="Action")
 	void StartAction(AActor* Instigator);
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Action")
 	void StopAction(AActor* Instigator);
-	
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
-	FName ActionName;
 	
 	virtual  UWorld* GetWorld() const override;
 	

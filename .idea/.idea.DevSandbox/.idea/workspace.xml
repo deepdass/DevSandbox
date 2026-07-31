@@ -18,9 +18,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Tags/Actions.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Tags/Actions.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Actions/Action_Parry.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Actions/Action_Parry.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Actions/Action_ProjectileAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Actions/Action_ProjectileAttack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Actions/Action_SkillAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Actions/Action_SkillAttack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Actions/Action_Sprint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Actions/Action_Sprint.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Actions/Effect_Burning.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Actions/Effect_Burning.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGun.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/ShrinkGrow/Action_Grow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/ShrinkGrow/Action_Grow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/ShrinkGrow/Action_Shrink.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/ShrinkGrow/Action_Shrink.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SActionComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +180,8 @@
       <workItem from="1785085822263" duration="2011000" />
       <workItem from="1785151082475" duration="1145000" />
       <workItem from="1785278042417" duration="3012000" />
+      <workItem from="1785527285666" duration="667000" />
+      <workItem from="1785528213772" duration="5488000" />
     </task>
     <servers />
   </component>
