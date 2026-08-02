@@ -21,7 +21,7 @@ ASAICharacter::ASAICharacter()
 	
 	AttributeComp = CreateDefaultSubobject<USAttributeComponent>("AttributeComp");
 	
-	ActionComp = CreateDefaultSubobject<USActionComponent>("ActionComp");
+	ActionComp = CreateDefaultSubobject<USActionComponent>("ActionComp"); 
 	
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 		
@@ -50,6 +50,7 @@ APawn* ASAICharacter::GetTarget() const
 	}
 	return nullptr;
 }
+
 
 void ASAICharacter::OnPawnSeen(APawn* Pawn)
 {

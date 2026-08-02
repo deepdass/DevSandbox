@@ -11,9 +11,8 @@
 
 USBTT_RangedAttack::USBTT_RangedAttack()
 {
-	PitchMaxBulletSpread = FVector2D(0,3.0f);
-	YawMaxBulletSpread = FVector2D(-3.0f,3.0f);
-	
+	PitchMaxBulletSpread = FVector2D(0,4.0f);
+	YawMaxBulletSpread = FVector2D(-5.0f,5.0f);
 }
 
 

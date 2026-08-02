@@ -2,6 +2,7 @@
 
 
 #include "SGameplayFunctionLibrary.h"
+
 #include "PlayerComps/SAttributeComponent.h"
 
 bool USGameplayFunctionLibrary::ApplyDamage(AActor* DamageCauser, AActor* TargetActor, float DamageAmount)

@@ -22,8 +22,7 @@ class PROJECTIDK_API ASAICharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ASAICharacter();
-	
-public:
+
 	virtual void PostInitializeComponents() override;
 	
 	UFUNCTION(BlueprintCallable)

@@ -46,7 +46,6 @@ protected:
 	
 public:
 	
-	
 	UFUNCTION(BlueprintPure)
 	FGameplayTag GetNameTag() const
 	{
