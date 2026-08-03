@@ -18,19 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SActionMinion_ProjectileAttack.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SActionMinion_ProjectileAttack.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SBTTask_StartAction.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SBTTask_StartAction.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Tags/Actions.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Tags/Actions.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BT_MinionRanged.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BT_MinionRanged.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SBTT_RangedAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SBTT_RangedAttack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/ActionSystem/SAction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameplayFunctionLibrary.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +172,7 @@
       <workItem from="1785527285666" duration="667000" />
       <workItem from="1785528213772" duration="7862000" />
       <workItem from="1785687426744" duration="5025000" />
+      <workItem from="1785725406214" duration="3321000" />
     </task>
     <servers />
   </component>
