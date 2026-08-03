@@ -89,7 +89,7 @@ USAttributeComponent* USAttributeComponent::GetAttributes(AActor* FromActor)
 	if (IsValid(FromActor))
 	{
 		return Cast<USAttributeComponent>(FromActor->GetComponentByClass(USAttributeComponent::StaticClass()));
-	}
+	} 
 	return nullptr;
 }
 

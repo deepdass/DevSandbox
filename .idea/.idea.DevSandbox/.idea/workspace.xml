@@ -17,7 +17,27 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="" />
+    <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGun.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGun.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGunThrow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/HalfLifeGravityGun/Action_GravityGunThrow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/1/3R/G4ZQZJS5S6CNH22EPRTMTR.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/1/3R/G4ZQZJS5S6CNH22EPRTMTR.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/1/KT/W9WOT8557YV7DELSGM5W0X.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/1/KT/W9WOT8557YV7DELSGM5W0X.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/3/Y6/PWWXNKFB0WKE2551C0OZLA.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/3/Y6/PWWXNKFB0WKE2551C0OZLA.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/7Z/XIPFYPBSDMAFKC1K5L5XL5.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/7Z/XIPFYPBSDMAFKC1K5L5XL5.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/SF/GZYMI0MLFSHZT1VAB6JB1N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/SF/GZYMI0MLFSHZT1VAB6JB1N.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/5/MB/NYQL9RJ9Z5GLDZF54KE58N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/5/MB/NYQL9RJ9Z5GLDZF54KE58N.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/5/WG/HJS3BMZT14AX5SH3GBEYEM.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/5/WG/HJS3BMZT14AX5SH3GBEYEM.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/5/XL/Q7CQGR93ZSTKYMISY5AI9F.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/5/XL/Q7CQGR93ZSTKYMISY5AI9F.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/6/00/AXMV3PFILTOVDYAJ2C7XOH.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/6/00/AXMV3PFILTOVDYAJ2C7XOH.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/8/2M/B5L9RGRWMLTRW03UIGNGMP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/8/2M/B5L9RGRWMLTRW03UIGNGMP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/A/CS/UOJ0BVHVSA8PEIKZJDT8HD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/A/CS/UOJ0BVHVSA8PEIKZJDT8HD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/B/FI/XNN81E12TIZ22O21SYWTTP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/B/FI/XNN81E12TIZ22O21SYWTTP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/6A/9SC8KHZ5P6QYT1387JZLLJ.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/6A/9SC8KHZ5P6QYT1387JZLLJ.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/C0/7X5TMODGHABYCRDEJVIDFY.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/C0/7X5TMODGHABYCRDEJVIDFY.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/EL/S8WMU1SZJV5XU8H7GLZTJW.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/EL/S8WMU1SZJV5XU8H7GLZTJW.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +190,7 @@
       <workItem from="1785527285666" duration="667000" />
       <workItem from="1785528213772" duration="7862000" />
       <workItem from="1785687426744" duration="5025000" />
-      <workItem from="1785725406214" duration="3916000" />
+      <workItem from="1785725406214" duration="5772000" />
     </task>
     <servers />
   </component>
