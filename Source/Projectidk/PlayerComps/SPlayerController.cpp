@@ -3,6 +3,13 @@
 
 #include "SPlayerController.h"
 
+#include "Development/SCheatManager.h"
+
+ASPlayerController::ASPlayerController()
+{
+	CheatClass = USCheatManager::StaticClass();
+}
+
 void ASPlayerController::SetPawn(APawn* InPawn)
 {
 	Super::SetPawn(InPawn);

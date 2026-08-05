@@ -16,6 +16,8 @@ class PROJECTIDK_API ASPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+	ASPlayerController();
+	
 public:
 	virtual void SetPawn(APawn* InPawn) override;
 	
