@@ -114,9 +114,6 @@ public:
 	
 	virtual void OnActorKilled(AActor* VictimActor, AActor* Killer);
 	
-	UFUNCTION(Exec)
-	void KillAll();
-	
 	UFUNCTION(BlueprintCallable, Category= "SaveGame")
 	void WriteSaveGame();
 	

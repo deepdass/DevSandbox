@@ -218,19 +218,6 @@ void ASGameModeBase::OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLoca
 	DrawDebugSphere(GetWorld(), SpawnLocation, 80.0f, 20, FColor::Blue, false, 60.0f);
 }
 
-void ASGameModeBase::KillAll()
-{
-	for (TActorIterator<ASAICharacter> It(GetWorld()); It; ++It)
-	{
-		ASAICharacter* Bot = *It;
-		USAttributeComponent* AttributeComp = USAttributeComponent::GetAttributes(Bot);
-		if (AttributeComp && AttributeComp->GetIsAlive())
-		{
-			AttributeComp->Kill(this);
-		}
-	}
-}
-
 void ASGameModeBase::WriteSaveGame()
 {
 	for (int32 i = 0; i < GameState->PlayerArray.Num(); i++)

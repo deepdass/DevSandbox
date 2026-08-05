@@ -21,14 +21,6 @@ class UInputMappingContext;
 class UAnimMontage;
 class UAudioComponent;
 
-UENUM(BlueprintType)
-enum class EMoveAxis : uint8
-{
-	X,
-	Y,
-	Z
-};
-
 
 UCLASS()
 class PROJECTIDK_API ASCharacter : public ACharacter
@@ -45,18 +37,6 @@ public:
 	virtual void BeginPlay() override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-	
-	UFUNCTION(Exec)
-	void HealSelf(float Amount = -1.0f);
-	
-	UFUNCTION(Exec)
-	void DamageSelf(float Amount = -1.0f);
-	
-	UFUNCTION(Exec)
-	void GrantCoin(int32 Amount = 1000);
-
-	UFUNCTION(Exec)
-	void MoveInDirectionBy(float ByCm = 200, EMoveAxis Axis = EMoveAxis::Z);
 
 protected:
 	
