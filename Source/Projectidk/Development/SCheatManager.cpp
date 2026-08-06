@@ -6,6 +6,7 @@
 #include "AI/SAICharacter.h"
 #include "Core/SPlayerState.h"
 #include "PlayerComps/SAttributeComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "EngineUtils.h"
 
 void USCheatManager::HealSelf(float Amount)
@@ -60,24 +61,28 @@ void USCheatManager::MoveInDirectionBy(float ByCm, ::EMoveAxis Axis)
 {
 	APlayerController* MyPC = GetOuterAPlayerController();
 
-	if (APawn* MyPawn = MyPC->GetPawn())
+	if (ACharacter* MyCharacter = MyPC->GetCharacter())
 	{
+		if (UCharacterMovementComponent* MoveComp = MyCharacter->GetCharacterMovement())
+		{
+			MoveComp->Velocity = FVector::ZeroVector;
+		}
 		FVector Direction = FVector::ZeroVector;
 
 		switch (Axis)
 		{
 		case EMoveAxis::X:
-			Direction = MyPawn->GetActorForwardVector();
+			Direction = MyCharacter->GetActorForwardVector();
 			break;
 		case EMoveAxis::Y:
-			Direction = MyPawn->GetActorRightVector();
+			Direction = MyCharacter->GetActorRightVector();
 			break;
 		case EMoveAxis::Z:
 			Direction = FVector::UpVector;
 			break;
 		}
 		
-		MyPawn->AddActorWorldOffset(Direction * ByCm, false);
+		MyCharacter->AddActorWorldOffset(Direction * ByCm, false);
 	}
 }
 

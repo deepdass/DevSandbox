@@ -50,7 +50,7 @@ void USActionComponent::AddAction(AActor* InstigatorActor, TSubclassOf<USAction>
 	}
 	
 	TObjectPtr<USAction> NewAction = NewObject<USAction>(GetOwner(), ActionClass);
-	if (ensure(NewAction))
+	if (IsValid(NewAction))
 	{
 		NewAction->Initialize(this);
 		Actions.Add(NewAction);
@@ -77,21 +77,17 @@ void USActionComponent::ServerStartAction_Implementation(AActor* InstigatorActor
 	StartActionByName(InstigatorActor, NameTag);
 }
 
-
 bool USActionComponent::StartActionByName(AActor* Instigator, FGameplayTag NameTag)
 {
 	SCOPE_CYCLE_COUNTER(STAT_StartActionByName);
-	UE_LOG(LogTemp, Warning, TEXT("StartActionByName called with: %s, Actions.Num()=%d"), *NameTag.ToString(), Actions.Num());
+	UE_LOG(LogTemp, Warning, TEXT("StartActionByName called with: %s, Actions.Num=%d"), *NameTag.ToString(), Actions.Num());
 
 	for (USAction* Action : Actions)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("  Checking action tag: %s"), *Action->GetNameTag().ToString());
 		if (IsValid(Action) && Action->GetNameTag() == NameTag)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("  MATCHED"));
 			if (!Action->CanStartAction(Instigator))
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, FString::Printf(TEXT("Failed to run: %s"), *NameTag.ToString()));
 				continue;
 			}
 
@@ -113,13 +109,17 @@ bool USActionComponent::StartActionByName(AActor* Instigator, FGameplayTag NameT
 	return false;
 }
 
+void USActionComponent::ServerStopAction_Implementation(AActor* InstigatorActor, FGameplayTag NameTag)
+{
+	StopActionByName(InstigatorActor, NameTag);
+}
+
 bool USActionComponent::StopActionByName(AActor* Instigator, FGameplayTag NameTag)
 {
 	for (USAction* Action : Actions)
 	{
 		if (IsValid(Action) && Action->GetNameTag() == NameTag)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Found action %s, IsRunning=%s"), *NameTag.ToString(), Action->GetIsActionRunning() ? TEXT("true") : TEXT("false"));
 			if (Action->GetIsActionRunning())
 			{
 				if (!GetOwner()->HasAuthority())
@@ -137,10 +137,6 @@ bool USActionComponent::StopActionByName(AActor* Instigator, FGameplayTag NameTa
 	return false;
 }
 
-void USActionComponent::ServerStopAction_Implementation(AActor* InstigatorActor, FGameplayTag NameTag)
-{
-	StopActionByName(InstigatorActor, NameTag);
-}
 
 USAction* USActionComponent::GetActionByName(FGameplayTag NameTag) const
 {
@@ -172,7 +168,7 @@ void USActionComponent::GetLifetimeReplicatedProps(TArray<class FLifetimePropert
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	
-	DOREPLIFETIME(USActionComponent ,Actions);
+	DOREPLIFETIME(USActionComponent, Actions);
 }
 
 
