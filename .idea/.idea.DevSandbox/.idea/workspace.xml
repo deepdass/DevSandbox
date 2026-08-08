@@ -17,11 +17,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SActionMinion_HealSelf.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SActionMinion_HealSelf.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,7 +180,7 @@
       <workItem from="1785884679791" duration="4593000" />
       <workItem from="1785934578836" duration="6573000" />
       <workItem from="1785981074486" duration="3565000" />
-      <workItem from="1786071890379" duration="364000" />
+      <workItem from="1786071890379" duration="1112000" />
     </task>
     <servers />
   </component>
