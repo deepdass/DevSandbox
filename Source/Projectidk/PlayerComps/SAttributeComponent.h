@@ -6,37 +6,21 @@
 #include "Components/ActorComponent.h"
 #include "SAttributeComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnHealthChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, float, Health, float, Delta);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRageChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, float, Rage, float, Delta);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAttributeChanged, AActor*, InstigatorActor, USAttributeComponent*, OwningComp, float, NewValue, float, Delta);
 
-USTRUCT()
-struct FHealthChangeData
+USTRUCT(BlueprintType)
+struct FAttribute
 {
 	GENERATED_BODY()
 
 	UPROPERTY()
 	AActor* Instigator = nullptr;
 
-	UPROPERTY()
-	float Health = 0.0f;
+	UPROPERTY(VisibleAnywhere, Category = "Attribute")
+	float Value = 0.0f;
 
-	UPROPERTY()
-	float MaxHealth = 0.0f;
-};
-
-USTRUCT()
-struct FRageChangeData
-{
-	GENERATED_BODY()
-
-	UPROPERTY()
-	AActor* Instigator = nullptr;
-	
-	UPROPERTY()
-	float Rage = 0.0f;
-
-	UPROPERTY()
-	float MaxRage = 0.0f;
+	UPROPERTY(EditDefaultsOnly, Category = "Attribute")
+	float MaxValue = 100.0f;
 };
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -55,17 +39,17 @@ public:
 	USAttributeComponent();
 
 protected:
-	UPROPERTY(ReplicatedUsing = "OnRep_HealthData")
-	FHealthChangeData HealthData;
+	UPROPERTY(EditDefaultsOnly, ReplicatedUsing = "OnRep_HealthData", Category = "Health")
+	FAttribute HealthData;
 
 	UFUNCTION()
-	void OnRep_HealthData(FHealthChangeData OldHealthData);
+	void OnRep_HealthData(FAttribute OldHealthData);
 
-	UPROPERTY(ReplicatedUsing = "OnRep_RageData")
-	FRageChangeData RageData;
+	UPROPERTY(EditDefaultsOnly, ReplicatedUsing = "OnRep_RageData", Category = "Rage")
+	FAttribute RageData;
 
 	UFUNCTION()
-	void OnRep_RageData(FRageChangeData OldRageData);
+	void OnRep_RageData(FAttribute OldRageData);
 
 public:
 
@@ -73,14 +57,14 @@ public:
 	bool Kill(AActor* InstigatorActor);
 
 	UPROPERTY(BlueprintAssignable)
-	FOnHealthChanged OnHealthChanged;
-	
+	FOnAttributeChanged OnHealthChanged;
+
 	UPROPERTY(BlueprintAssignable)
-	FOnRageChanged OnRageChanged;
+	FOnAttributeChanged OnRageChanged;
 
 	UFUNCTION(BlueprintCallable, Category = "Attribute")
 	bool ApplyHealthChange(AActor* InstigatorActor, float Delta);
-	
+
 	UFUNCTION(BlueprintCallable, Category = "Attribute")
 	bool ApplyRageChange(AActor* InstigatorActor, float Delta);
 
@@ -88,14 +72,16 @@ public:
 	bool GetIsAlive() const;
 
 	UFUNCTION(BlueprintCallable)
-	float GetHealth() const { return HealthData.Health; }
+	float GetHealth() const { return HealthData.Value; }
 
 	UFUNCTION(BlueprintCallable)
-	float GetMaxHealth() const { return HealthData.MaxHealth; }
-	
+	float GetMaxHealth() const { return HealthData.MaxValue; }
+
 	UFUNCTION(BlueprintCallable)
-    float GetRage() const { return RageData.Rage; }
-	
-    UFUNCTION(BlueprintCallable)
-    float GetMaxRage() const { return RageData.MaxRage; }
+	float GetRage() const { return RageData.Value; }
+
+	UFUNCTION(BlueprintCallable)
+	float GetMaxRage() const { return RageData.MaxValue; }
+
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 };

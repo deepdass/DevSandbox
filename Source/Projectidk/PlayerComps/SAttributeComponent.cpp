@@ -10,25 +10,25 @@ static TAutoConsoleVariable<float> CVarDamageMultiplier(TEXT("su.DamagedMultipli
 
 USAttributeComponent::USAttributeComponent()
 {
-	HealthData.MaxHealth = 100.0f;
-	HealthData.Health = HealthData.MaxHealth;
+	HealthData.MaxValue = 100.0f;
+	HealthData.Value = HealthData.MaxValue;
 
-	RageData.MaxRage = 100.0f;
-	RageData.Rage = 0.0f;
-	
+	RageData.MaxValue = 100.0f;
+	RageData.Value = 0.0f;
+
 	SetIsReplicatedByDefault(true);
 }
 
 bool USAttributeComponent::GetIsAlive() const
 {
-	return !FMath::IsNearlyZero(HealthData.Health);
+	return !FMath::IsNearlyZero(HealthData.Value);
 }
 
 
-void USAttributeComponent::OnRep_HealthData(FHealthChangeData OldHealthData)
+void USAttributeComponent::OnRep_HealthData(FAttribute OldHealthData)
 {
-	const float Delta = HealthData.Health - OldHealthData.Health;
-	OnHealthChanged.Broadcast(HealthData.Instigator, this, HealthData.Health, Delta);
+	const float Delta = HealthData.Value - OldHealthData.Value;
+	OnHealthChanged.Broadcast(HealthData.Instigator, this, HealthData.Value, Delta);
 }
 
 
@@ -43,18 +43,18 @@ bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 		Delta *= CVarDamageMultiplier.GetValueOnGameThread();
 	}
 
-	const float OldHealth = HealthData.Health;
-	HealthData.Health = FMath::Clamp(OldHealth + Delta, 0.0f, HealthData.MaxHealth);
+	const float OldHealth = HealthData.Value;
+	HealthData.Value = FMath::Clamp(OldHealth + Delta, 0.0f, HealthData.MaxValue);
 	HealthData.Instigator = InstigatorActor;
 
-	const float ActualDelta = HealthData.Health - OldHealth;
+	const float ActualDelta = HealthData.Value - OldHealth;
 
 	if (!FMath::IsNearlyZero(ActualDelta))
 	{
-		OnHealthChanged.Broadcast(InstigatorActor, this, HealthData.Health, ActualDelta);
+		OnHealthChanged.Broadcast(InstigatorActor, this, HealthData.Value, ActualDelta);
 	}
 
-	if (FMath::IsNearlyZero(HealthData.Health) && ActualDelta < 0.0f)
+	if (FMath::IsNearlyZero(HealthData.Value) && ActualDelta < 0.0f)
 	{
 		ASGameModeBase* GM = GetWorld()->GetAuthGameMode<ASGameModeBase>();
 		if (IsValid(GM))
@@ -66,20 +66,20 @@ bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delt
 	return !FMath::IsNearlyZero(ActualDelta);
 }
 
-void USAttributeComponent::OnRep_RageData(FRageChangeData OldRageData)
+void USAttributeComponent::OnRep_RageData(FAttribute OldRageData)
 {
-	const float Delta = RageData.Rage - OldRageData.Rage;
-	OnRageChanged.Broadcast(RageData.Instigator, this, RageData.Rage, Delta);
+	const float Delta = RageData.Value - OldRageData.Value;
+	OnRageChanged.Broadcast(RageData.Instigator, this, RageData.Value, Delta);
 }
 
 bool USAttributeComponent::ApplyRageChange(AActor* InstigatorActor, float Delta)
 {
 	if (!GetOwner()->HasAuthority()) { return false; }
 
-	RageData.Rage = FMath::Clamp(RageData.Rage + Delta, 0.0f, RageData.MaxRage);
+	RageData.Value = FMath::Clamp(RageData.Value + Delta, 0.0f, RageData.MaxValue);
 	RageData.Instigator = InstigatorActor;
 
-	OnRageChanged.Broadcast(InstigatorActor, this, RageData.Rage, Delta);
+	OnRageChanged.Broadcast(InstigatorActor, this, RageData.Value, Delta);
 
 	return !FMath::IsNearlyZero(Delta);
 }
@@ -89,7 +89,7 @@ USAttributeComponent* USAttributeComponent::GetAttributes(AActor* FromActor)
 	if (IsValid(FromActor))
 	{
 		return Cast<USAttributeComponent>(FromActor->GetComponentByClass(USAttributeComponent::StaticClass()));
-	} 
+	}
 	return nullptr;
 }
 
@@ -114,6 +114,6 @@ void USAttributeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 
 
 bool USAttributeComponent::Kill(AActor* InstigatorActor)
- {
- 	return ApplyHealthChange(InstigatorActor, -GetMaxHealth());
- }
+{
+	return ApplyHealthChange(InstigatorActor, -GetMaxHealth());
+}
