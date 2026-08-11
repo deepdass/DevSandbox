@@ -22,6 +22,44 @@
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
 
 
+static FMonsterInfoRow* GetRandomWeightedMonsterRow(const TArray<FMonsterInfoRow*>& Rows)
+{
+	float TotalWeight = 0.0f;
+	for (FMonsterInfoRow* Row : Rows)
+	{
+		if (Row)
+		{
+			TotalWeight += FMath::Max(Row->Weight, 0.0f);
+		}
+	}
+
+	if (TotalWeight <= 0.0f)
+	{
+		return Rows.IsValidIndex(0) ? Rows[FMath::RandRange(0, Rows.Num() - 1)] : nullptr;
+	}
+
+	float RandomWeight = FMath::FRandRange(0.0f, TotalWeight);
+
+	for (FMonsterInfoRow* Row : Rows)
+	{
+		if (!Row)
+		{
+			continue;
+		}
+
+		const float RowWeight = FMath::Max(Row->Weight, 0.0f);
+		if (RandomWeight <= RowWeight)
+		{
+			return Row;
+		}
+
+		RandomWeight -= RowWeight;
+	}
+	
+	return Rows.Last();
+}
+
+
 ASGameModeBase::ASGameModeBase()
 {
 	SpawnTimerInterval = 5.0f;
@@ -188,8 +226,11 @@ void ASGameModeBase::OnQueryFinished(UEnvQueryInstanceBlueprintWrapper* QueryIns
 			TArray<FMonsterInfoRow*> Rows;
 			MonsterDataTable->GetAllRows("", Rows);
 			
-			int32 RandomIndex = FMath::RandRange(0, Rows.Num() - 1);
-			FMonsterInfoRow* SelectedRow = Rows[RandomIndex];
+			FMonsterInfoRow* SelectedRow = GetRandomWeightedMonsterRow(Rows);
+			if (!SelectedRow)
+			{
+				return;
+			}
 			
 			UAssetManager* Manager = UAssetManager::GetIfInitialized();
 			if (Manager)
