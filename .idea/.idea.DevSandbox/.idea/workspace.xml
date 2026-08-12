@@ -18,19 +18,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/AIC_MinionRanged.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionActionProjectileAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionActionProjectileAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BB_MinionRanged.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_RangedMinion.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BT_MinionRanged.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/AIC_MinionAssault.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/AIC_MinionSniper.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionAssaultActionProjectileAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionAssaultActionProjectileAttack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionSniperActionProjectileAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionSniperActionProjectileAttack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BB_MinionAssault.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BB_MinionSniper.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP/EQS_TestingPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP/EQS_TestingPawn.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_MinionAssault.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_MinionAssault.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_MinionSniper.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BT_MinionAssault.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BT_MinionSniper.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_FindBotSpawn.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_FindNearbyCover.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_FindNearbyLoc.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_SniperFindNearbyLoc.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/EQ_SniperFindNearbyLoc.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/MagicProjectile_Assault.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/MagicProjectile_Sniper.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Data/DA_MinionSniper.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Data/DA_MinionSniper.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/GM_Game.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/GM_Game.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Projectile_Cannon.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Projectile_Cannon.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Maps/Sandbox.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Maps/Sandbox.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Projectile/MagicProjectile_Enemy.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/3/UL/WKSSUCUPOSPWWS7BYLJ7UO.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/3/UL/WKSSUCUPOSPWWS7BYLJ7UO.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/9F/FOICF1VOFLIUVNJOPHXYTO.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/9F/FOICF1VOFLIUVNJOPHXYTO.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/7/TP/1EKRPAAP6JIX885XTBBEIG.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/7/TP/1EKRPAAP6JIX885XTBBEIG.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/A/BO/FIGZDEHPWX62J7FCCRLKFR.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/A/BO/FIGZDEHPWX62J7FCCRLKFR.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +211,7 @@
       <workItem from="1786252672190" duration="959000" />
       <workItem from="1786253879000" duration="3501000" />
       <workItem from="1786267990806" duration="1000" />
+      <workItem from="1786453262413" duration="3535000" />
     </task>
     <servers />
   </component>
