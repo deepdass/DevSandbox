@@ -41,4 +41,6 @@ public:
 	UFUNCTION(Exec)
 	void KillAll();
 	
+	UFUNCTION(Exec)
+	void DeleteSaveGame();
 };

@@ -8,7 +8,6 @@
 #include "Engine/DataTable.h"
 #include "SGameModeBase.generated.h"
 
-class USSaveGame;
 class UEnvQuery;
 class UEnvQueryInstanceBlueprintWrapper;
 class UCurveFloat;
@@ -52,16 +51,11 @@ class PROJECTIDK_API ASGameModeBase : public AGameModeBase
 	
 protected:
 	
-	FString SlotName;
-	
 	UPROPERTY(EditDefaultsOnly)
 	int32 CreditPerKill;
 	
 	UPROPERTY(EditDefaultsOnly)
 	int32 RagePerKill;
-	
-	UPROPERTY()
-	TObjectPtr<USSaveGame> CurrentSaveGame;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	FTimerHandle TimerHandle_SpawnBot;
@@ -113,9 +107,5 @@ public:
 	virtual void HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer) override;
 	
 	virtual void OnActorKilled(AActor* VictimActor, AActor* Killer);
-	
-	UFUNCTION(BlueprintCallable, Category= "SaveGame")
-	void WriteSaveGame();
-	
-	void LoadSaveGame();
+
 };

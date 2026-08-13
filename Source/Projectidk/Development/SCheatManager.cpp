@@ -8,6 +8,7 @@
 #include "PlayerComps/SAttributeComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "EngineUtils.h"
+#include "Kismet/GameplayStatics.h"
 
 void USCheatManager::HealSelf(float Amount)
 {
@@ -102,4 +103,9 @@ void USCheatManager::KillAll()
 			}
 		}
 	}
+}
+
+void USCheatManager::DeleteSaveGame()
+{
+	UGameplayStatics::DeleteGameInSlot("SaveGame01", 0);
 }

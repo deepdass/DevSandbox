@@ -5,18 +5,14 @@
 
 #include "EngineUtils.h"
 #include "SPlayerState.h"
-#include "SSaveGame.h"
 #include "AI/SAICharacter.h"
 #include "AI/SMonsterData.h"
 #include "Engine/AssetManager.h"
 #include "EnvironmentQuery/EnvQueryManager.h"
 #include "GameFramework/GameStateBase.h"
-#include "GameFramework/SaveGame.h"
-#include "Kismet/GameplayStatics.h"
 #include "PlayerComps/SAttributeComponent.h"
 #include "PlayerComps/SCharacter.h"
-#include "PlayerComps/SGameplayInterface.h"
-#include "Serialization/ObjectAndNameAsStringProxyArchive.h"
+#include "SaveSystem/SSaveGameSubsystem.h"
 
 
 static TAutoConsoleVariable<bool> CVarSpawnBots(TEXT("su.SpawnBots"), true, TEXT("Enable bot spawning via timer."), ECVF_Cheat);
@@ -62,19 +58,21 @@ static FMonsterInfoRow* GetRandomWeightedMonsterRow(const TArray<FMonsterInfoRow
 
 ASGameModeBase::ASGameModeBase()
 {
+	PlayerStateClass = ASPlayerState::StaticClass();
+	
 	SpawnTimerInterval = 5.0f;
 	
 	CreditPerKill = 15;
 	RagePerKill = 20;
-	
-	SlotName = "SaveGame01";
 }
 
 void ASGameModeBase::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
 {
 	Super::InitGame(MapName, Options, ErrorMessage);
 	
-	LoadSaveGame();
+	USSaveGameSubsystem* SaveGameSubsystem = GetGameInstance()->GetSubsystem<USSaveGameSubsystem>();
+	
+	SaveGameSubsystem->LoadSaveGame();
 }
 
 void ASGameModeBase::StartPlay()
@@ -86,14 +84,10 @@ void ASGameModeBase::StartPlay()
 
 void ASGameModeBase::HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer)
 {
-	
-	ASPlayerState* PlayerState = NewPlayer->GetPlayerState<ASPlayerState>();
-	if (PlayerState)
-	{
-		PlayerState->LoadPlayerState(CurrentSaveGame);
-	}
-	
 	Super::HandleStartingNewPlayer_Implementation(NewPlayer);
+	
+	USSaveGameSubsystem* SG = GetGameInstance()->GetSubsystem<USSaveGameSubsystem>();
+	SG->HandleStartingNewPlayer(NewPlayer);
 }
 
 void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
@@ -257,91 +251,4 @@ void ASGameModeBase::OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLoca
 		}
 	}
 	DrawDebugSphere(GetWorld(), SpawnLocation, 80.0f, 20, FColor::Blue, false, 60.0f);
-}
-
-void ASGameModeBase::WriteSaveGame()
-{
-	for (int32 i = 0; i < GameState->PlayerArray.Num(); i++)
-	{
-		ASPlayerState* PlayerState = Cast<ASPlayerState>(GameState->PlayerArray[i]);
-		if (PlayerState)
-		{
-			PlayerState->SavePlayerState(CurrentSaveGame);
-			break; //SinglePlayer
-		}
-	}
-	
-	CurrentSaveGame->SavedActors.Empty();
-	
-	for (FActorIterator It(GetWorld()); It; ++It)
-	{
-		AActor* Actor = *It;
-		if (!Actor->Implements<USGameplayInterface>())
-		{
-			continue;
-		}
-		
-		FActorSaveData ActorData;
-		ActorData.ActorName = Actor->GetName();
-		ActorData.ActorTransform = Actor->GetActorTransform();
-		
-		FMemoryWriter MemWriter(ActorData.ByteData);
-		
-		FObjectAndNameAsStringProxyArchive Ar(MemWriter, true);
-		Ar.ArIsSaveGame = true;
-		
-		Actor->Serialize(Ar);
-		
-		CurrentSaveGame->SavedActors.Add(ActorData);
-	}
-	
-	UGameplayStatics::SaveGameToSlot(CurrentSaveGame, SlotName, 0);
-}
-
-void ASGameModeBase::LoadSaveGame()
-{
-	if (UGameplayStatics::DoesSaveGameExist(SlotName, 0))
-	{
-		CurrentSaveGame = Cast<USSaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-		if (CurrentSaveGame == nullptr)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Can't Load Save Game %s"), *SlotName);
-			return;
-		}
-		UE_LOG(LogTemp, Log, TEXT("Loaded Save Game %s"), *SlotName);
-		
-		
-		for (FActorIterator It(GetWorld()); It; ++It)
-		{
-			AActor* Actor = *It;
-			if (!Actor->Implements<USGameplayInterface>())
-			{
-				continue;
-			}
-		
-			for (FActorSaveData ActorData : CurrentSaveGame->SavedActors)
-			{
-				if (ActorData.ActorName == Actor->GetName())
-				{
-					Actor->SetActorTransform(ActorData.ActorTransform);
-					
-					FMemoryReader MemReader(ActorData.ByteData);
-					
-					FObjectAndNameAsStringProxyArchive Ar(MemReader, true);
-					Ar.ArIsSaveGame = true;
-		
-					Actor->Serialize(Ar);
-					
-					ISGameplayInterface::Execute_OnActorLoaded(Actor);
-					
-					break;
-				}
-			}
-		}
-	}
-	else
-	{
-		CurrentSaveGame = Cast<USSaveGame>(UGameplayStatics::CreateSaveGameObject(USSaveGame::StaticClass()));
-		UE_LOG(LogTemp, Log, TEXT("Created New Save Game %s"), *SlotName);
-	}
 }
