@@ -12,7 +12,6 @@ class UEnvQuery;
 class UEnvQueryInstanceBlueprintWrapper;
 class UCurveFloat;
 class UDataTable;
-class USMonsterData;
 
 USTRUCT(BlueprintType)
 struct FMonsterInfoRow : public FTableRowBase
@@ -24,7 +23,7 @@ public:
 	{
 		Weight = 1.0f;
 		SpawnCost = 1.0f;
-		KillReward = 15.0;
+		KillReward = 15.0f;
 	}
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -51,13 +50,13 @@ class PROJECTIDK_API ASGameModeBase : public AGameModeBase
 	
 protected:
 	
+	// Fallback credit reward used when the victim isn't an AI monster with its own KillReward (e.g. PvP kills).
 	UPROPERTY(EditDefaultsOnly)
-	int32 CreditPerKill;
+	float DefaultCreditPerKill;
 	
 	UPROPERTY(EditDefaultsOnly)
 	int32 RagePerKill;
 	
-	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")
 	FTimerHandle TimerHandle_SpawnBot;
 	
 	UPROPERTY(EditDefaultsOnly, Category="SpawnBot")

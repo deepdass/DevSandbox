@@ -13,6 +13,7 @@ class USActionComponent;
 class SoundCue;
 class UUserWidget;
 class USWorldUserWidget;
+class USMonsterData;
 
 UCLASS()
 class PROJECTIDK_API ASAICharacter : public ACharacter
@@ -27,6 +28,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	APawn* GetTarget() const;
+	
+	FORCEINLINE USMonsterData* GetMonsterData() const { return MonsterData; }
+	FORCEINLINE void SetMonsterData(USMonsterData* NewMonsterData) { MonsterData = NewMonsterData; }
 	
 protected:
 	
@@ -85,4 +89,7 @@ protected:
 	
 	UPROPERTY()
 	TObjectPtr<UMaterialInstanceDynamic> FlashMID;
+	
+	UPROPERTY()
+	TObjectPtr<USMonsterData> MonsterData;
 };

@@ -56,13 +56,36 @@ static FMonsterInfoRow* GetRandomWeightedMonsterRow(const TArray<FMonsterInfoRow
 }
 
 
+// Finds the KillReward for a given monster type by matching MonsterId against the data table rows.
+static float GetKillRewardForMonster(const UDataTable* MonsterDataTable, const FPrimaryAssetId& MonsterId)
+{
+	if (!MonsterDataTable || !MonsterId.IsValid())
+	{
+		return 0.0f;
+	}
+
+	TArray<FMonsterInfoRow*> Rows;
+	MonsterDataTable->GetAllRows("", Rows);
+
+	for (const FMonsterInfoRow* Row : Rows)
+	{
+		if (Row && Row->MonsterId == MonsterId)
+		{
+			return Row->KillReward;
+		}
+	}
+
+	return 0.0f;
+}
+
+
 ASGameModeBase::ASGameModeBase()
 {
 	PlayerStateClass = ASPlayerState::StaticClass();
 	
 	SpawnTimerInterval = 5.0f;
 	
-	CreditPerKill = 15;
+	DefaultCreditPerKill = 15;
 	RagePerKill = 20;
 }
 
@@ -122,7 +145,15 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
 		ASPlayerState* PlayerState = KillerPawn->GetPlayerState<ASPlayerState>();
 		if (ensure(IsValid(PlayerState)))
 		{
-			PlayerState->ApplyCreditChange(this, CreditPerKill); 
+			float CreditReward = DefaultCreditPerKill;
+			
+			ASAICharacter* KilledMonster = Cast<ASAICharacter>(VictimActor);
+			if (IsValid(KilledMonster) && KilledMonster->GetMonsterData())
+			{
+				CreditReward = GetKillRewardForMonster(MonsterDataTable, KilledMonster->GetMonsterData()->GetPrimaryAssetId());
+			}
+			
+			PlayerState->ApplyCreditChange(this, CreditReward);
 			UEnvQueryInstanceBlueprintWrapper* QueryInstance = UEnvQueryManager::RunEQSQuery(this, PickupEnvQuery, KillerPawn, EEnvQueryRunMode::AllMatching, nullptr);
 			if (IsValid(QueryInstance))
 			{
@@ -247,7 +278,13 @@ void ASGameModeBase::OnMonsterLoaded(FPrimaryAssetId LoadedID, FVector SpawnLoca
 		USMonsterData* MonsterData = Cast<USMonsterData>(Manager->GetPrimaryAssetObject(LoadedID));
 		if (MonsterData)
 		{
-			GetWorld()->SpawnActor<AActor>(MonsterData->MonsterClass, SpawnLocation, FRotator::ZeroRotator);
+			AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(MonsterData->MonsterClass, SpawnLocation, FRotator::ZeroRotator);
+			
+			ASAICharacter* SpawnedMonster = Cast<ASAICharacter>(SpawnedActor);
+			if (IsValid(SpawnedMonster))
+			{
+				SpawnedMonster->SetMonsterData(MonsterData);
+			}
 		}
 	}
 	DrawDebugSphere(GetWorld(), SpawnLocation, 80.0f, 20, FColor::Blue, false, 60.0f);

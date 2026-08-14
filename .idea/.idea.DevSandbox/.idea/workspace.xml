@@ -18,26 +18,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71dc0825-ff32-4c1d-82fe-b361d2b20a2a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/AIC_MinionAssault.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/AIC_MinionSniper.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionAssaultActionProjectileAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionAssaultActionProjectileAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionSniperActionProjectileAttack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Actions/MinionSniperActionProjectileAttack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BB_MinionAssault.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BB_MinionSniper.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP/EQS_TestingPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP/EQS_TestingPawn.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_MinionAssault.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/BP_MinionAssault.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BP_MinionSniper.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BT_MinionAssault.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/BT_MinionSniper.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_FindBotSpawn.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_FindNearbyCover.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_FindNearbyLoc.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/EQ_SniperFindNearbyLoc.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/EQ_SniperFindNearbyLoc.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/MagicProjectile_Assault.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/AI/MagicProjectile_Sniper.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/Data/DA_MinionSniper.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Data/DA_MinionSniper.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/GM_Game.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/GM_Game.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Projectile_Cannon.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Projectile_Cannon.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/Data/DA_MinionAssault.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/Data/DA_MinionAssault.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/0/Q8/0AHFPJ3YOZOZV1GUWZZVWT.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/0/Q8/0AHFPJ3YOZOZV1GUWZZVWT.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/0/VP/F2MJY2PLSRVJFYTT75IJWD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/0/VP/F2MJY2PLSRVJFYTT75IJWD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/0/ZZ/GFFPPD3KYYZCZJG571GCN8.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/0/ZZ/GFFPPD3KYYZCZJG571GCN8.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/6/3F/2JM9FKJ6537FWM956TNK90.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/6/3F/2JM9FKJ6537FWM956TNK90.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/8/UJ/0YVXND3TNUOK6MK6UMF3OS.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/8/UJ/0YVXND3TNUOK6MK6UMF3OS.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/R5/AYKIG8FVNHAMRNJMOE98MM.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/R5/AYKIG8FVNHAMRNJMOE98MM.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/E/E4/GO3J3SOF85N4EGAQ8E1KD6.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/E/E4/GO3J3SOF85N4EGAQ8E1KD6.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/E/GO/YHF5EZOBJUC6YRRIB5MK7U.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/E/GO/YHF5EZOBJUC6YRRIB5MK7U.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SAICharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/AI/SMonsterData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/AI/SMonsterData.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/Core/SGameModeBase.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +205,7 @@
       <workItem from="1786253879000" duration="3501000" />
       <workItem from="1786267990806" duration="1000" />
       <workItem from="1786453262413" duration="3535000" />
+      <workItem from="1786702423996" duration="2527000" />
     </task>
     <servers />
   </component>
