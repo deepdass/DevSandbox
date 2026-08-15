@@ -2,7 +2,7 @@
 
 #include "SPlayerState.h"
 
-#include "SSaveGame.h"
+#include "SaveSystem/SSaveGame.h"
 #include "Net/UnrealNetwork.h"
 
 ASPlayerState::ASPlayerState()
@@ -44,8 +44,7 @@ void ASPlayerState::SavePlayerState_Implementation(USSaveGame* SaveObject)
 {
 	if (SaveObject)
 	{
-		//SaveObject->Credit = CreditData.Credit;
-		ApplyCreditChange(GetPawn(), SaveObject->Credit);
+		SaveObject->Credit = CreditData.Credit;
 	}
 }
 
@@ -53,6 +52,6 @@ void ASPlayerState::LoadPlayerState_Implementation(USSaveGame* SaveObject)
 {
 	if (SaveObject)
 	{
-		CreditData.Credit = SaveObject->Credit;
+		ApplyCreditChange(GetPawn(), SaveObject->Credit);
 	}
 }

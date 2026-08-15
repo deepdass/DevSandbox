@@ -5,7 +5,7 @@
 
 #include "EngineUtils.h"
 #include "Core/SPlayerState.h"
-#include "Core/SSaveGame.h"
+#include "SaveSystem/SSaveGame.h"
 #include "GameFramework/GameStateBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "PlayerComps/SGameplayInterface.h"
@@ -44,9 +44,8 @@ void USSaveGameSubsystem::WriteSaveGame()
 	
 	CurrentSaveGame->SavedActors.Empty();
 	
-	for (FActorIterator It(GetWorld()); It; ++It)
+	for (AActor* Actor : TActorRange<AActor>(GetWorld()))
 	{
-		AActor* Actor = *It;
 		if (!IsValid(Actor) || !Actor->Implements<USGameplayInterface>())
 		{
 			continue;
@@ -83,9 +82,8 @@ void USSaveGameSubsystem::LoadSaveGame()
 		UE_LOG(LogTemp, Log, TEXT("Loaded Save Game %s"), *SlotName);
 		
 		
-		for (FActorIterator It(GetWorld()); It; ++It)
+		for (AActor* Actor : TActorRange<AActor>(GetWorld()))
 		{
-			AActor* Actor = *It;
 			if (!Actor->Implements<USGameplayInterface>())
 			{
 				continue;

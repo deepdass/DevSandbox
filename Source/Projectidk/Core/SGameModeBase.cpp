@@ -56,7 +56,6 @@ static FMonsterInfoRow* GetRandomWeightedMonsterRow(const TArray<FMonsterInfoRow
 }
 
 
-// Finds the KillReward for a given monster type by matching MonsterId against the data table rows.
 static float GetKillRewardForMonster(const UDataTable* MonsterDataTable, const FPrimaryAssetId& MonsterId)
 {
 	if (!MonsterDataTable || !MonsterId.IsValid())
@@ -107,10 +106,10 @@ void ASGameModeBase::StartPlay()
 
 void ASGameModeBase::HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer)
 {
-	Super::HandleStartingNewPlayer_Implementation(NewPlayer);
-	
 	USSaveGameSubsystem* SG = GetGameInstance()->GetSubsystem<USSaveGameSubsystem>();
 	SG->HandleStartingNewPlayer(NewPlayer);
+
+	Super::HandleStartingNewPlayer_Implementation(NewPlayer);
 }
 
 void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
@@ -128,7 +127,6 @@ void ASGameModeBase::OnActorKilled(AActor* VictimActor, AActor* Killer)
                 return;
             }
         }
-
         FTimerHandle& TimerHandle = RespawnTimerHandles.FindOrAdd(Controller);
 
         FTimerDelegate TimerDelegate;
