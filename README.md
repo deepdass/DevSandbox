@@ -25,9 +25,15 @@ WASD - Move
 
 Custom Console Command
 <br> su.SpawnBots [0/1] - Bot Spawning via timer
-<br> KillAll - Kill all bots
 <br> su.DamagedMultiplier [DamageMultiplierNumber] - Global Damage Multiplier
-<br> su.DebugDrawInteraction [0/1]- Draws Interaction Debug
+<br> su.DebugDrawInteraction [0/1]- Draws Interaction Debug 
+
+<br> KillAll - Kill all bots
+<br> DeleteSaveGame - Delete Previous Save File
+<br> HealSelf [Amount] - Heal Self By Amount With Default Max Health
+<br> DamageSelf [Amount] - Damage Self By Amount With Default Max Health
+<br> GrantCoin [Amount] - Damage Self By Amount With Default 1000 Coins
+<br> MoveInDirectionBy [Move By In Cm] [Move In Axis] - Move yourself along axis in Cm With Default 200 Cm in Z axis
 
 ## Resources
 Framework based on - https://github.com/tomlooman/ActionRoguelike

@@ -36,7 +36,6 @@ void USAttributeComponent::OnRep_HealthData(FAttribute OldHealthData)
 	OnHealthChanged.Broadcast(HealthData.Instigator, this, HealthData.Value, Delta);
 }
 
-
 bool USAttributeComponent::ApplyHealthChange(AActor* InstigatorActor, float Delta)
 {
 	if (!GetOwner()->HasAuthority()) { return false; }
