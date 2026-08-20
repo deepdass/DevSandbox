@@ -19,6 +19,16 @@
   <component name="ChangeListManager">
     <list default="true" id="2a9d0ff5-9d20-42ad-a7e4-466aba19a722" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Minions/Assault/BP_MinionAssault.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Minions/Assault/BP_MinionAssault.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Minions/Sniper/BP_MinionSniper.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Minions/Sniper/BP_MinionSniper.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/AI/Minions/Sniper/BT_MinionSniper.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Minions/Sniper/BT_MinionSniper.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WorldWidget/WBP_MinionHealthBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WorldWidget/WBP_MinionHealthBar.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/SF/GZYMI0MLFSHZT1VAB6JB1N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/SF/GZYMI0MLFSHZT1VAB6JB1N.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/6A/WTR4QVNBUP76N849W9W6FM.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/D/6A/WTR4QVNBUP76N849W9W6FM.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +167,7 @@
       <updated>1786796586528</updated>
       <workItem from="1786796624882" duration="3194000" />
       <workItem from="1786869823003" duration="6078000" />
+      <workItem from="1787226276767" duration="3030000" />
     </task>
     <servers />
   </component>

@@ -17,10 +17,10 @@ struct FAttribute
 	AActor* Instigator = nullptr;
 
 	UPROPERTY(VisibleAnywhere, Category = "Attribute")
-	float Value = 0.0f;
+	float Value;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Attribute")
-	float MaxValue = 100.0f;
+	UPROPERTY(EditAnywhere, Category = "Attribute")
+	float MaxValue;
 };
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -39,6 +39,9 @@ public:
 	USAttributeComponent();
 
 protected:
+	
+	virtual void BeginPlay() override;
+	
 	UPROPERTY(EditDefaultsOnly, ReplicatedUsing = "OnRep_HealthData", Category = "Health")
 	FAttribute HealthData;
 

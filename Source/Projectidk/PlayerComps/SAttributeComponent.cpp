@@ -19,11 +19,16 @@ USAttributeComponent::USAttributeComponent()
 	SetIsReplicatedByDefault(true);
 }
 
+void USAttributeComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	HealthData.Value = HealthData.MaxValue;
+}
+
 bool USAttributeComponent::GetIsAlive() const
 {
 	return !FMath::IsNearlyZero(HealthData.Value);
 }
-
 
 void USAttributeComponent::OnRep_HealthData(FAttribute OldHealthData)
 {
