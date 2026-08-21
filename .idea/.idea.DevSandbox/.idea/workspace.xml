@@ -18,10 +18,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a9d0ff5-9d20-42ad-a7e4-466aba19a722" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DevSandbox/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Core/AI/Minions/Sniper/BP_MinionSniper.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/AI/Minions/Sniper/BP_MinionSniper.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Projectidk/PlayerComps/SAttributeComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/BP_PlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Lever.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/InteractiveObjects/BP_Lever.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Core/UI/WorldWidget/WBP_MinionHealthBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Core/UI/WorldWidget/WBP_MinionHealthBar.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/85/MNHI7K5NXV134L9YQGZKZS.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/85/MNHI7K5NXV134L9YQGZKZS.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/SF/GZYMI0MLFSHZT1VAB6JB1N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/4/SF/GZYMI0MLFSHZT1VAB6JB1N.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/7/5K/7QB0MLOB16NED7SH8IMP4H.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Core/Maps/Sandbox/7/5K/7QB0MLOB16NED7SH8IMP4H.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +166,8 @@
       <workItem from="1786796624882" duration="3194000" />
       <workItem from="1786869823003" duration="6078000" />
       <workItem from="1787226276767" duration="5274000" />
+      <workItem from="1787260711059" duration="117000" />
+      <workItem from="1787318836697" duration="1334000" />
     </task>
     <servers />
   </component>
