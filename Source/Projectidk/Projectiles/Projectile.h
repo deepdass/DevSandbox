@@ -41,4 +41,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	TObjectPtr<UNiagaraSystem> SpawnVFX;
 	
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	TObjectPtr<UNiagaraSystem> ParryVFX;
+	
+	bool bHasBeenParried = false;
+	
 };

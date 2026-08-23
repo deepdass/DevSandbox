@@ -52,7 +52,10 @@ void ASBaseClassProjectile::Explode_Implementation()
 {
 	if (ensure(IsValid(this)))
 	{
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactVFX, GetActorLocation(), GetActorRotation());
+		if (ImpactVFX)
+		{
+			UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactVFX, GetActorLocation(), GetActorRotation());
+		}
 		
 		Destroy();
 	}

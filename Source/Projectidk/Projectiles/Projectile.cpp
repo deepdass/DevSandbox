@@ -37,23 +37,38 @@ void ASBaseClassProjectile::PostInitializeComponents()
 
 void Aprojectile::Explode_Implementation()
 {
-	if (IsValid(HitActor))
-	{
-		USActionComponent* ActionComp = Cast<USActionComponent>(HitActor->GetComponentByClass(USActionComponent :: StaticClass()));
-		if (ActionComp && ActionComp->ActiveGameplayTags.HasTag(ParryTag))
-		{
-			SphereComp->IgnoreActorWhenMoving(GetInstigator(), false);
-			SphereComp->IgnoreActorWhenMoving(HitActor, true);
-			
-			SetInstigator(Cast<APawn>(HitActor));
-			
-			ProjectileMovement->SetVelocityInLocalSpace(FVector(-1.f, 0.f, 0.f) * ProjectileMovement->InitialSpeed);
+	if (!IsValid(HitActor)) return;
 
-			return;
-		}
+	if (bHasBeenParried)
+	{
 		USGameplayFunctionLibrary::ApplyDirectionalDamage(GetInstigator(), HitActor, DamageAmount, SweepResult);
+		UGameplayStatics::PlayWorldCameraShake(GetWorld(), ImpactCameraShake, GetActorLocation(), 0.0f, 1000.0f, 1.0f);
+		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
+		Super::Explode_Implementation();
+		return;
 	}
-	
+
+	USActionComponent* ActionComp = Cast<USActionComponent>(HitActor->GetComponentByClass(USActionComponent::StaticClass()));
+	if (ActionComp && ActionComp->ActiveGameplayTags.HasTag(ParryTag))
+	{
+		bHasBeenParried = true;
+
+		if (ParryVFX)
+		{
+			UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ParryVFX, GetActorLocation(), GetActorRotation());
+		}
+		
+		SphereComp->IgnoreActorWhenMoving(GetInstigator(), false);
+		SphereComp->IgnoreActorWhenMoving(HitActor, true);
+		
+		SetInstigator(Cast<APawn>(HitActor));
+		
+		ProjectileMovement->SetVelocityInLocalSpace(FVector(-1.f, 0.f, 0.f) * ProjectileMovement->InitialSpeed);
+
+		return;
+	}
+
+	USGameplayFunctionLibrary::ApplyDirectionalDamage(GetInstigator(), HitActor, DamageAmount, SweepResult);
 	UGameplayStatics::PlayWorldCameraShake(GetWorld(), ImpactCameraShake, GetActorLocation(), 0.0f, 1000.0f, 1.0f);
 	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
 	Super::Explode_Implementation();
