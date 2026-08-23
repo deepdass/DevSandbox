@@ -4,7 +4,9 @@ A multiplayer gameplay sandbox focused on modular, data-driven systems, AI, netw
 
 ## How to Run the Unreal Project Files
 To get the Unreal project running on your system, first clone this github repo into a local folder using git or just download the zip by tapping the green code on top.
-Then Download the Unreal 5.7 version from Epic games launcher as the game was made on that version, you could also use the latest version - but things may break during compiling. Then locate the zip and unzip it, you will find .uproject file, right click it -> more options -> 'generate Visual Studio project files' -> open up the .sln in Rider or Visual Studio Community and press Ctrl + Shift + B on load, Let it compile and launch it but tapping uproject or the play button - and you have the project files.
+<br> Then Download the Unreal 5.7 version from Epic games launcher as the game was made on that version, you could also use the latest version - but things may break during compiling. 
+<br> Then locate the zip and unzip it, you will find .uproject file, right click it -> more options -> 'generate Visual Studio project files' -> open up the .sln in Rider or Visual Studio Community and press Ctrl + Shift + B on load, 
+<br> Let it compile and launch it but tapping uproject or the play button - and you have the project files.
 
 Live Link - https://deepdass.itch.io/devsandbox
 
